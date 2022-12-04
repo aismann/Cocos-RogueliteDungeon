@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/proj.win32
+/proj.linux
+/proj.ios_mac
+/proj.android
+/cocos2d
+/BUILD_WIN
