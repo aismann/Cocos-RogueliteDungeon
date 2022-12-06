@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>knight_f_hit_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,1.5}</string>
+                <key>spriteSize</key>
+                <string>{16,25}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,1},{16,25}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 25 0 25 0 0 16 0</string>
+                <key>verticesUV</key>
+                <string>35 26 19 26 19 1 35 1</string>
+            </dict>
+            <key>knight_f_idle_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-3.5}</string>
+                <key>spriteSize</key>
+                <string>{16,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{91,1},{16,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 7 16 7</string>
+                <key>verticesUV</key>
+                <string>107 22 91 22 91 1 107 1</string>
+            </dict>
+            <key>knight_f_idle_anim_f1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-3.5}</string>
+                <key>spriteSize</key>
+                <string>{16,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{73,48},{16,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 7 16 7</string>
+                <key>verticesUV</key>
+                <string>89 69 73 69 73 48 89 48</string>
+            </dict>
+            <key>knight_f_idle_anim_f2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-3.5}</string>
+                <key>spriteSize</key>
+                <string>{16,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{55,49},{16,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 7 16 7</string>
+                <key>verticesUV</key>
+                <string>71 70 55 70 55 49 71 49</string>
+            </dict>
+            <key>knight_f_idle_anim_f3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4}</string>
+                <key>spriteSize</key>
+                <string>{16,20}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{91,46},{16,20}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 8 16 8</string>
+                <key>verticesUV</key>
+                <string>107 66 91 66 91 46 107 46</string>
+            </dict>
+            <key>knight_f_run_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-3}</string>
+                <key>spriteSize</key>
+                <string>{16,22}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{55,25},{16,22}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 6 16 6</string>
+                <key>verticesUV</key>
+                <string>71 47 55 47 55 25 71 25</string>
+            </dict>
+            <key>knight_f_run_anim_f1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2}</string>
+                <key>spriteSize</key>
+                <string>{16,22}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{73,1},{16,22}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 27 0 27 0 5 16 5</string>
+                <key>verticesUV</key>
+                <string>89 23 73 23 73 1 89 1</string>
+            </dict>
+            <key>knight_f_run_anim_f2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2.5}</string>
+                <key>spriteSize</key>
+                <string>{16,23}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,28},{16,23}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 5 16 5</string>
+                <key>verticesUV</key>
+                <string>35 51 19 51 19 28 35 28</string>
+            </dict>
+            <key>knight_f_run_anim_f3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2.5}</string>
+                <key>spriteSize</key>
+                <string>{16,23}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,53},{16,23}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 5 16 5</string>
+                <key>verticesUV</key>
+                <string>17 76 1 76 1 53 17 53</string>
+            </dict>
+            <key>knight_m_hit_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,1.5}</string>
+                <key>spriteSize</key>
+                <string>{16,25}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{16,25}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 25 0 25 0 0 16 0</string>
+                <key>verticesUV</key>
+                <string>17 26 1 26 1 1 17 1</string>
+            </dict>
+            <key>knight_m_idle_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-3.5}</string>
+                <key>spriteSize</key>
+                <string>{16,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{73,25},{16,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 7 16 7</string>
+                <key>verticesUV</key>
+                <string>89 46 73 46 73 25 89 25</string>
+            </dict>
+            <key>knight_m_idle_anim_f1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-3.5}</string>
+                <key>spriteSize</key>
+                <string>{16,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{37,50},{16,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 7 16 7</string>
+                <key>verticesUV</key>
+                <string>53 71 37 71 37 50 53 50</string>
+            </dict>
+            <key>knight_m_idle_anim_f2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-3.5}</string>
+                <key>spriteSize</key>
+                <string>{16,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,53},{16,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 7 16 7</string>
+                <key>verticesUV</key>
+                <string>35 74 19 74 19 53 35 53</string>
+            </dict>
+            <key>knight_m_idle_anim_f3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4}</string>
+                <key>spriteSize</key>
+                <string>{16,20}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{91,24},{16,20}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 8 16 8</string>
+                <key>verticesUV</key>
+                <string>107 44 91 44 91 24 107 24</string>
+            </dict>
+            <key>knight_m_run_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-3}</string>
+                <key>spriteSize</key>
+                <string>{16,22}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{37,26},{16,22}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 6 16 6</string>
+                <key>verticesUV</key>
+                <string>53 48 37 48 37 26 53 26</string>
+            </dict>
+            <key>knight_m_run_anim_f1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2}</string>
+                <key>spriteSize</key>
+                <string>{16,22}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{55,1},{16,22}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 27 0 27 0 5 16 5</string>
+                <key>verticesUV</key>
+                <string>71 23 55 23 55 1 71 1</string>
+            </dict>
+            <key>knight_m_run_anim_f2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2.5}</string>
+                <key>spriteSize</key>
+                <string>{16,23}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{37,1},{16,23}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 5 16 5</string>
+                <key>verticesUV</key>
+                <string>53 24 37 24 37 1 53 1</string>
+            </dict>
+            <key>knight_m_run_anim_f3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2.5}</string>
+                <key>spriteSize</key>
+                <string>{16,23}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,28},{16,23}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 5 16 5</string>
+                <key>verticesUV</key>
+                <string>17 51 1 51 1 28 17 28</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>Knight.png</string>
+            <key>size</key>
+            <string>{108,77}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:1e266772ef8334c04f23508294259b61:1ec45513c6832bb7ea97b97322ede0b3:9b1a1102b4517beb6b8f0baff9502c91$</string>
+            <key>textureFileName</key>
+            <string>Knight.png</string>
+        </dict>
+    </dict>
+</plist>

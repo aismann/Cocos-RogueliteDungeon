@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>elf_f_hit_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2}</string>
+                <key>spriteSize</key>
+                <string>{16,20}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,24},{16,20}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 26 0 26 0 6 16 6</string>
+                <key>verticesUV</key>
+                <string>35 44 19 44 19 24 35 24</string>
+            </dict>
+            <key>elf_f_idle_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-5.5}</string>
+                <key>spriteSize</key>
+                <string>{16,17}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{55,22},{16,17}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>2 3 4 0 1 2 0 2 4</string>
+                <key>vertices</key>
+                <string>16 13 16 28 0 28 0 11 14 11</string>
+                <key>verticesUV</key>
+                <string>71 24 71 39 55 39 55 22 69 22</string>
+            </dict>
+            <key>elf_f_idle_anim_f1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-6}</string>
+                <key>spriteSize</key>
+                <string>{16,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{55,41},{16,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>0 3 4 2 3 0 2 0 1</string>
+                <key>vertices</key>
+                <string>16 26 15 28 0 28 0 12 16 12</string>
+                <key>verticesUV</key>
+                <string>71 55 70 57 55 57 55 41 71 41</string>
+            </dict>
+            <key>elf_f_idle_anim_f2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-6.5}</string>
+                <key>spriteSize</key>
+                <string>{16,15}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,89},{16,15}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 13 16 13</string>
+                <key>verticesUV</key>
+                <string>17 104 1 104 1 89 17 89</string>
+            </dict>
+            <key>elf_f_idle_anim_f3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-6}</string>
+                <key>spriteSize</key>
+                <string>{16,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{37,63},{16,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 12 16 12</string>
+                <key>verticesUV</key>
+                <string>53 79 37 79 37 63 53 63</string>
+            </dict>
+            <key>elf_f_run_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-6.5}</string>
+                <key>spriteSize</key>
+                <string>{16,15}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{55,69},{16,15}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 13 16 13</string>
+                <key>verticesUV</key>
+                <string>71 84 55 84 55 69 71 69</string>
+            </dict>
+            <key>elf_f_run_anim_f1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-5}</string>
+                <key>spriteSize</key>
+                <string>{16,18}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,66},{16,18}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 10 16 10</string>
+                <key>verticesUV</key>
+                <string>35 84 19 84 19 66 35 66</string>
+            </dict>
+            <key>elf_f_run_anim_f2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-5.5}</string>
+                <key>spriteSize</key>
+                <string>{16,17}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{37,44},{16,17}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 11 16 11</string>
+                <key>verticesUV</key>
+                <string>53 61 37 61 37 44 53 44</string>
+            </dict>
+            <key>elf_f_run_anim_f3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-7}</string>
+                <key>spriteSize</key>
+                <string>{16,14}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,86},{16,14}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 14 16 14</string>
+                <key>verticesUV</key>
+                <string>35 100 19 100 19 86 35 86</string>
+            </dict>
+            <key>elf_m_hit_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-0.5}</string>
+                <key>spriteSize</key>
+                <string>{16,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,1},{16,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 25 0 25 0 4 16 4</string>
+                <key>verticesUV</key>
+                <string>35 22 19 22 19 1 35 1</string>
+            </dict>
+            <key>elf_m_idle_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4}</string>
+                <key>spriteSize</key>
+                <string>{16,20}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,46},{16,20}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 8 16 8</string>
+                <key>verticesUV</key>
+                <string>17 66 1 66 1 46 17 46</string>
+            </dict>
+            <key>elf_m_idle_anim_f1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4.5}</string>
+                <key>spriteSize</key>
+                <string>{16,19}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,68},{16,19}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 9 16 9</string>
+                <key>verticesUV</key>
+                <string>17 87 1 87 1 68 17 68</string>
+            </dict>
+            <key>elf_m_idle_anim_f2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-5}</string>
+                <key>spriteSize</key>
+                <string>{16,18}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,46},{16,18}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 10 16 10</string>
+                <key>verticesUV</key>
+                <string>35 64 19 64 19 46 35 46</string>
+            </dict>
+            <key>elf_m_idle_anim_f3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4.5}</string>
+                <key>spriteSize</key>
+                <string>{16,19}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{37,23},{16,19}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 9 16 9</string>
+                <key>verticesUV</key>
+                <string>53 42 37 42 37 23 53 23</string>
+            </dict>
+            <key>elf_m_run_anim_f0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4}</string>
+                <key>spriteSize</key>
+                <string>{16,20}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{37,1},{16,20}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 8 16 8</string>
+                <key>verticesUV</key>
+                <string>53 21 37 21 37 1 53 1</string>
+            </dict>
+            <key>elf_m_run_anim_f1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2.5}</string>
+                <key>spriteSize</key>
+                <string>{16,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{16,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 27 0 27 0 6 16 6</string>
+                <key>verticesUV</key>
+                <string>17 22 1 22 1 1 17 1</string>
+            </dict>
+            <key>elf_m_run_anim_f2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4}</string>
+                <key>spriteSize</key>
+                <string>{16,20}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,24},{16,20}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 8 16 8</string>
+                <key>verticesUV</key>
+                <string>17 44 1 44 1 24 17 24</string>
+            </dict>
+            <key>elf_m_run_anim_f3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4.5}</string>
+                <key>spriteSize</key>
+                <string>{16,19}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{55,1},{16,19}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 9 16 9</string>
+                <key>verticesUV</key>
+                <string>71 20 55 20 55 1 71 1</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>Elf.png</string>
+            <key>size</key>
+            <string>{72,105}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:a7d0343da0782f2489736c51dfe5269c:8969e40de9041877321b35469efc9ae4:867e529510655c9f304dbf46e22b705e$</string>
+            <key>textureFileName</key>
+            <string>Elf.png</string>
+        </dict>
+    </dict>
+</plist>
