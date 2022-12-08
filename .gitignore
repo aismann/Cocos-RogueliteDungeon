@@ -2,9 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/proj.win32
-/proj.linux
-/proj.ios_mac
-/proj.android
-/cocos2d
+/Classes/ifusebox2d
 /BUILD_WIN
+/cocos2d
+/proj.android
+/proj.ios_mac
+/proj.linux
+/proj.win32

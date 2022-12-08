@@ -5,8 +5,6 @@
 class HelloWorld : public cocos2d::Scene
 {
 private:
-    float fixedframe = 1.0f / 60.0f;
-    float elapsedtime = 0.0f;
     Entity* entity;
 public:
     static cocos2d::Scene* createScene();

@@ -17,6 +17,29 @@ cocos2d::Animation* Entity::createAnimation(std::string _animate, int _begin, in
 }
 Entity::Entity()
 {
+    this->animate = NULL;
+    this->animation = NULL;
+    StatModifier hp = StatModifier(10, StatModifierType::Flat, 0, this);
+    StatModifier hpp = StatModifier(5, StatModifierType::PercentAdd, 0, this);
+    StatModifier hppp = StatModifier(20, StatModifierType::PercentMult, 0, this);
+    this->healthpoint.addModifier(hp);
+    this->healthpoint.addModifier(hpp);
+    this->healthpoint.addModifier(hppp);
+    //StatModifier mn = StatModifier(5, StatModifierType::Flat, 0, NULL);
+    //this->manapoint.addModifier(mn);
+    //StatModifier dg = StatModifier(5, StatModifierType::Flat, 0, NULL);
+    //this->damagepoint.addModifier(dg);
+    log("health flat [%f]", this->healthpoint.getValue());
+    //log("mana flat [%f]", this->manapoint.getValue());
+    //log("damage flat [%f]", this->damagepoint.getValue());
+    this->healthpoint.removeModifier(hpp);
+    log("health flat [%f]", this->healthpoint.getValue());
+    this->healthpoint.addModifier(hppp);
+    log("health flat [%f]", this->healthpoint.getValue());
+    //this->healthpoint.removeModifier(hppp);
+    //log("health flat [%f]", this->healthpoint.getValue());
+    this->healthpoint.removeAllModifier(this);
+    log("health flat [%f]", this->healthpoint.getValue());
 }
 
 Entity::~Entity()
@@ -54,12 +77,17 @@ void Entity::setAnimation(REPEAT _repeat, std::string _animate, int _begin, int 
 
 void Entity::update(float dt)
 {
-    //log("[%d]",this->getSpriteFrame());
-    for (auto i = 0; i < this->animation->getFrames().size(); i++)
+    elapsedtime += dt;
+    if (elapsedtime >= fixedtimestep)
     {
-        if (this->getSpriteFrame() == this->animation->getFrames().at(i)->getSpriteFrame())
+        elapsedtime -= fixedtimestep;
+        for (auto i = 0; i < this->animation->getFrames().size(); i++)
         {
-            PhysicsShapeCache::getInstance()->setBodyOnSprite("elf_f_idle_anim_f" + std::to_string(i), this);
+            if (this->getSpriteFrame() == this->animation->getFrames().at(i)->getSpriteFrame())
+            {
+                PhysicsShapeCache::getInstance()->setBodyOnSprite("elf_f_idle_anim_f" + std::to_string(i), this);
+            }
         }
     }
 }
+

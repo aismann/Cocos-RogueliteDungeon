@@ -33,10 +33,5 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float dt)
 {
-    elapsedtime += dt;
-    if (elapsedtime >= fixedframe)
-    {
-        elapsedtime = fixedframe;
-        entity->update(elapsedtime);
-    }
+    entity->update(dt);
 }
