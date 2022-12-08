@@ -19,27 +19,7 @@ Entity::Entity()
 {
     this->animate = NULL;
     this->animation = NULL;
-    StatModifier hp = StatModifier(10, StatModifierType::Flat, 0, this);
-    StatModifier hpp = StatModifier(5, StatModifierType::PercentAdd, 0, this);
-    StatModifier hppp = StatModifier(20, StatModifierType::PercentMult, 0, this);
-    this->healthpoint.addModifier(hp);
-    this->healthpoint.addModifier(hpp);
-    this->healthpoint.addModifier(hppp);
-    //StatModifier mn = StatModifier(5, StatModifierType::Flat, 0, NULL);
-    //this->manapoint.addModifier(mn);
-    //StatModifier dg = StatModifier(5, StatModifierType::Flat, 0, NULL);
-    //this->damagepoint.addModifier(dg);
-    log("health flat [%f]", this->healthpoint.getValue());
-    //log("mana flat [%f]", this->manapoint.getValue());
-    //log("damage flat [%f]", this->damagepoint.getValue());
-    this->healthpoint.removeModifier(hpp);
-    log("health flat [%f]", this->healthpoint.getValue());
-    this->healthpoint.addModifier(hppp);
-    log("health flat [%f]", this->healthpoint.getValue());
-    //this->healthpoint.removeModifier(hppp);
-    //log("health flat [%f]", this->healthpoint.getValue());
-    this->healthpoint.removeAllModifier(this);
-    log("health flat [%f]", this->healthpoint.getValue());
+
 }
 
 Entity::~Entity()
@@ -48,18 +28,17 @@ Entity::~Entity()
 
 void Entity::setSpriteFrame(std::string _framename, int _number)
 {
-	this->initWithSpriteFrameName(_framename + std::to_string(_number)+".png");
+    std::string frameName = _framename + std::to_string(_number);
+	this->initWithSpriteFrameName(frameName +".png");
     this->getTexture()->setAliasTexParameters();
     this->setScale(2);
-    PhysicsShapeCache::getInstance()->setBodyOnSprite("elf_f_idle_anim_f0", this);
+    PhysicsShapeCache::getInstance()->setBodyOnSprite(frameName, this);
 }
 
 void Entity::setAnimation(REPEAT _repeat, std::string _animate, int _begin, int _end, float _delay)
 {
     this->stopAllActions();
-    /*----------------------------------------*/
-
-    /*----------------------------------------------*/
+    this->bodyFrameName = _animate;
     this->animation = createAnimation(_animate, _begin, _end, _delay);
     animate = Animate::create(this->animation);
     switch (_repeat)
@@ -75,18 +54,20 @@ void Entity::setAnimation(REPEAT _repeat, std::string _animate, int _begin, int 
     }
 }
 
+void Entity::setEntityVelocity(float speed, cocos2d::Vec2 direction)
+{
+    direction.normalize();
+    this->getPhysicsBody()->setVelocityLimit(velocityLimit);
+    this->getPhysicsBody()->setVelocity(speed*direction);
+}
+
 void Entity::update(float dt)
 {
-    elapsedtime += dt;
-    if (elapsedtime >= fixedtimestep)
+    for (auto i = 0; i < this->animation->getFrames().size(); i++)
     {
-        elapsedtime -= fixedtimestep;
-        for (auto i = 0; i < this->animation->getFrames().size(); i++)
+        if (this->getSpriteFrame() == this->animation->getFrames().at(i)->getSpriteFrame())
         {
-            if (this->getSpriteFrame() == this->animation->getFrames().at(i)->getSpriteFrame())
-            {
-                PhysicsShapeCache::getInstance()->setBodyOnSprite("elf_f_idle_anim_f" + std::to_string(i), this);
-            }
+            PhysicsShapeCache::getInstance()->setBodyOnSprite(this->bodyFrameName + std::to_string(i), this);
         }
     }
 }

@@ -1,11 +1,11 @@
 #ifndef __HELLOWORLD_SCENE_H__
 #define __HELLOWORLD_SCENE_H__
-#include "Entity.h"
+#include "Hero.h"
 #include "cocos2d.h"
 class HelloWorld : public cocos2d::Scene
 {
 private:
-    Entity* entity;
+    Hero* hero;
 public:
     static cocos2d::Scene* createScene();
 

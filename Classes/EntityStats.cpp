@@ -43,7 +43,7 @@ void EntityStats::addModifier(StatModifier& statmodify)
 {
 	isDirty = true;
 	statModifier.push_back(statmodify);
-	log("size [%d]", statModifier.size());
+	//log("size [%d]", statModifier.size());
 }
 
 bool EntityStats::removeModifier(StatModifier& statmodify)
@@ -51,13 +51,14 @@ bool EntityStats::removeModifier(StatModifier& statmodify)
 	for (int i = 0; i < statModifier.size(); i++)
 	{
 		if (statmodify.getValue() == statModifier.at(i).getValue()
-			|| statmodify.getType() == statModifier.at(i).getType()
-			|| statmodify.getOrder() == statModifier.at(i).getOrder()
+			&& statmodify.getType() == statModifier.at(i).getType()
+			&& statmodify.getOrder() == statModifier.at(i).getOrder()
+			&& statmodify.getSource() == statModifier.at(i).getSource()
 			)
 		{
 			isDirty = true;
 			statModifier.erase(std::next(statModifier.begin(), i+1));
-			log("size [%d]", statModifier.size());
+			//log("size [%d]", statModifier.size());
 			return true;
 		}
 	}

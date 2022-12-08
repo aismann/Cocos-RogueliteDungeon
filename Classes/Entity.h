@@ -3,7 +3,8 @@
 #include "cocos2d.h"
 #include "Box2D/Box2D.h"
 #include "Configs.h"
-#include "CharacterStats.h"
+#include "EntityStats.h"
+#include "GameResources.h"
 enum class REPEAT
 {
 	FOREVER,
@@ -12,11 +13,9 @@ enum class REPEAT
 class Entity:public cocos2d::Sprite
 {
 private:
-	float elapsedtime = 0.0f;
+	std::string bodyFrameName;
+	float velocityLimit = 9999;
 protected:
-	EntityStats healthpoint;
-	EntityStats manapoint;
-	EntityStats damagepoint;
 	cocos2d::Animate* animate;
 	cocos2d::Animation* animation;
 	cocos2d::Animation* createAnimation(std::string _animate, int _begin, int _end, float _delay);
@@ -25,6 +24,7 @@ public:
 	~Entity();
 	void setSpriteFrame(std::string _framename, int _number);
 	void setAnimation(REPEAT _repeat, std::string _animate, int _begin, int _end, float _delay);
+	void setEntityVelocity(float speed, cocos2d::Vec2 direction);
 	void update(float dt);
 };
 #endif // !__ENTITY_H__
