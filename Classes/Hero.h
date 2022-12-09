@@ -22,13 +22,9 @@ public:
 	Hero(HeroClasses classes, cocos2d::Vec2& position);
 	~Hero();
 	float getHealthPoint();
-	void setHealthPoint(float health);
 	float getManaPoint();
-	void setManaPoint(float mana);
 	float getDamagePoint();
-	void setDamagePoint(float damage);
 	float getMovementSpeed();
-	void setMovementSpeed(float movementspeed);
 };
 #endif // !__HERO_H__
 

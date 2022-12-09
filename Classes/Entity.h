@@ -14,7 +14,8 @@ class Entity:public cocos2d::Sprite
 {
 private:
 	std::string bodyFrameName;
-	float velocityLimit = 9999;
+	cocos2d::Vec2 direction;
+	float speed;
 protected:
 	cocos2d::Animate* animate;
 	cocos2d::Animation* animation;
@@ -24,7 +25,7 @@ public:
 	~Entity();
 	void setSpriteFrame(std::string _framename, int _number);
 	void setAnimation(REPEAT _repeat, std::string _animate, int _begin, int _end, float _delay);
-	void setEntityVelocity(float speed, cocos2d::Vec2 direction);
+	void setSpeedAndDirection(float speed, cocos2d::Vec2 direction);
 	void update(float dt);
 };
 #endif // !__ENTITY_H__

@@ -1,6 +1,5 @@
 #include "HelloWorldScene.h"
 #include "PhysicsShapeCache.h"
-#include "Hero.h"
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -24,8 +23,8 @@ bool HelloWorld::init()
     PhysicsShapeCache::getInstance()->addShapesWithFile(KNIGHT_BODY_PLIST);
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ELF_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(ELF_BODY_PLIST);
-    hero= new Hero(HeroClasses::Elf_F, Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    this->addChild(hero);
+    hero->spawnHero(HeroClasses::Elf_F, Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    this->addChild(hero->getHero());
     this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     scheduleUpdate();
     return true;

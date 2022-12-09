@@ -1,11 +1,11 @@
 #ifndef __HELLOWORLD_SCENE_H__
 #define __HELLOWORLD_SCENE_H__
-#include "Hero.h"
+#include "HeroManager.h"
 #include "cocos2d.h"
 class HelloWorld : public cocos2d::Scene
 {
 private:
-    Hero* hero;
+    HeroManager* hero = Singleton<HeroManager>::getIntsance();
 public:
     static cocos2d::Scene* createScene();
 

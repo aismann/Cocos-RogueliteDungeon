@@ -54,11 +54,11 @@ void Entity::setAnimation(REPEAT _repeat, std::string _animate, int _begin, int 
     }
 }
 
-void Entity::setEntityVelocity(float speed, cocos2d::Vec2 direction)
+void Entity::setSpeedAndDirection(float speed, cocos2d::Vec2 direction)
 {
-    direction.normalize();
-    this->getPhysicsBody()->setVelocityLimit(velocityLimit);
-    this->getPhysicsBody()->setVelocity(speed*direction);
+    this->speed = speed;
+    this->direction = direction;
+    this->direction.normalize();
 }
 
 void Entity::update(float dt)
@@ -70,5 +70,8 @@ void Entity::update(float dt)
             PhysicsShapeCache::getInstance()->setBodyOnSprite(this->bodyFrameName + std::to_string(i), this);
         }
     }
+    float smoothspeed = this->speed;
+    smoothspeed *= Director::getInstance()->getAnimationInterval() / dt;
+    this->getPhysicsBody()->setVelocity(smoothspeed * this->direction);
 }
 

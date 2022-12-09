@@ -8,12 +8,6 @@
 #include "cocos2d.h"
 #include "Entity.h"
 
-#pragma region DEFINE
-/*get object name*/
-#define getName(val) # val
-/*----------------*/
-#pragma endregion
-
 class Entity;
 #pragma region StatModifier
 enum class StatModifierType

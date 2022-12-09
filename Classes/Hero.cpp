@@ -17,7 +17,7 @@ void Hero::initHero()
     this->mana_point.addModifier(baseMP);
     StatModifier* baseATK = new StatModifier(5, StatModifierType::Flat, 0, this);
     this->damage_point.addModifier(baseATK);
-    StatModifier* baseMSP = new StatModifier(5, StatModifierType::Flat, 0, this);
+    StatModifier* baseMSP = new StatModifier(50, StatModifierType::Flat, 0, this);
     this->movement_speed.addModifier(baseMSP);
 }
 
@@ -58,27 +58,20 @@ Hero::~Hero()
 
 float Hero::getHealthPoint()
 {
-    return 0.0f;
-}
-
-void Hero::setHealthPoint(float health)
-{
+    return this->health_point.getValue();
 }
 
 float Hero::getManaPoint()
 {
-    return 0.0f;
-}
-
-void Hero::setManaPoint(float mana)
-{
+    return this->mana_point.getValue();
 }
 
 float Hero::getDamagePoint()
 {
-    return 0.0f;
+    return this->damage_point.getValue();
 }
 
-void Hero::setDamagePoint(float health)
+float Hero::getMovementSpeed()
 {
+    return this->movement_speed.getValue();
 }
