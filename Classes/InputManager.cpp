@@ -140,3 +140,13 @@ void InputManager::setKeyWeaponSkill(cocos2d::EventMouse::MouseButton code)
 {
 	this->weaponSkill = code;
 }
+
+cocos2d::EventKeyboard::KeyCode InputManager::getInput(cocos2d::EventKeyboard::KeyCode code)
+{
+	return code;
+}
+
+cocos2d::EventMouse::MouseButton InputManager::getInput(cocos2d::EventMouse::MouseButton code)
+{
+	return code;
+}

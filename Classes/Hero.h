@@ -1,6 +1,7 @@
 #ifndef __HERO_H__
 #define __HERO_H__
 #include "Entity.h"
+#include "HeroState.h"
 enum class HeroClasses
 {
 	Elf_M,
@@ -13,6 +14,7 @@ enum class HeroClasses
 class Hero:public Entity
 {
 private:
+	HeroClasses heroClass;
 	EntityStats health_point;
 	EntityStats mana_point;
 	EntityStats damage_point;
@@ -21,6 +23,7 @@ private:
 public:
 	Hero(HeroClasses classes, cocos2d::Vec2& position);
 	~Hero();
+	HeroClasses getHeroClass();
 	float getHealthPoint();
 	float getManaPoint();
 	float getDamagePoint();

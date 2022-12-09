@@ -59,6 +59,9 @@ public:
 	void setKeyWeaponAtack(cocos2d::EventMouse::MouseButton code);
 	cocos2d::EventMouse::MouseButton getKeyWeaponSkill();
 	void setKeyWeaponSkill(cocos2d::EventMouse::MouseButton code);
+
+	cocos2d::EventKeyboard::KeyCode getInput(cocos2d::EventKeyboard::KeyCode code);
+	cocos2d::EventMouse::MouseButton getInput(cocos2d::EventMouse::MouseButton code);
 };
 #endif // !__INPUT_MANAGER_H__
 

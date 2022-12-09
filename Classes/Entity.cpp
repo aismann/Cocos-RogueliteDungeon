@@ -61,6 +61,11 @@ void Entity::setSpeedAndDirection(float speed, cocos2d::Vec2 direction)
     this->direction.normalize();
 }
 
+cocos2d::Vec2 Entity::getDirection()
+{
+    return this->direction;
+}
+
 void Entity::update(float dt)
 {
     for (auto i = 0; i < this->animation->getFrames().size(); i++)
@@ -72,6 +77,6 @@ void Entity::update(float dt)
     }
     float smoothspeed = this->speed;
     smoothspeed *= Director::getInstance()->getAnimationInterval() / dt;
-    this->getPhysicsBody()->setVelocity(smoothspeed * this->direction);
+    this->getPhysicsBody()->setVelocity(smoothspeed * this->getDirection());
 }
 

@@ -25,10 +25,6 @@ HeroManager::HeroManager()
 {
 	this->hero = NULL;
 	this->zeroAxist();
-	this->input->setKeyUp(EventKeyboard::KeyCode::KEY_W);
-	this->input->setKeyDown(EventKeyboard::KeyCode::KEY_S);
-	this->input->setKeyLeft(EventKeyboard::KeyCode::KEY_A);
-	this->input->setKeyRight(EventKeyboard::KeyCode::KEY_D);
 }
 
 HeroManager::~HeroManager()
@@ -48,48 +44,12 @@ Hero* HeroManager::getHero()
 
 void HeroManager::onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
-	EventKeyboard* e = (EventKeyboard*)event;
-	if (keycode == this->input->getKeyUp())
-	{
-		this->yAxist++;
-	}
-	if (keycode == this->input->getKeyDown())
-	{
-		this->yAxist--;
-	}
-	if (keycode == this->input->getKeyLeft())
-	{
-		this->xAxist--;
-		this->hero->setFlippedX(true);
-	}
-	if (keycode == this->input->getKeyRight())
-	{
-		this->xAxist++;
-		this->hero->setFlippedX(false);
-	}
-	this->hero->setSpeedAndDirection(this->hero->getMovementSpeed(), Vec2(xAxist, yAxist));
+
 }
 
 void HeroManager::onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
-	EventKeyboard* e = (EventKeyboard*)event;
-	if (keycode == this->input->getKeyUp())
-	{
-		this->yAxist--;
-	}
-	if (keycode == this->input->getKeyDown())
-	{
-		this->yAxist++;
-	}
-	if (keycode == this->input->getKeyLeft())
-	{
-		this->xAxist++;
-	}
-	if (keycode == this->input->getKeyRight())
-	{
-		this->xAxist--;
-	}
-	this->hero->setSpeedAndDirection(this->hero->getMovementSpeed(), Vec2(xAxist, yAxist));
+
 }
 
 void HeroManager::onMouseDown(cocos2d::Event* event)

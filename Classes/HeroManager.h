@@ -3,7 +3,7 @@
 
 #include "Hero.h"
 #include "Singleton.h"
-#include "InputManager.h"
+
 class HeroManager
 {
 private:
@@ -11,7 +11,6 @@ private:
 	float xAxist,yAxist;
 	Hero* hero;
 	cocos2d::Vec2 lastMousePositon;
-	InputManager* input = Singleton<InputManager>::getIntsance();
 	void zeroAxist();
 	void initListener();
 public:
