@@ -1,6 +1,19 @@
 #include "EntityStats.h"
 USING_NS_CC;
-StatModifier::StatModifier(float value, StatModifierType type, int order, cocos2d::Sprite* source):Value(value),Type(type),Order(order),Source(source)
+/*----------------------StatModifier----------------------------*/
+StatModifier::StatModifier(float value, StatModifierType type, int order, Entity* source):Value(value),Type(type),Order(order),Source(source)
+{
+}
+
+StatModifier::StatModifier(float value, StatModifierType type):Value(value),Type(type),Order((int)type),Source(NULL)
+{
+}
+
+StatModifier::StatModifier(float value, StatModifierType type, int order):Value(value), Type(type), Order(order), Source(NULL)
+{
+}
+
+StatModifier::StatModifier(float value, StatModifierType type, Entity* source) :Value(value), Type(type), Order((int)type), Source(source)
 {
 }
 
@@ -19,12 +32,14 @@ int StatModifier::getOrder()
 	return this->Order;
 }
 
-cocos2d::Sprite* StatModifier::getSource()
+Entity* StatModifier::getSource()
 {
 	return this->Source;
 }
 
-const std::vector<StatModifier> EntityStats::getReadOnlyStatModifier()
+/*------------------------EntityStats-----------------------------*/
+
+const std::vector<StatModifier*> EntityStats::getReadOnlyStatModifier()
 {
 	return statModifier;
 }
@@ -39,41 +54,34 @@ EntityStats::~EntityStats()
 {
 }
 
-void EntityStats::addModifier(StatModifier& statmodify)
+void EntityStats::addModifier(StatModifier* statmodify)
 {
 	isDirty = true;
 	statModifier.push_back(statmodify);
-	//log("size [%d]", statModifier.size());
 }
 
-bool EntityStats::removeModifier(StatModifier& statmodify)
+bool EntityStats::removeModifier(StatModifier* statmodify)
 {
-	for (int i = 0; i < statModifier.size(); i++)
+	it = std::find(statModifier.begin(),statModifier.end(),statmodify);
+	if (it!= statModifier.end())
 	{
-		if (statmodify.getValue() == statModifier.at(i).getValue()
-			&& statmodify.getType() == statModifier.at(i).getType()
-			&& statmodify.getOrder() == statModifier.at(i).getOrder()
-			&& statmodify.getSource() == statModifier.at(i).getSource()
-			)
-		{
-			isDirty = true;
-			statModifier.erase(std::next(statModifier.begin(), i+1));
-			//log("size [%d]", statModifier.size());
-			return true;
-		}
+		isDirty = true;
+		statModifier.erase(it);
+		return true;
 	}
 	return false;
 }
 
-bool EntityStats::removeAllModifier(Sprite* source)
+bool EntityStats::removeAllModifier(Entity* source)
 {
 	bool remove = false;
-	for (int i = statModifier.size()-1; i>= 0; i--)
+	for (auto stat : statModifier)
 	{
-		if (source == statModifier.at(i).getSource())
+		if (stat->getSource() == source)
 		{
+			it = std::find(statModifier.begin(), statModifier.end(), stat);
 			isDirty = true;
-			statModifier.erase(std::next(statModifier.begin(), i));
+			statModifier.erase(it);
 			remove = true;
 		}
 	}
@@ -95,38 +103,41 @@ float EntityStats::calculateStatValue()
 {
 	float lastValue = baseValue;
 	float sumPercentAdd = 0;
-	for (int i = 0; i < statModifier.size(); i++)
+	size_t nextPositon = 0;
+	for (auto stat : statModifier)
 	{
-		StatModifier modifier = statModifier.at(i);
-		switch (modifier.getType())
+		StatModifier* mod = stat;
+		switch (mod->getType())
 		{
 		case StatModifierType::Flat:
-			lastValue += modifier.getValue();
+			lastValue += mod->getValue();
 			break;
 		case StatModifierType::PercentAdd:
-			sumPercentAdd += (modifier.getValue()/100.0f);
-			if (i+1 >= statModifier.size() 
-				|| statModifier.at(i+1).getType() != StatModifierType::PercentAdd)
+			sumPercentAdd += (mod->getValue() / 100.0f);
+			it = std::find(statModifier.begin(), statModifier.end(),mod);
+			nextPositon = (it - statModifier.begin()) + 1;
+			if (nextPositon >= statModifier.size()
+				|| statModifier.at(nextPositon)->getType() != StatModifierType::PercentAdd)
 			{
 				lastValue *= 1 + sumPercentAdd;
 				sumPercentAdd = 0;
 			}
 			break;
 		case StatModifierType::PercentMult:
-			lastValue *= 1.0f + modifier.getValue()/100.0f;
+			lastValue *= 1.0f + mod->getValue() / 100.0f;
 			break;
 		}
 	}
-	return roundf(lastValue*100)/100;
+	return round(lastValue*100)/100;
 }
 
-int EntityStats::compareModifierOrder(StatModifier& modA, StatModifier& modB)
+int EntityStats::compareModifierOrder(StatModifier* modA, StatModifier* modB)
 {
-	if (modA.getOrder() < modB.getOrder())
+	if (modA->getOrder() < modB->getOrder())
 	{
 		return -1;
 	}
-	else if (modA.getOrder() > modB.getOrder())
+	else if (modA->getOrder() > modB->getOrder())
 	{
 		return 1;
 	}

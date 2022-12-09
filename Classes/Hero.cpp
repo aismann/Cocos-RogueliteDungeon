@@ -4,13 +4,20 @@ USING_NS_CC;
 
 void Hero::initHero()
 {
-    StatModifier baseHP(10, StatModifierType::Flat, 0, this);
+    StatModifier* baseHP = new StatModifier(10, StatModifierType::Flat);
+    StatModifier* baseHP2 = new StatModifier(5, StatModifierType::Flat, this);
+    StatModifier* baseHP3 = new StatModifier(15, StatModifierType::Flat, this);
     this->health_point.addModifier(baseHP);
-    StatModifier baseMP(5, StatModifierType::Flat, 0, NULL);
+    this->health_point.addModifier(baseHP2);
+    this->health_point.addModifier(baseHP3);
+    log("[%.2f]", this->health_point.getValue());
+    this->health_point.removeAllModifier(this);
+    log("[%.2f]", this->health_point.getValue());
+    StatModifier* baseMP = new StatModifier(5, StatModifierType::Flat, 0, this);
     this->mana_point.addModifier(baseMP);
-    StatModifier baseATK(5, StatModifierType::Flat, 0, NULL);
+    StatModifier* baseATK = new StatModifier(5, StatModifierType::Flat, 0, this);
     this->damage_point.addModifier(baseATK);
-    StatModifier baseMSP(5, StatModifierType::Flat, 0, NULL);
+    StatModifier* baseMSP = new StatModifier(5, StatModifierType::Flat, 0, this);
     this->movement_speed.addModifier(baseMSP);
 }
 
@@ -46,5 +53,32 @@ Hero::Hero(HeroClasses classes, cocos2d::Vec2& position):Entity()
 }
 
 Hero::~Hero()
+{
+}
+
+float Hero::getHealthPoint()
+{
+    return 0.0f;
+}
+
+void Hero::setHealthPoint(float health)
+{
+}
+
+float Hero::getManaPoint()
+{
+    return 0.0f;
+}
+
+void Hero::setManaPoint(float mana)
+{
+}
+
+float Hero::getDamagePoint()
+{
+    return 0.0f;
+}
+
+void Hero::setDamagePoint(float health)
 {
 }

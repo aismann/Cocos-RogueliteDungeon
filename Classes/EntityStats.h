@@ -4,8 +4,17 @@
 #include <math.h>
 #include <limits>
 #include <algorithm>
+#include <typeinfo>
 #include "cocos2d.h"
+#include "Entity.h"
 
+#pragma region DEFINE
+/*get object name*/
+#define getName(val) # val
+/*----------------*/
+#pragma endregion
+
+class Entity;
 #pragma region StatModifier
 enum class StatModifierType
 {
@@ -19,14 +28,17 @@ private:
 	float Value;
 	StatModifierType Type;
 	int Order;
-	cocos2d::Sprite* Source;
+	Entity* Source;
 public:
-	StatModifier(float value, StatModifierType type, int order, cocos2d::Sprite* source);
+	StatModifier(float value, StatModifierType type, int order, Entity* source);
+	StatModifier(float value, StatModifierType type);
+	StatModifier(float value, StatModifierType type, int order);
+	StatModifier(float value, StatModifierType type, Entity* source);
 	~StatModifier() {}
 	float getValue();
 	StatModifierType getType();
 	int getOrder();
-	cocos2d::Sprite* getSource();
+	Entity* getSource();
 };
 #pragma endregion
 
@@ -37,19 +49,20 @@ protected:
 	bool isDirty = true;
 	float _value;
 	float lastBaseValue = std::numeric_limits<float>::min();
-	std::vector<StatModifier> statModifier;
+	std::vector<StatModifier*> statModifier;
+	std::vector<StatModifier*>::iterator it;
 public:
 	float baseValue;
 	EntityStats();
 	~EntityStats();
-	const std::vector<StatModifier> getReadOnlyStatModifier();
-	void addModifier(StatModifier& statmodify);
-	bool removeModifier(StatModifier& statmodify);
-	bool removeAllModifier(cocos2d::Sprite* source);
+	const std::vector<StatModifier*> getReadOnlyStatModifier();
+	void addModifier(StatModifier* statmodify);
+	bool removeModifier(StatModifier* statmodify);
+	bool removeAllModifier(Entity* source);
 	float getValue();
 private:
 	float calculateStatValue();
-	int compareModifierOrder(StatModifier& modA, StatModifier& modB);
+	int compareModifierOrder(StatModifier* modA, StatModifier* modB);
 };
 #pragma endregion
 
