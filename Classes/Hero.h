@@ -2,7 +2,7 @@
 #define __HERO_H__
 #include "Entity.h"
 #include "HeroState.h"
-enum class HeroClasses
+enum class HeroJob
 {
 	Elf_M,
 	Elf_F,
@@ -14,16 +14,16 @@ enum class HeroClasses
 class Hero:public Entity
 {
 private:
-	HeroClasses heroClass;
+	HeroJob heroJob;
 	EntityStats health_point;
 	EntityStats mana_point;
 	EntityStats damage_point;
 	EntityStats movement_speed;
 	void initHero();
 public:
-	Hero(HeroClasses classes, cocos2d::Vec2& position);
+	Hero(HeroJob heroJob, cocos2d::Vec2& position);
 	~Hero();
-	HeroClasses getHeroClass();
+	HeroJob getHeroJob();
 	float getHealthPoint();
 	float getManaPoint();
 	float getDamagePoint();

@@ -1,334 +1,323 @@
 #include "HeroState.h"
 USING_NS_CC;
 
-//#pragma region HEROSTATE
-//HeroState::HeroState()
-//{
-//	this->input->setKeyUp(EventKeyboard::KeyCode::KEY_W);
-//	this->input->setKeyDown(EventKeyboard::KeyCode::KEY_S);
-//	this->input->setKeyLeft(EventKeyboard::KeyCode::KEY_A);
-//	this->input->setKeyRight(EventKeyboard::KeyCode::KEY_D);
-//}
-//void HeroState::update(Hero* hero, float dt)
-//{
-//	float smoothspeed = hero->getMovementSpeed();
-//	smoothspeed *= Director::getInstance()->getAnimationInterval() / dt;
-//	hero->getPhysicsBody()->setVelocity(smoothspeed * hero->getDirection());
-//}
-//#pragma endregion
-//
-//#pragma region IDLE
-//IdleState::IdleState()
-//{
-//}
-//
-//IdleState::~IdleState()
-//{
-//}
-//
-//void IdleState::onKeyPressed(Hero* hero, float xAxist, float yAxist, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-//{
-//	int frameBegin = 0;
-//	int frameEnd = 3;
-//	float frameDelay = 0.15f;
-//	EventKeyboard* e = (EventKeyboard*)event;
-//	switch (hero->getHeroClass())
-//	{
-//	case HeroClasses::Elf_M:
-//		hero->setAnimation(REPEAT::FOREVER, ELF_M_RUN, frameBegin, frameEnd, frameDelay);
-//		break;
-//	case HeroClasses::Elf_F:
-//		hero->setAnimation(REPEAT::FOREVER, ELF_F_RUN, frameBegin, frameEnd, frameDelay);
-//		break;
-//	case HeroClasses::Knight_M:
-//		hero->setAnimation(REPEAT::FOREVER, KNIGHT_M_RUN, frameBegin, frameEnd, frameDelay);
-//		break;
-//	case HeroClasses::Knight_F:
-//		hero->setAnimation(REPEAT::FOREVER, KNIGHT_F_RUN, frameBegin, frameEnd, frameDelay);
-//		break;
-//	}
-//	if (keycode == this->input->getKeyUp())
-//	{
-//		yAxist++;
-//	}
-//	if (keycode == this->input->getKeyDown())
-//	{
-//		yAxist--;
-//	}
-//	if (keycode == this->input->getKeyLeft())
-//	{
-//		xAxist--;
-//		hero->setFlippedX(true);
-//	}
-//	if (keycode == this->input->getKeyRight())
-//	{
-//		xAxist++;
-//		hero->setFlippedX(false);
-//	}
-//	hero->setSpeedAndDirection(hero->getMovementSpeed(), Vec2(xAxist, yAxist));
-//}
-//
-//void IdleState::onKeyReleased(Hero* hero, float xAxist, float yAxist, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-//{
-//	int frameBegin = 0;
-//	int frameEnd = 3;
-//	float frameDelay = 0.15f;
-//	EventKeyboard* e = (EventKeyboard*)event;
-//	switch (hero->getHeroClass())
-//	{
-//	case HeroClasses::Elf_M:
-//		hero->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
-//		break;
-//	case HeroClasses::Elf_F:
-//		hero->setAnimation(REPEAT::FOREVER, ELF_F_IDLE, frameBegin, frameEnd, frameDelay);
-//		break;
-//	case HeroClasses::Knight_M:
-//		hero->setAnimation(REPEAT::FOREVER, KNIGHT_M_IDLE, frameBegin, frameEnd, frameDelay);
-//		break;
-//	case HeroClasses::Knight_F:
-//		hero->setAnimation(REPEAT::FOREVER, KNIGHT_F_IDLE, frameBegin, frameEnd, frameDelay);
-//		break;
-//	}
-//	if (keycode == this->input->getKeyUp())
-//	{
-//		yAxist--;
-//	}
-//	if (keycode == this->input->getKeyDown())
-//	{
-//		yAxist++;
-//	}
-//	if (keycode == this->input->getKeyLeft())
-//	{
-//		xAxist++;
-//	}
-//	if (keycode == this->input->getKeyRight())
-//	{
-//		xAxist--;
-//	}
-//	hero->setSpeedAndDirection(hero->getMovementSpeed(),Vec2(xAxist,yAxist));
-//}
-//
-//void IdleState::onMouseDown(Hero* hero, float xAxist, float yAxist, cocos2d::Event* event)
-//{
-//}
-//
-//void IdleState::onMouseUp(Hero* hero, float xAxist, float yAxist, cocos2d::Event* event)
-//{
-//}
-//
-//void IdleState::onMouseMove(Hero* hero, float xAxist, float yAxist, cocos2d::Event* event)
-//{
-//}
-//
-//#pragma endregion
-//
-//#pragma region RUN
-//RunState::RunState()
-//{
-//
-//}
-//
-//RunState::~RunState()
-//{
-//}
-//
-//void RunState::onKeyPressed(Hero* hero, float xAxist, float yAxist, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-//{
-//	EventKeyboard* e = (EventKeyboard*)event;
-//	if (keycode == this->input->getKeyUp())
-//	{
-//		yAxist++;
-//	}
-//	if (keycode == this->input->getKeyDown())
-//	{
-//		yAxist--;
-//	}
-//	if (keycode == this->input->getKeyLeft())
-//	{
-//		xAxist--;
-//		hero->setFlippedX(true);
-//	}
-//	if (keycode == this->input->getKeyRight())
-//	{
-//		xAxist++;
-//		hero->setFlippedX(false);
-//	}
-//	hero->setSpeedAndDirection(hero->getMovementSpeed(), Vec2(xAxist, yAxist));
-//}
-//
-//void RunState::onKeyReleased(Hero* hero, float xAxist, float yAxist, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-//{
-//}
-//
-//void RunState::onMouseDown(Hero* hero, float xAxist, float yAxist, cocos2d::Event* event)
-//{
-//}
-//
-//void RunState::onMouseUp(Hero* hero, float xAxist, float yAxist, cocos2d::Event* event)
-//{
-//}
-//
-//void RunState::onMouseMove(Hero* hero, float xAxist, float yAxist, cocos2d::Event* event)
-//{
-//}
-//
-//#pragma endregion
-#pragma region BaseState
-
-HeroBaseState::HeroBaseState()
+#pragma region SetAnimation
+void HeroState::setIdleAnimation(Hero* hero)
 {
-	this->input->setKeyUp(EventKeyboard::KeyCode::KEY_W);
-	this->input->setKeyDown(EventKeyboard::KeyCode::KEY_S);
-	this->input->setKeyLeft(EventKeyboard::KeyCode::KEY_A);
-	this->input->setKeyRight(EventKeyboard::KeyCode::KEY_D);
-}
-
-HeroBaseState::~HeroBaseState()
-{
-}
-
-void HeroBaseState::setHeroClasses(HeroClasses _hero)
-{
-	this->heroClass = _hero;
-}
-
-void HeroBaseState::setHero(Hero* _hero)
-{
-    this->hero = _hero;
-}
-
-#pragma endregion
-
-#pragma region IdleState
-HeroIdleState::HeroIdleState()
-{
-    int frameBegin = 0;
-    int frameEnd = 3;
-    float frameDelay = 0.15f;
-	switch (this->heroClass)
+	int frameBegin = 0;
+	int frameEnd = 3;
+	float frameDelay = 0.15f;
+	switch (hero->getHeroJob())
 	{
-    case HeroClasses::Elf_M:
-        this->hero->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
-        break;
-    case HeroClasses::Elf_F:
-
-        this->hero->setAnimation(REPEAT::FOREVER, ELF_F_IDLE, frameBegin, frameEnd, frameDelay);
-        break;
-    case HeroClasses::Knight_M:
-
-        this->hero->setAnimation(REPEAT::FOREVER, KNIGHT_M_IDLE, frameBegin, frameEnd, frameDelay);
-        break;
-    case HeroClasses::Knight_F:
-
-        this->hero->setAnimation(REPEAT::FOREVER, KNIGHT_F_IDLE, frameBegin, frameEnd, frameDelay);
-        break;
+	case HeroJob::Elf_M:
+		hero->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Elf_F:
+		hero->setAnimation(REPEAT::FOREVER, ELF_F_IDLE, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Knight_M:
+		hero->setAnimation(REPEAT::FOREVER, KNIGHT_M_IDLE, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Knight_F:
+		hero->setAnimation(REPEAT::FOREVER, KNIGHT_F_IDLE, frameBegin, frameEnd, frameDelay);
+		break;
 	}
 }
 
-HeroIdleState::~HeroIdleState()
+void HeroState::setRunAnimation(Hero* hero)
 {
-}
-
-void HeroIdleState::onKeyPressed(float xAxist, float yAxist, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-{
-    EventKeyboard* e = (EventKeyboard*)event;
-    stateManager->switchState((HeroRunState*)stateManager->runState);
-    if (keycode == this->input->getKeyUp())
-    {
-        yAxist++;
-    }
-    if (keycode == this->input->getKeyDown())
-    {
-        yAxist--;
-    }
-    if (keycode == this->input->getKeyLeft())
-    {
-        xAxist--;
-        hero->setFlippedX(true);
-    }
-    if (keycode == this->input->getKeyRight())
-    {
-        xAxist++;
-        hero->setFlippedX(false);
-    }
-    hero->setSpeedAndDirection(hero->getMovementSpeed(), Vec2(xAxist, yAxist));
-}
-
-void HeroIdleState::onKeyReleased(float xAxist, float yAxist, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-{
-}
-
-void HeroIdleState::onMouseDown(float xAxist, float yAxist, cocos2d::Event* event)
-{
-}
-
-void HeroIdleState::onMouseUp(float xAxist, float yAxist, cocos2d::Event* event)
-{
-}
-
-void HeroIdleState::onMouseMove(float xAxist, float yAxist, cocos2d::Event* event)
-{
-}
-
-void HeroIdleState::update(float dt)
-{
-}
-
-#pragma endregion
-
-#pragma region RunState
-
-HeroRunState::HeroRunState()
-{
-    int frameBegin = 0;
-    int frameEnd = 3;
-    float frameDelay = 0.15f;
-    switch (this->heroClass)
-    {
-    case HeroClasses::Elf_M:
-        this->hero->setAnimation(REPEAT::FOREVER, ELF_M_RUN, frameBegin, frameEnd, frameDelay);
-        break;
-    case HeroClasses::Elf_F:
-
-        this->hero->setAnimation(REPEAT::FOREVER, ELF_F_RUN, frameBegin, frameEnd, frameDelay);
-        break;
-    case HeroClasses::Knight_M:
-
-        this->hero->setAnimation(REPEAT::FOREVER, KNIGHT_M_RUN, frameBegin, frameEnd, frameDelay);
-        break;
-    case HeroClasses::Knight_F:
-
-        this->hero->setAnimation(REPEAT::FOREVER, KNIGHT_F_RUN, frameBegin, frameEnd, frameDelay);
-        break;
-    }
-}
-
-HeroRunState::~HeroRunState()
-{
-}
-
-void HeroRunState::onKeyPressed(float xAxist, float yAxist, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-{
-}
-
-void HeroRunState::onKeyReleased(float xAxist, float yAxist, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-{
-}
-
-void HeroRunState::onMouseDown(float xAxist, float yAxist, cocos2d::Event* event)
-{
-}
-
-void HeroRunState::onMouseUp(float xAxist, float yAxist, cocos2d::Event* event)
-{
-}
-
-void HeroRunState::onMouseMove(float xAxist, float yAxist, cocos2d::Event* event)
-{
-}
-
-void HeroRunState::update(float dt)
-{
+	int frameBegin = 0;
+	int frameEnd = 3;
+	float frameDelay = 0.15f;
+	switch (hero->getHeroJob())
+	{
+	case HeroJob::Elf_M:
+		hero->setAnimation(REPEAT::FOREVER, ELF_M_RUN, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Elf_F:
+		hero->setAnimation(REPEAT::FOREVER, ELF_F_RUN, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Knight_M:
+		hero->setAnimation(REPEAT::FOREVER, KNIGHT_M_RUN, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Knight_F:
+		hero->setAnimation(REPEAT::FOREVER, KNIGHT_F_RUN, frameBegin, frameEnd, frameDelay);
+		break;
+	}
 }
 #pragma endregion
 
+#pragma region KeyPressChecked
+void HeroState::checkIdleKeyPressed(Hero* hero)
+{
+	bool isMoveKey = false;
+	for (auto& key : keyList)
+	{
+		if (key == this->input->getKeyUp()
+			|| key == this->input->getKeyDown()
+			|| key == this->input->getKeyLeft()
+			|| key == this->input->getKeyRight())
+		{
+			isMoveKey = true;
+			log("[%d]", (int)key);
+		}
+	}
+	if (isMoveKey)
+	{
+		setRunAnimation(hero);
+	}
+
+}void HeroState::checkRunKeyPressed(Hero* hero)
+{
+	bool isMoveKey = false;
+	for (auto& key : keyList)
+	{
+		if (key == this->input->getKeyUp()
+			|| key == this->input->getKeyDown()
+			|| key == this->input->getKeyLeft()
+			|| key == this->input->getKeyRight())
+		{
+			isMoveKey = true;
+			log("[%d]", (int)key);
+		}
+	}
+	if (!isMoveKey)
+
+	{
+		//setIdleAnimation(hero);
+	}
+}
+#pragma endregion
+
+#pragma region KeyReleaseCheched
+void HeroState::checkIdleKeyReleased(Hero* hero)
+{
+	bool isMoveKey = false;
+	for (auto& key : keyList)
+	{
+		if (key == this->input->getKeyUp()
+			|| key == this->input->getKeyDown()
+			|| key == this->input->getKeyLeft()
+			|| key == this->input->getKeyRight())
+		{
+			isMoveKey = true;
+			log("[%d]", (int)key);
+		}
+	}
+	if (!isMoveKey)
+	{
+		setIdleAnimation(hero);
+	}
+}
+
+void HeroState::checkRunKeyReleased(Hero* hero)
+{
+	bool isMoveKey = false;
+	for (auto& key : keyList)
+	{
+		if (key == this->input->getKeyUp()
+			|| key == this->input->getKeyDown()
+			|| key == this->input->getKeyLeft()
+			|| key == this->input->getKeyRight())
+		{
+			isMoveKey = true;
+			log("[%d]", (int)key);
+		}
+	}
+	if (!isMoveKey)
+	{
+		setIdleAnimation(hero);
+	}
+}
+#pragma endregion
+
+#pragma region StateKeyPressed
+void HeroState::onIdleKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+	if (keycode == this->input->getKeyUp())
+	{
+		keyList.push_back(this->input->getKeyUp());
+		switchState(State::Run);
+		directY++;
+	}
+	if (keycode == this->input->getKeyDown())
+	{
+		keyList.push_back(this->input->getKeyDown());
+		switchState(State::Run);
+		directY--;
+	}
+	if (keycode == this->input->getKeyLeft())
+	{
+		keyList.push_back(this->input->getKeyLeft());
+		switchState(State::Run);
+		directX--;
+		hero->setFlippedX(true);
+	}
+	if (keycode == this->input->getKeyRight())
+	{
+		keyList.push_back(this->input->getKeyRight());
+		switchState(State::Run);
+		directX++;
+		hero->setFlippedX(false);
+	}
+	log("i p[%f][%f]", directX, directY);
+	hero->setSpeedAndDirection(hero->getMovementSpeed(), Vec2(directX, directY));
+}
+
+void HeroState::onRunKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+	if (keycode == this->input->getKeyUp())
+	{
+		keyList.push_back(this->input->getKeyUp());
+		directY++;
+	}
+	if (keycode == this->input->getKeyDown())
+	{
+		keyList.push_back(this->input->getKeyDown());
+		directY--;
+	}
+	if (keycode == this->input->getKeyLeft())
+	{
+		keyList.push_back(this->input->getKeyLeft());
+		directX--;
+		hero->setFlippedX(true);
+	}
+	if (keycode == this->input->getKeyRight())
+	{
+		keyList.push_back(this->input->getKeyRight());
+		directX++;
+		hero->setFlippedX(false);
+	}
+	log("r p[%f][%f]", directX, directY);
+	hero->setSpeedAndDirection(hero->getMovementSpeed(), Vec2(directX, directY));
+}
+#pragma endregion
+
+#pragma region StateKeyReleased
+void HeroState::onIdleKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+	if (keycode == this->input->getKeyUp())
+	{
+		keyList.pop_front();
+		directY--;
+	}
+	if (keycode == this->input->getKeyDown())
+	{
+		keyList.pop_front();
+		directY++;
+	}
+	if (keycode == this->input->getKeyLeft())
+	{
+		keyList.pop_front();
+		directX++;
+	}
+	if (keycode == this->input->getKeyRight())
+	{
+		keyList.pop_front();
+		directX--;
+	}
+	log("i r[%f][%f]", directX, directY);
+	hero->setSpeedAndDirection(hero->getMovementSpeed(), Vec2(directX, directY));
+}
+
+void HeroState::onRunKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+	if (keycode == this->input->getKeyUp())
+	{
+		keyList.pop_front();
+		switchState(State::Idle);
+		directY--;
+	}
+	if (keycode == this->input->getKeyDown())
+	{
+		keyList.pop_front();
+		switchState(State::Idle);
+		directY++;
+	}
+	if (keycode == this->input->getKeyLeft())
+	{
+		keyList.pop_front();
+		switchState(State::Idle);
+		directX++;
+	}
+	if (keycode == this->input->getKeyRight())
+	{
+		keyList.pop_front();
+		switchState(State::Idle);
+		directX--;
+	}
+	log("r r[%f][%f]", directX, directY);
+	hero->setSpeedAndDirection(hero->getMovementSpeed(), Vec2(directX, directY));
+}
+#pragma endregion
+
+#pragma region SwitchState
+void HeroState::switchState(State _state)
+{
+	state = _state;
+}
+#pragma endregion
+
+#pragma region OnKeyPressed
+void HeroState::onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+	switch (state)
+	{
+	case State::Idle:
+		log("I P");
+		onIdleKeyPressed(hero, keycode, event);
+		checkIdleKeyPressed(hero);
+		break;
+	case State::Run:
+		log("R P");
+		onRunKeyPressed(hero, keycode, event);
+		checkRunKeyPressed(hero);
+		break;
+	default:
+		break;
+	}
+}
+#pragma endregion
+
+#pragma region OnKeyReleased
+void HeroState::onKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+	switch (state)
+	{
+	case State::Idle:
+		log("I R");
+		onIdleKeyReleased(hero, keycode, event);
+		checkIdleKeyReleased(hero);
+		break;
+	case State::Run:
+		log("R R");
+		onRunKeyReleased(hero, keycode, event);
+		checkRunKeyReleased(hero);
+		break;
+	default:
+		break;
+	}
+}
+#pragma endregion
+
+
+void HeroState::onMouseDown(Hero* hero, cocos2d::Event* event)
+{
+
+}
+
+void HeroState::onMouseUp(Hero* hero, cocos2d::Event* event)
+{
+
+}
+
+void HeroState::onMouseMove(Hero* hero, cocos2d::Event* event)
+{
+
+}
+
+void HeroState::update(Hero* hero, float dt)
+{
+	//log("idle");
+
+}

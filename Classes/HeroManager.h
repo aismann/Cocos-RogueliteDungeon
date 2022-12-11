@@ -3,20 +3,23 @@
 
 #include "Hero.h"
 #include "Singleton.h"
-
+#include "InputManager.h"
+#include "HeroState.h"
+class Hero;
 class HeroManager
 {
 private:
 	friend class Singleton<HeroManager>;
-	float xAxist,yAxist;
+	bool isKeyPressed = false;
+	InputManager* input = Singleton<InputManager>::getIntsance();
+	HeroState* state = new HeroState();
 	Hero* hero;
 	cocos2d::Vec2 lastMousePositon;
-	void zeroAxist();
 	void initListener();
 public:
 	HeroManager();
 	~HeroManager();
-	void spawnHero(HeroClasses classes, cocos2d::Vec2& position);
+	void spawnHero(HeroJob heroJob, cocos2d::Vec2& position);
 	Hero* getHero();
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
 	void onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);

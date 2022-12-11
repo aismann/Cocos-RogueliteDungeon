@@ -13,7 +13,7 @@ enum class REPEAT
 class Entity:public cocos2d::Sprite
 {
 private:
-	std::string bodyFrameName;
+	std::string frameName;
 	cocos2d::Vec2 direction;
 	float speed;
 protected:
@@ -26,6 +26,7 @@ public:
 	void setSpriteFrame(std::string _framename, int _number);
 	void setAnimation(REPEAT _repeat, std::string _animate, int _begin, int _end, float _delay);
 	void setSpeedAndDirection(float speed, cocos2d::Vec2 direction);
+	std::string getFrameName();
 	cocos2d::Vec2 getDirection();
 	void update(float dt);
 };

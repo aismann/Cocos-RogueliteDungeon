@@ -14,7 +14,7 @@ void Hero::initHero()
     this->movement_speed.addModifier(baseMSP);
 }
 
-Hero::Hero(HeroClasses classes, cocos2d::Vec2& position):Entity()
+Hero::Hero(HeroJob heroJob, cocos2d::Vec2& position):Entity()
 {
     /*initHero*/
     this->initHero();
@@ -22,25 +22,25 @@ Hero::Hero(HeroClasses classes, cocos2d::Vec2& position):Entity()
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    switch (classes)
+    switch (heroJob)
     {
-    case HeroClasses::Elf_M:
-        this->heroClass = HeroClasses::Elf_M;
+    case HeroJob::Elf_M:
+        this->heroJob = HeroJob::Elf_M;
         this->setSpriteFrame(ELF_M_IDLE, frameBegin);
         this->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
         break;
-    case HeroClasses::Elf_F:
-        this->heroClass = HeroClasses::Elf_F;
+    case HeroJob::Elf_F:
+        this->heroJob = HeroJob::Elf_F;
         this->setSpriteFrame(ELF_F_IDLE, frameBegin);
         this->setAnimation(REPEAT::FOREVER, ELF_F_IDLE, frameBegin, frameEnd, frameDelay);
         break;
-    case HeroClasses::Knight_M:
-        this->heroClass = HeroClasses::Knight_M;
+    case HeroJob::Knight_M:
+        this->heroJob = HeroJob::Knight_M;
         this->setSpriteFrame(KNIGHT_M_IDLE, frameBegin);
         this->setAnimation(REPEAT::FOREVER, KNIGHT_M_IDLE, frameBegin, frameEnd, frameDelay);
         break;
-    case HeroClasses::Knight_F:
-        this->heroClass = HeroClasses::Knight_F;
+    case HeroJob::Knight_F:
+        this->heroJob = HeroJob::Knight_F;
         this->setSpriteFrame(KNIGHT_F_IDLE, frameBegin);
         this->setAnimation(REPEAT::FOREVER, KNIGHT_F_IDLE, frameBegin, frameEnd, frameDelay);
         break;
@@ -58,9 +58,9 @@ float Hero::getHealthPoint()
     return this->health_point.getValue();
 }
 
-HeroClasses Hero::getHeroClass()
+HeroJob Hero::getHeroJob()
 {
-    return this->heroClass;
+    return this->heroJob;
 }
 
 float Hero::getManaPoint()

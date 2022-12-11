@@ -1,10 +1,5 @@
 #include "HeroManager.h"
 USING_NS_CC;
-void HeroManager::zeroAxist()
-{
-	this->xAxist = 0;
-	this->yAxist = 0;
-}
 void HeroManager::initListener()
 {
 	// Init mouse listener
@@ -24,16 +19,15 @@ void HeroManager::initListener()
 HeroManager::HeroManager()
 {
 	this->hero = NULL;
-	this->zeroAxist();
 }
 
 HeroManager::~HeroManager()
 {
 }
 
-void HeroManager::spawnHero(HeroClasses classes, cocos2d::Vec2& position)
+void HeroManager::spawnHero(HeroJob heroJob, cocos2d::Vec2& position)
 {
-	hero = new Hero(classes,position);
+	this->hero = new Hero(heroJob,position);
 	this->initListener();
 }
 
@@ -42,14 +36,15 @@ Hero* HeroManager::getHero()
 	return this->hero;
 }
 
+
 void HeroManager::onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
-
+	state->onKeyPressed(this->hero,keycode,event);
 }
 
 void HeroManager::onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
-
+	state->onKeyReleased(this->hero, keycode, event);
 }
 
 void HeroManager::onMouseDown(cocos2d::Event* event)
@@ -70,4 +65,5 @@ void HeroManager::update(float dt)
 {
 	//log("[%f][%f]",lastMousePositon.x,lastMousePositon.y);
 	this->hero->update(dt);
+	//this->state->update(this->hero,dt);
 }

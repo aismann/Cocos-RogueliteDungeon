@@ -2,9 +2,11 @@
 #define __HELLOWORLD_SCENE_H__
 #include "HeroManager.h"
 #include "cocos2d.h"
+#include "InputManager.h"
 class HelloWorld : public cocos2d::Scene
 {
 private:
+    InputManager* input = Singleton<InputManager>::getIntsance();
     HeroManager* hero = Singleton<HeroManager>::getIntsance();
 public:
     static cocos2d::Scene* createScene();

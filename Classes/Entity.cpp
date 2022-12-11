@@ -19,7 +19,7 @@ Entity::Entity()
 {
     this->animate = NULL;
     this->animation = NULL;
-
+    this->speed = 0;
 }
 
 Entity::~Entity()
@@ -28,17 +28,17 @@ Entity::~Entity()
 
 void Entity::setSpriteFrame(std::string _framename, int _number)
 {
-    std::string frameName = _framename + std::to_string(_number);
-	this->initWithSpriteFrameName(frameName +".png");
+    std::string _frameName = _framename + std::to_string(_number);
+	this->initWithSpriteFrameName(_frameName +".png");
     this->getTexture()->setAliasTexParameters();
     this->setScale(2);
-    PhysicsShapeCache::getInstance()->setBodyOnSprite(frameName, this);
+    PhysicsShapeCache::getInstance()->setBodyOnSprite(_frameName, this);
 }
 
 void Entity::setAnimation(REPEAT _repeat, std::string _animate, int _begin, int _end, float _delay)
 {
     this->stopAllActions();
-    this->bodyFrameName = _animate;
+    this->frameName = _animate;
     this->animation = createAnimation(_animate, _begin, _end, _delay);
     animate = Animate::create(this->animation);
     switch (_repeat)
@@ -61,6 +61,11 @@ void Entity::setSpeedAndDirection(float speed, cocos2d::Vec2 direction)
     this->direction.normalize();
 }
 
+std::string Entity::getFrameName()
+{
+    return this->frameName;
+}
+
 cocos2d::Vec2 Entity::getDirection()
 {
     return this->direction;
@@ -72,7 +77,7 @@ void Entity::update(float dt)
     {
         if (this->getSpriteFrame() == this->animation->getFrames().at(i)->getSpriteFrame())
         {
-            PhysicsShapeCache::getInstance()->setBodyOnSprite(this->bodyFrameName + std::to_string(i), this);
+            PhysicsShapeCache::getInstance()->setBodyOnSprite(this->frameName + std::to_string(i), this);
         }
     }
     float smoothspeed = this->speed;
