@@ -5,8 +5,8 @@ template <typename T, typename U>
 class BaseState
 {
 public:
-	virtual U* onStart(T* _entity) = 0;
-	virtual U* onExit(T* _entity) = 0;
+	virtual void onStart(T* _entity) = 0;
+	virtual void onExit(T* _entity) = 0;
 	virtual U* onKeyPressed(T* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) = 0;
 	virtual U* onKeyReleased(T* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) = 0;
 	virtual U* update(T* _entity,float dt) = 0;
