@@ -44,6 +44,26 @@ Hero::Hero(HeroJob heroJob, cocos2d::Vec2& position):Entity()
         this->setSpriteFrame(KNIGHT_F_IDLE, frameBegin);
         this->setAnimation(REPEAT::FOREVER, KNIGHT_F_IDLE, frameBegin, frameEnd, frameDelay);
         break;
+    case HeroJob::Lizard_M:
+        this->heroJob = HeroJob::Lizard_M;
+        this->setSpriteFrame(LIZARD_M_IDLE, frameBegin);
+        this->setAnimation(REPEAT::FOREVER, LIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
+        break;
+    case HeroJob::Lizard_F:
+        this->heroJob = HeroJob::Lizard_F;
+        this->setSpriteFrame(LIZARD_F_IDLE, frameBegin);
+        this->setAnimation(REPEAT::FOREVER, LIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
+        break;
+    case HeroJob::Wizard_M:
+        this->heroJob = HeroJob::Wizard_M;
+        this->setSpriteFrame(WIZARD_M_IDLE, frameBegin);
+        this->setAnimation(REPEAT::FOREVER, WIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
+        break;
+    case HeroJob::Wizard_F:
+        this->heroJob = HeroJob::Wizard_F;
+        this->setSpriteFrame(WIZARD_F_IDLE, frameBegin);
+        this->setAnimation(REPEAT::FOREVER, WIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
+        break;
     }
     /*set hero position*/
     this->setPosition(position);

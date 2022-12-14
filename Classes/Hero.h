@@ -8,8 +8,10 @@ enum class HeroJob
 	Elf_F,
 	Knight_M,
 	Knight_F,
-	Lizard,
-	Wizard
+	Lizard_M,
+	Lizard_F,
+	Wizard_M,
+	Wizard_F
 };
 class Hero:public Entity
 {

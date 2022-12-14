@@ -27,12 +27,23 @@ void HeroIdleState::setIdleAnimation(Hero* _entity)
 	case HeroJob::Knight_F:
 		_entity->setAnimation(REPEAT::FOREVER, KNIGHT_F_IDLE, frameBegin, frameEnd, frameDelay);
 		break;
+	case HeroJob::Lizard_M:
+		_entity->setAnimation(REPEAT::FOREVER, LIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Lizard_F:
+		_entity->setAnimation(REPEAT::FOREVER, LIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Wizard_M:
+		_entity->setAnimation(REPEAT::FOREVER, WIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Wizard_F:
+		_entity->setAnimation(REPEAT::FOREVER, WIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
+		break;
 	}
 }
 
 void HeroIdleState::onStart(Hero* _entity)
 {
-	log("Idle Start");
 	if (keyList.size()!=0)
 	{
 		for (auto& key : keyList)
@@ -42,7 +53,7 @@ void HeroIdleState::onStart(Hero* _entity)
 				|| key == this->input->getKeyLeft()
 				|| key == this->input->getKeyRight())
 			{
-				HeroRunState::setRunAnimation(_entity);
+				//HeroRunState::setRunAnimation(_entity);
 			}
 		}
 	}
@@ -54,7 +65,7 @@ void HeroIdleState::onStart(Hero* _entity)
 
 void HeroIdleState::onExit(Hero* _entity)
 {
-	log("Idle Exit");
+
 	if (keyList.size() == 0)
 	{
 		this->setIdleAnimation(_entity);
@@ -172,17 +183,29 @@ void HeroRunState::setRunAnimation(Hero* _entity)
 	case HeroJob::Knight_F:
 		_entity->setAnimation(REPEAT::FOREVER, KNIGHT_F_RUN, frameBegin, frameEnd, frameDelay);
 		break;
+	case HeroJob::Lizard_M:
+		_entity->setAnimation(REPEAT::FOREVER, LIZARD_M_RUN, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Lizard_F:
+		_entity->setAnimation(REPEAT::FOREVER, LIZARD_F_RUN, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Wizard_M:
+		_entity->setAnimation(REPEAT::FOREVER, WIZARD_M_RUN, frameBegin, frameEnd, frameDelay);
+		break;
+	case HeroJob::Wizard_F:
+		_entity->setAnimation(REPEAT::FOREVER, WIZARD_F_RUN, frameBegin, frameEnd, frameDelay);
+		break;
 	}
 }
 void HeroRunState::onStart(Hero* _entity)
 {
-	log("Run Start");
+
 	this->setRunAnimation(_entity);
 }
 
 void HeroRunState::onExit(Hero* _entity)
 {
-	log("Run Exit");
+
 	
 }
 

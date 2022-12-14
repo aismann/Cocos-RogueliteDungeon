@@ -20,6 +20,7 @@ Entity::Entity()
     this->animate = NULL;
     this->animation = NULL;
     this->speed = 0;
+    
 }
 
 Entity::~Entity()

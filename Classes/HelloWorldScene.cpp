@@ -23,13 +23,17 @@ bool HelloWorld::init()
     PhysicsShapeCache::getInstance()->addShapesWithFile(KNIGHT_BODY_PLIST);
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ELF_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(ELF_BODY_PLIST);
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(LIZARD_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(LIZARD_BODY_PLIST);
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(WIZARD_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(WIZARD_BODY_PLIST);
 
     this->input->setKeyUp(EventKeyboard::KeyCode::KEY_W);
     this->input->setKeyDown(EventKeyboard::KeyCode::KEY_S);
     this->input->setKeyLeft(EventKeyboard::KeyCode::KEY_A);
     this->input->setKeyRight(EventKeyboard::KeyCode::KEY_D);
 
-    this->hero->spawnHero(HeroJob::Elf_F, Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    this->hero->spawnHero(HeroJob::Lizard_F, Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     this->addChild(hero->getHero());
     //this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     scheduleUpdate();
