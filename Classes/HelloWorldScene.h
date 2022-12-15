@@ -3,6 +3,7 @@
 #include "HeroManager.h"
 #include "cocos2d.h"
 #include "InputManager.h"
+
 class HelloWorld : public cocos2d::Scene
 {
 private:
@@ -10,7 +11,8 @@ private:
     HeroManager* hero = Singleton<HeroManager>::getIntsance();
 public:
     static cocos2d::Scene* createScene();
-
+    bool onContactBegin(cocos2d::PhysicsContact& _contact);
+    void onContactSeparate(cocos2d::PhysicsContact& _contact);
     virtual bool init();
     void update(float dt);
     CREATE_FUNC(HelloWorld);

@@ -7,7 +7,7 @@ cocos2d::Animation* Entity::createAnimation(std::string _animate, int _begin, in
     for (auto i = _begin; i <= _end; i++)
     {
         char buffer[20] = { 0 };
-        sprintf(buffer, "%d.png", i);
+        sprintf(buffer, "(%d)", i);
         auto framename = _animate + buffer;
         auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(framename);
         animFrame.pushBack(frame);
@@ -29,8 +29,8 @@ Entity::~Entity()
 
 void Entity::setSpriteFrame(std::string _framename, int _number)
 {
-    std::string _frameName = _framename + std::to_string(_number);
-	this->initWithSpriteFrameName(_frameName +".png");
+    std::string _frameName = _framename +"(" + std::to_string(_number)+")";
+	this->initWithSpriteFrameName(_frameName);
     this->getTexture()->setAliasTexParameters();
     this->setScale(2);
     PhysicsShapeCache::getInstance()->setBodyOnSprite(_frameName, this);
@@ -78,7 +78,7 @@ void Entity::update(float dt)
     {
         if (this->getSpriteFrame() == this->animation->getFrames().at(i)->getSpriteFrame())
         {
-            PhysicsShapeCache::getInstance()->setBodyOnSprite(this->frameName + std::to_string(i), this);
+            PhysicsShapeCache::getInstance()->setBodyOnSprite(this->frameName +"(" + std::to_string(i)+")", this);
         }
     }
     float smoothspeed = this->speed;

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>wizard_f_hit(0)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{16,26}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{16,26}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>0 1 2 0 2 3</string>
+                <key>vertices</key>
+                <string>16 9 16 27 0 27 0 1</string>
+                <key>verticesUV</key>
+                <string>17 9 17 27 1 27 1 1</string>
+            </dict>
+            <key>wizard_f_idle(0)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2}</string>
+                <key>spriteSize</key>
+                <string>{16,24}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,56},{16,24}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>0 1 2 0 2 3</string>
+                <key>vertices</key>
+                <string>16 12 16 28 0 28 0 4</string>
+                <key>verticesUV</key>
+                <string>17 64 17 80 1 80 1 56</string>
+            </dict>
+            <key>wizard_f_idle(1)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-3}</string>
+                <key>spriteSize</key>
+                <string>{16,22}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,26},{16,22}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 6 16 6</string>
+                <key>verticesUV</key>
+                <string>35 48 19 48 19 26 35 26</string>
+            </dict>
+            <key>wizard_f_idle(2)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4.5}</string>
+                <key>spriteSize</key>
+                <string>{16,19}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,92},{16,19}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 9 16 9</string>
+                <key>verticesUV</key>
+                <string>35 111 19 111 19 92 35 92</string>
+            </dict>
+            <key>wizard_f_idle(3)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4.5}</string>
+                <key>spriteSize</key>
+                <string>{16,19}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,71},{16,19}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 9 16 9</string>
+                <key>verticesUV</key>
+                <string>35 90 19 90 19 71 35 71</string>
+            </dict>
+            <key>wizard_f_run(0)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4.5}</string>
+                <key>spriteSize</key>
+                <string>{16,19}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,50},{16,19}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 9 16 9</string>
+                <key>verticesUV</key>
+                <string>35 69 19 69 19 50 35 50</string>
+            </dict>
+            <key>wizard_f_run(1)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-1.5}</string>
+                <key>spriteSize</key>
+                <string>{16,25}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,29},{16,25}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>0 1 2 0 2 3</string>
+                <key>vertices</key>
+                <string>16 11 16 28 0 28 0 3</string>
+                <key>verticesUV</key>
+                <string>17 37 17 54 1 54 1 29</string>
+            </dict>
+            <key>wizard_f_run(2)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-2.5}</string>
+                <key>spriteSize</key>
+                <string>{16,23}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{19,1},{16,23}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 5 16 5</string>
+                <key>verticesUV</key>
+                <string>35 24 19 24 19 1 35 1</string>
+            </dict>
+            <key>wizard_f_run(3)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0}</string>
+                <key>spriteOffset</key>
+                <string>{0,-4.5}</string>
+                <key>spriteSize</key>
+                <string>{16,19}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,28}</string>
+                <key>textureRect</key>
+                <string>{{1,82},{16,19}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 28 0 28 0 9 16 9</string>
+                <key>verticesUV</key>
+                <string>17 101 1 101 1 82 17 82</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>wizard_f.png</string>
+            <key>size</key>
+            <string>{36,112}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:17bb63d7c4f3d0212fc54b7df7e40f31:7b6ef9de57264093053d4e944c169d45:3e896bc5d54764da8fdf93bfd2e47c06$</string>
+            <key>textureFileName</key>
+            <string>wizard_f.png</string>
+        </dict>
+    </dict>
+</plist>
