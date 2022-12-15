@@ -95,7 +95,7 @@ bool HelloWorld::init()
     this->input->setKeyLeft(EventKeyboard::KeyCode::KEY_A);
     this->input->setKeyRight(EventKeyboard::KeyCode::KEY_D);
 
-    this->hero->spawnHero(HeroJob::Elf_F, Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    this->hero->spawnHero(HeroJob::Wizard_F, Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     this->addChild(hero->getHero());
 
     this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);

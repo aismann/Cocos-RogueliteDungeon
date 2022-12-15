@@ -41,12 +41,12 @@ class EntityStats
 {
 protected:
 	bool isDirty = true;
+	float baseValue;
 	float _value;
 	float lastBaseValue = std::numeric_limits<float>::min();
 	std::vector<StatModifier*> statModifier;
 	std::vector<StatModifier*>::iterator it;
 public:
-	float baseValue;
 	EntityStats();
 	~EntityStats();
 	const std::vector<StatModifier*> getReadOnlyStatModifier();

@@ -1,7 +1,10 @@
 #ifndef __HERO_MANAGER_H__
 #define __HERO_MANAGER_H__
 
-#include "Hero.h"
+#include "Elf.h"
+#include "Knight.h"
+#include "Lizard.h"
+#include "Wizard.h"
 #include "Singleton.h"
 #include "InputManager.h"
 #include "HeroState.h"

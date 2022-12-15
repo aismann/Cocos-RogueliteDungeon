@@ -57,20 +57,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ 8.00000,4.00000 }</string>
-                                <string>{ 5.00000,-4.00000 }</string>
-                                <string>{ -5.00000,-10.00000 }</string>
-                                <string>{ -5.00000,4.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ -5.00000,-10.00000 }</string>
-                                <string>{ 5.00000,-4.00000 }</string>
-                                <string>{ 5.00000,-10.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ 5.00000,-4.00000 }</string>
-                                <string>{ 8.00000,4.00000 }</string>
-                                <string>{ 8.00000,-4.00000 }</string>
+                                <string>{ -6.00000,-10.00000 }</string>
+                                <string>{ -6.00000,4.00000 }</string>
+                                <string>{ 6.00000,4.00000 }</string>
+                                <string>{ 6.00000,-10.00000 }</string>
                             </array>
                         </array>
                         
@@ -123,20 +113,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ 8.00000,2.00000 }</string>
-                                <string>{ 5.00000,-6.00000 }</string>
                                 <string>{ -5.00000,-14.00000 }</string>
                                 <string>{ -5.00000,2.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ -5.00000,-14.00000 }</string>
-                                <string>{ 5.00000,-6.00000 }</string>
+                                <string>{ 5.00000,2.00000 }</string>
                                 <string>{ 5.00000,-14.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ 5.00000,-6.00000 }</string>
-                                <string>{ 8.00000,2.00000 }</string>
-                                <string>{ 8.00000,-6.00000 }</string>
                             </array>
                         </array>
                         
@@ -189,20 +169,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ 8.00000,1.00000 }</string>
-                                <string>{ 5.00000,-7.00000 }</string>
                                 <string>{ -5.00000,-14.00000 }</string>
                                 <string>{ -5.00000,1.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ -5.00000,-14.00000 }</string>
-                                <string>{ 5.00000,-7.00000 }</string>
+                                <string>{ 5.00000,1.00000 }</string>
                                 <string>{ 5.00000,-14.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ 5.00000,-7.00000 }</string>
-                                <string>{ 8.00000,1.00000 }</string>
-                                <string>{ 8.00000,-7.00000 }</string>
                             </array>
                         </array>
                         
@@ -255,20 +225,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ 8.00000,-1.00000 }</string>
-                                <string>{ 5.00000,-9.00000 }</string>
                                 <string>{ -5.00000,-14.00000 }</string>
                                 <string>{ -5.00000,-1.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ -5.00000,-14.00000 }</string>
-                                <string>{ 5.00000,-9.00000 }</string>
+                                <string>{ 5.00000,-1.00000 }</string>
                                 <string>{ 5.00000,-14.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ 5.00000,-9.00000 }</string>
-                                <string>{ 8.00000,-1.00000 }</string>
-                                <string>{ 8.00000,-9.00000 }</string>
                             </array>
                         </array>
                         
@@ -321,20 +281,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ 8.00000,1.00000 }</string>
-                                <string>{ 5.00000,-7.00000 }</string>
                                 <string>{ -5.00000,-14.00000 }</string>
                                 <string>{ -5.00000,1.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ -5.00000,-14.00000 }</string>
-                                <string>{ 5.00000,-7.00000 }</string>
+                                <string>{ 5.00000,1.00000 }</string>
                                 <string>{ 5.00000,-14.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ 5.00000,-7.00000 }</string>
-                                <string>{ 8.00000,1.00000 }</string>
-                                <string>{ 8.00000,-7.00000 }</string>
                             </array>
                         </array>
                         
@@ -387,20 +337,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ 8.00000,2.00000 }</string>
-                                <string>{ 5.00000,-6.00000 }</string>
-                                <string>{ -5.00000,-13.00000 }</string>
+                                <string>{ 5.00000,-14.00000 }</string>
+                                <string>{ -5.00000,-14.00000 }</string>
                                 <string>{ -5.00000,2.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ -5.00000,-13.00000 }</string>
-                                <string>{ 5.00000,-6.00000 }</string>
-                                <string>{ 5.00000,-13.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ 5.00000,-6.00000 }</string>
-                                <string>{ 8.00000,2.00000 }</string>
-                                <string>{ 8.00000,-6.00000 }</string>
+                                <string>{ 5.00000,2.00000 }</string>
                             </array>
                         </array>
                         
@@ -453,20 +393,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ 8.00000,4.00000 }</string>
-                                <string>{ 5.00000,-4.00000 }</string>
+                                <string>{ 5.00000,-10.00000 }</string>
                                 <string>{ -5.00000,-10.00000 }</string>
                                 <string>{ -5.00000,4.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ -5.00000,-10.00000 }</string>
-                                <string>{ 5.00000,-4.00000 }</string>
-                                <string>{ 5.00000,-10.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ 5.00000,-4.00000 }</string>
-                                <string>{ 8.00000,4.00000 }</string>
-                                <string>{ 8.00000,-4.00000 }</string>
+                                <string>{ 5.00000,4.00000 }</string>
                             </array>
                         </array>
                         
@@ -519,20 +449,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ 8.00000,2.00000 }</string>
-                                <string>{ 5.00000,-6.00000 }</string>
+                                <string>{ 5.00000,-12.00000 }</string>
                                 <string>{ -5.00000,-12.00000 }</string>
                                 <string>{ -5.00000,2.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ -5.00000,-12.00000 }</string>
-                                <string>{ 5.00000,-6.00000 }</string>
-                                <string>{ 5.00000,-12.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ 5.00000,-6.00000 }</string>
-                                <string>{ 8.00000,2.00000 }</string>
-                                <string>{ 8.00000,-6.00000 }</string>
+                                <string>{ 5.00000,2.00000 }</string>
                             </array>
                         </array>
                         
@@ -585,20 +505,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ 8.00000,0.00000 }</string>
-                                <string>{ 5.00000,-8.00000 }</string>
                                 <string>{ -5.00000,-14.00000 }</string>
                                 <string>{ -5.00000,0.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ -5.00000,-14.00000 }</string>
-                                <string>{ 5.00000,-8.00000 }</string>
+                                <string>{ 5.00000,0.00000 }</string>
                                 <string>{ 5.00000,-14.00000 }</string>
-                            </array>
-                            <array>
-                                <string>{ 5.00000,-8.00000 }</string>
-                                <string>{ 8.00000,0.00000 }</string>
-                                <string>{ 8.00000,-8.00000 }</string>
                             </array>
                         </array>
                         

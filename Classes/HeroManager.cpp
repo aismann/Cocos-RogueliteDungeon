@@ -27,7 +27,34 @@ HeroManager::~HeroManager()
 
 void HeroManager::spawnHero(HeroJob heroJob, cocos2d::Vec2& position)
 {
-	this->hero = new Hero(heroJob,position);
+	switch (heroJob)
+	{
+	case HeroJob::Elf_M:
+		this->hero = new Elf(Gender::Male);
+		break;
+	case HeroJob::Elf_F:
+		this->hero = new Elf(Gender::Female);
+		break;
+	case HeroJob::Knight_M:
+		this->hero = new Knight(Gender::Male);
+		break;
+	case HeroJob::Knight_F:
+		this->hero = new Knight(Gender::Female);
+		break;
+	case HeroJob::Lizard_M:
+		this->hero = new Lizard(Gender::Male);
+		break;
+	case HeroJob::Lizard_F:
+		this->hero = new Lizard(Gender::Female);
+		break;
+	case HeroJob::Wizard_M:
+		this->hero = new Wizard(Gender::Male);
+		break;
+	case HeroJob::Wizard_F:
+		this->hero = new Wizard(Gender::Female);
+		break;
+	}
+	this->hero->setPosition(position);
 	this->initListener();
 }
 

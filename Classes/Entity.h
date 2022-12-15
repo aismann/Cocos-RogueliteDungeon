@@ -25,9 +25,11 @@ public:
 	~Entity();
 	void setSpriteFrame(std::string _framename, int _number);
 	void setAnimation(REPEAT _repeat, std::string _animate, int _begin, int _end, float _delay);
-	void setSpeedAndDirection(float speed, cocos2d::Vec2 direction);
 	std::string getFrameName();
-	cocos2d::Vec2 getDirection();
+	cocos2d::Vec2 getEntityDirection();
+	void setEntityDirection(cocos2d::Vec2 direction);
+	float getEntitySpeed();
+	void setEntitySpeed(float speed);
 	void update(float dt);
 };
 #endif // !__ENTITY_H__

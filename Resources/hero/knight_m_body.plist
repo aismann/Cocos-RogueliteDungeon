@@ -57,11 +57,10 @@
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ -6.00000,-10.00000 }</string>
                                 <string>{ -6.00000,4.00000 }</string>
-                                <string>{ 4.00000,4.00000 }</string>
-                                <string>{ 6.00000,2.00000 }</string>
+                                <string>{ 6.00000,4.00000 }</string>
                                 <string>{ 6.00000,-10.00000 }</string>
+                                <string>{ -6.00000,-10.00000 }</string>
                             </array>
                         </array>
                         

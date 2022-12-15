@@ -55,34 +55,47 @@ void Entity::setAnimation(REPEAT _repeat, std::string _animate, int _begin, int 
     }
 }
 
-void Entity::setSpeedAndDirection(float speed, cocos2d::Vec2 direction)
-{
-    this->speed = speed;
-    this->direction = direction;
-    this->direction.normalize();
-}
-
 std::string Entity::getFrameName()
 {
     return this->frameName;
 }
 
-cocos2d::Vec2 Entity::getDirection()
+cocos2d::Vec2 Entity::getEntityDirection()
 {
     return this->direction;
+}
+
+void Entity::setEntityDirection(cocos2d::Vec2 direction)
+{
+    this->direction = direction;
+    this->direction.normalize();
+}
+
+float Entity::getEntitySpeed()
+{
+    return this->speed;
+}
+
+void Entity::setEntitySpeed(float speed)
+{
+    this->speed = speed;
 }
 
 void Entity::update(float dt)
 {
     for (auto i = 0; i < this->animation->getFrames().size(); i++)
     {
-        if (this->getSpriteFrame() == this->animation->getFrames().at(i)->getSpriteFrame())
+        if(this->getSpriteFrame() == this->animation->getFrames().at(i)->getSpriteFrame())
         {
-            PhysicsShapeCache::getInstance()->setBodyOnSprite(this->frameName +"(" + std::to_string(i)+")", this);
+            PhysicsShapeCache::getInstance()->setBodyOnSprite(this->frameName + "(" + std::to_string(i) + ")", this);
         }
+        /*else if (this->isFlippedX() == true && this->getSpriteFrame() == this->animation->getFrames().at(i)->getSpriteFrame())
+        {
+            PhysicsShapeCache::getInstance()->setBodyOnSprite(this->frameName + "_flip(" + std::to_string(i) + ")", this);
+        }*/
     }
     float smoothspeed = this->speed;
     smoothspeed *= Director::getInstance()->getAnimationInterval() / dt;
-    this->getPhysicsBody()->setVelocity(smoothspeed * this->getDirection());
+    this->getPhysicsBody()->setVelocity(smoothspeed * this->getEntityDirection());
 }
 

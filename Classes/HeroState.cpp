@@ -108,7 +108,8 @@ HeroBaseState* HeroIdleState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard
 			|| *it == this->input->getKeyLeft()
 			|| *it == this->input->getKeyRight())
 		{
-			_entity->setSpeedAndDirection(_entity->getMovementSpeed(), Vec2(x_axist, y_axist));
+			_entity->setEntitySpeed(_entity->getMovementSpeed());
+			_entity->setEntityDirection(Vec2(x_axist, y_axist));
 			return new HeroRunState();
 		}
 	}
@@ -148,7 +149,8 @@ HeroBaseState* HeroIdleState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboar
 			|| *it == this->input->getKeyRight())
 		{
 			keyList.erase(it);
-			_entity->setSpeedAndDirection(_entity->getMovementSpeed(), Vec2(x_axist, y_axist));
+			_entity->setEntitySpeed(_entity->getMovementSpeed());
+			_entity->setEntityDirection(Vec2(x_axist, y_axist));
 			return new HeroIdleState();
 		}
 	}
@@ -245,7 +247,8 @@ HeroBaseState* HeroRunState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard:
 			|| *it == this->input->getKeyLeft()
 			|| *it == this->input->getKeyRight())
 		{
-			_entity->setSpeedAndDirection(_entity->getMovementSpeed(), Vec2(x_axist, y_axist));
+			_entity->setEntitySpeed(_entity->getMovementSpeed());
+			_entity->setEntityDirection(Vec2(x_axist, y_axist));
 			return new HeroIdleState();
 		}
 	}
@@ -285,7 +288,8 @@ HeroBaseState* HeroRunState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboard
 			|| *it == this->input->getKeyRight())
 		{
 			keyList.erase(it);
-			_entity->setSpeedAndDirection(_entity->getMovementSpeed(), Vec2(x_axist, y_axist));
+			_entity->setEntitySpeed(_entity->getMovementSpeed());
+			_entity->setEntityDirection(Vec2(x_axist, y_axist));
 
 			return new HeroIdleState();
 		}

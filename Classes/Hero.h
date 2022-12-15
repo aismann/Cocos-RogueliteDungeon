@@ -2,6 +2,11 @@
 #define __HERO_H__
 #include "Entity.h"
 #include "HeroState.h"
+enum class Gender
+{
+	Male,
+	Female
+};
 enum class HeroJob
 {
 	Elf_M,
@@ -15,21 +20,21 @@ enum class HeroJob
 };
 class Hero:public Entity
 {
-private:
+protected:
 	HeroJob heroJob;
-	EntityStats health_point;
-	EntityStats mana_point;
-	EntityStats damage_point;
-	EntityStats movement_speed;
-	void initHero();
+	EntityStats health;
+	EntityStats mana;
+	EntityStats damage;
+	EntityStats movementSpeed;
+	virtual void initHero();
 public:
-	Hero(HeroJob heroJob, cocos2d::Vec2& position);
+	Hero();
 	~Hero();
 	HeroJob getHeroJob();
-	float getHealthPoint();
-	float getManaPoint();
-	float getDamagePoint();
-	float getMovementSpeed();
+	virtual float getHealth();
+	virtual float getMana();
+	virtual float getDamage();
+	virtual float getMovementSpeed();
 };
 #endif // !__HERO_H__
 

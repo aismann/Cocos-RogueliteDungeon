@@ -5,21 +5,21 @@ USING_NS_CC;
 void Hero::initHero()
 {
     StatModifier* baseHP = new StatModifier(10, StatModifierType::Flat);
-    this->health_point.addModifier(baseHP);
+    this->health.addModifier(baseHP);
     StatModifier* baseMP = new StatModifier(5, StatModifierType::Flat, 0, this);
-    this->mana_point.addModifier(baseMP);
+    this->mana.addModifier(baseMP);
     StatModifier* baseATK = new StatModifier(5, StatModifierType::Flat, 0, this);
-    this->damage_point.addModifier(baseATK);
-    StatModifier* baseMSP = new StatModifier(100, StatModifierType::Flat, 0, this);
-    this->movement_speed.addModifier(baseMSP);
+    this->damage.addModifier(baseATK);
+    //StatModifier* baseMSP = new StatModifier(100, StatModifierType::Flat, 0, this);
+    //this->movementSpeed.addModifier(baseMSP);
 }
 
-Hero::Hero(HeroJob heroJob, cocos2d::Vec2& position):Entity()
+Hero::Hero():Entity()
 {
     /*initHero*/
-    this->initHero();
+    //this->initHero();
     /*choice hero class*/
-    int frameBegin = 0;
+    /*int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
     switch (heroJob)
@@ -64,36 +64,34 @@ Hero::Hero(HeroJob heroJob, cocos2d::Vec2& position):Entity()
         this->setSpriteFrame(WIZARD_F_IDLE, frameBegin);
         this->setAnimation(REPEAT::FOREVER, WIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
         break;
-    }
+    }*/
     /*set hero position*/
-    this->setPosition(position);
+    //this->setPosition(position);
 }
 
 Hero::~Hero()
 {
 }
-
-float Hero::getHealthPoint()
-{
-    return this->health_point.getValue();
-}
-
 HeroJob Hero::getHeroJob()
 {
     return this->heroJob;
 }
-
-float Hero::getManaPoint()
+float Hero::getHealth()
 {
-    return this->mana_point.getValue();
+    return this->health.getValue();
 }
 
-float Hero::getDamagePoint()
+float Hero::getMana()
 {
-    return this->damage_point.getValue();
+    return this->mana.getValue();
+}
+
+float Hero::getDamage()
+{
+    return this->damage.getValue();
 }
 
 float Hero::getMovementSpeed()
 {
-    return this->movement_speed.getValue();
+    return this->movementSpeed.getValue();
 }
