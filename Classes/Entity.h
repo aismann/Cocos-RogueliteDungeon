@@ -10,7 +10,7 @@ enum class REPEAT
 	FOREVER,
 	ONCE
 };
-class Entity:public cocos2d::Node
+class Entity:public cocos2d::Sprite
 {
 private:
 	std::string frameName;
