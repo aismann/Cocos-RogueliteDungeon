@@ -6,24 +6,15 @@ void Elf::initHero()
 	this->movementSpeed.addModifier(baseMSP);
 }
 
-Elf::Elf(Gender gen):Hero()
+Elf::Elf():Hero()
 {
 	this->initHero();
 	int frameBegin = 0;
 	int frameEnd = 3;
 	float frameDelay = 0.15f;
-	if (gen == Gender::Male)
-	{
-		this->heroJob = HeroJob::Elf_M;
-		this->setSpriteFrame(ELF_M_IDLE, frameBegin);
-		this->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
-	}
-	else
-	{
-		this->heroJob = HeroJob::Elf_F;
-		this->setSpriteFrame(ELF_F_IDLE, frameBegin);
-		this->setAnimation(REPEAT::FOREVER, ELF_F_IDLE, frameBegin, frameEnd, frameDelay);
-	}
+	this->heroJob = HeroJob::Elf;
+	this->setSpriteFrame(ELF_M_IDLE, frameBegin);
+	this->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
 }
 
 Elf::~Elf()

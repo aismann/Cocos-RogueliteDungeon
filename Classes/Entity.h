@@ -10,7 +10,7 @@ enum class REPEAT
 	FOREVER,
 	ONCE
 };
-class Entity:public cocos2d::Sprite
+class Entity:public cocos2d::Node
 {
 private:
 	std::string frameName;
@@ -19,12 +19,12 @@ private:
 protected:
 	cocos2d::Animate* animate;
 	cocos2d::Animation* animation;
-	cocos2d::Animation* createAnimation(std::string _animate, int _begin, int _end, float _delay);
+	cocos2d::Animation* createAnimation(std::string animationName, int startFrame, int endFrame, float frameDelay);
 public:
 	Entity();
 	~Entity();
-	void setSpriteFrame(std::string _framename, int _number);
-	void setAnimation(REPEAT _repeat, std::string _animate, int _begin, int _end, float _delay);
+	void setSpriteFrame(std::string frameName, int number, bool haveBody = true);
+	void setAnimation(REPEAT repeat, std::string animationName, int startFrame, int endFrame, float frameDelay);
 	std::string getFrameName();
 	cocos2d::Vec2 getEntityDirection();
 	void setEntityDirection(cocos2d::Vec2 direction);

@@ -6,7 +6,7 @@ class Lizard:public Hero
 protected:
 	void initHero();
 public:
-	Lizard(Gender gen);
+	Lizard();
 	~Lizard();
 	float getHealth();
 	float getMana();

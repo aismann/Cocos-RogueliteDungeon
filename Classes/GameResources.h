@@ -56,7 +56,7 @@ const std::string WIZARD_F_RUN = "wizard_f_run";
 /*-------------Weapon---------------*/
 const std::string WEAPON_PLIST = "base_weapon/base_weapon.plist";
 const std::string WEAPON_BODY_PLIST = "base_weapon/base_weapon_body.plist";
-const std::string SAW_SWORD_HIT = "weapon_saw_sword";
+const std::string SAW_SWORD = "weapon_saw_sword";
 
 #endif // !__GAME_RESOURCES_H__
 

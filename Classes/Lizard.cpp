@@ -6,24 +6,15 @@ void Lizard::initHero()
 	this->movementSpeed.addModifier(baseMSP);
 }
 
-Lizard::Lizard(Gender gen):Hero()
+Lizard::Lizard():Hero()
 {
 	this->initHero();
 	int frameBegin = 0;
 	int frameEnd = 3;
 	float frameDelay = 0.15f;
-	if (gen == Gender::Male)
-	{
-		this->heroJob = HeroJob::Lizard_M;
-		this->setSpriteFrame(LIZARD_M_IDLE, frameBegin);
-		this->setAnimation(REPEAT::FOREVER, LIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
-	}
-	else
-	{
-		this->heroJob = HeroJob::Lizard_F;
-		this->setSpriteFrame(LIZARD_F_IDLE, frameBegin);
-		this->setAnimation(REPEAT::FOREVER, LIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
-	}
+	this->heroJob = HeroJob::Lizard;
+	this->setSpriteFrame(LIZARD_M_IDLE, frameBegin);
+	this->setAnimation(REPEAT::FOREVER, LIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
 }
 
 Lizard::~Lizard()

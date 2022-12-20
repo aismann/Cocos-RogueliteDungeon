@@ -81,7 +81,7 @@ void LoadingScene::initLoadingLabel(Vec2 position)
         Entity* loadingText = new Entity();
         loadingText->setPosition(Vec2(position.x/2 - loadingText->getContentSize().width/2
                                     , position.y / 2 - loadingText->getContentSize().height/2));
-        loadingText->setSpriteFrame(LOADING,0);
+        loadingText->setSpriteFrame(LOADING,0,false);
         loadingText->setAnimation(REPEAT::FOREVER,LOADING,0,3,fixedtimestep);
         this->addChild(loadingText);
     }

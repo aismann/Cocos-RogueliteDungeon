@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "dungeon.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -27,18 +27,18 @@
         },
         "dungeon.tmx": {
             "expandedGroupLayers": [
-                5,
-                7,
-                9,
+                13,
                 8,
+                9,
                 11,
-                13
+                5,
+                7
             ],
-            "scale": 1,
-            "selectedLayer": 1,
+            "scale": 1.5,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 464.5,
-                "y": 398
+                "x": 563.6666666666667,
+                "y": 319.3333333333333
             }
         },
         "dungeon.tsx": {
@@ -63,8 +63,8 @@
     "project": "dungeon.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "dungeon.tmx",
         "dungeon.tsx",
+        "dungeon.tmx",
         "C:/Users/BinKazuo/AppData/Local/Temp/Rar$DIa3000.16463/TileGame.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

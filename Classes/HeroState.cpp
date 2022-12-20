@@ -16,28 +16,16 @@ void HeroIdleState::setIdleAnimation(Hero* _entity)
 	float frameDelay = 0.15f;
 	switch (_entity->getHeroJob())
 	{
-	case HeroJob::Elf_M:
+	case HeroJob::Elf:
 		_entity->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
 		break;
-	case HeroJob::Elf_F:
-		_entity->setAnimation(REPEAT::FOREVER, ELF_F_IDLE, frameBegin, frameEnd, frameDelay);
-		break;
-	case HeroJob::Knight_M:
+	case HeroJob::Knight:
 		_entity->setAnimation(REPEAT::FOREVER, KNIGHT_M_IDLE, frameBegin, frameEnd, frameDelay);
 		break;
-	case HeroJob::Knight_F:
-		_entity->setAnimation(REPEAT::FOREVER, KNIGHT_F_IDLE, frameBegin, frameEnd, frameDelay);
-		break;
-	case HeroJob::Lizard_M:
+	case HeroJob::Lizard:
 		_entity->setAnimation(REPEAT::FOREVER, LIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
 		break;
-	case HeroJob::Lizard_F:
-		_entity->setAnimation(REPEAT::FOREVER, LIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
-		break;
-	case HeroJob::Wizard_M:
-		_entity->setAnimation(REPEAT::FOREVER, WIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
-		break;
-	case HeroJob::Wizard_F:
+	case HeroJob::Wizard:
 		_entity->setAnimation(REPEAT::FOREVER, WIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
 		break;
 	}
@@ -172,29 +160,17 @@ void HeroRunState::setRunAnimation(Hero* _entity)
 	float frameDelay = 0.15f;
 	switch (_entity->getHeroJob())
 	{
-	case HeroJob::Elf_M:
+	case HeroJob::Elf:
 		_entity->setAnimation(REPEAT::FOREVER, ELF_M_RUN, frameBegin, frameEnd, frameDelay);
 		break;
-	case HeroJob::Elf_F:
-		_entity->setAnimation(REPEAT::FOREVER, ELF_F_RUN, frameBegin, frameEnd, frameDelay);
-		break;
-	case HeroJob::Knight_M:
+	case HeroJob::Knight:
 		_entity->setAnimation(REPEAT::FOREVER, KNIGHT_M_RUN, frameBegin, frameEnd, frameDelay);
 		break;
-	case HeroJob::Knight_F:
-		_entity->setAnimation(REPEAT::FOREVER, KNIGHT_F_RUN, frameBegin, frameEnd, frameDelay);
-		break;
-	case HeroJob::Lizard_M:
+	case HeroJob::Lizard:
 		_entity->setAnimation(REPEAT::FOREVER, LIZARD_M_RUN, frameBegin, frameEnd, frameDelay);
 		break;
-	case HeroJob::Lizard_F:
-		_entity->setAnimation(REPEAT::FOREVER, LIZARD_F_RUN, frameBegin, frameEnd, frameDelay);
-		break;
-	case HeroJob::Wizard_M:
+	case HeroJob::Wizard:
 		_entity->setAnimation(REPEAT::FOREVER, WIZARD_M_RUN, frameBegin, frameEnd, frameDelay);
-		break;
-	case HeroJob::Wizard_F:
-		_entity->setAnimation(REPEAT::FOREVER, WIZARD_F_RUN, frameBegin, frameEnd, frameDelay);
 		break;
 	}
 }

@@ -6,7 +6,7 @@ class Wizard:public Hero
 protected:
 	void initHero();
 public:
-	Wizard(Gender gen);
+	Wizard();
 	~Wizard();
 	float getHealth();
 	float getMana();

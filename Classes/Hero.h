@@ -1,22 +1,13 @@
 #ifndef __HERO_H__
 #define __HERO_H__
 #include "Entity.h"
-#include "HeroState.h"
-enum class Gender
-{
-	Male,
-	Female
-};
 enum class HeroJob
 {
-	Elf_M,
-	Elf_F,
-	Knight_M,
-	Knight_F,
-	Lizard_M,
-	Lizard_F,
-	Wizard_M,
-	Wizard_F
+	None =-1,
+	Elf,
+	Knight,
+	Lizard,
+	Wizard
 };
 class Hero:public Entity
 {

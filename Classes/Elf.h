@@ -6,7 +6,7 @@ class Elf:public Hero
 protected:
 	void initHero();
 public:
-	Elf(Gender gen);
+	Elf();
 	~Elf();
 	float getHealth();
 	float getMana();

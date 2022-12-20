@@ -2,7 +2,6 @@
 #define __HELLOWORLD_SCENE_H__
 #include "HeroManager.h"
 #include "cocos2d.h"
-
 class RestRoomScene : public cocos2d::Scene
 {
 private:
@@ -10,7 +9,7 @@ private:
     int count = 0;
     cocos2d::Vec2 lastMousePositon;
     cocos2d::TMXTiledMap* restroom;
-    HeroManager* hero = Singleton<HeroManager>::getIntsance();
+    //HeroManager* hero = Singleton<HeroManager>::getIntsance();
     void initTileMap(cocos2d::Vec2 position);
     cocos2d::Vec2 tileCoordForPosition(cocos2d::Vec2 position);
 public:

@@ -1,47 +1,52 @@
 #include "Entity.h"
 #include "PhysicsShapeCache.h"
 USING_NS_CC;
-cocos2d::Animation* Entity::createAnimation(std::string _animate, int _begin, int _end, float _delay)
+cocos2d::Animation* Entity::createAnimation(std::string animationName, int startFrame, int endFrame, float frameDelay)
 {
-    Vector<SpriteFrame*> animFrame;
-    for (auto i = _begin; i <= _end; i++)
+    Vector<SpriteFrame*> animationFrame;
+    for (auto i = startFrame; i <= endFrame; i++)
     {
         char buffer[20] = { 0 };
         sprintf(buffer, "(%d)", i);
-        auto framename = _animate + buffer;
-        auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(framename);
-        animFrame.pushBack(frame);
+        auto frameName = animationName + buffer;
+        auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(frameName);
+        animationFrame.pushBack(frame);
     }
-    auto _animation = Animation::createWithSpriteFrames(animFrame, _delay);
-    return _animation;
+    auto animation = Animation::createWithSpriteFrames(animationFrame, frameDelay);
+    return animation;
 }
-Entity::Entity()
+Entity::Entity():Sprite()
 {
-    this->animate = NULL;
-    this->animation = NULL;
-    this->speed = 0;
-    
+    this->animate = nullptr;
+    this->animation = nullptr;
+    this->speed = 0; 
 }
 
 Entity::~Entity()
 {
 }
 
-void Entity::setSpriteFrame(std::string _framename, int _number)
+void Entity::setSpriteFrame(std::string frameName, int number, bool haveBody)
 {
-    std::string _frameName = _framename +"(" + std::to_string(_number)+")";
-	this->initWithSpriteFrameName(_frameName);
+    std::string spriteFrameName = frameName +"(" + std::to_string(number)+")";
+    if (!this->initWithSpriteFrameName(spriteFrameName))
+    {
+        return;
+    }
     this->getTexture()->setAliasTexParameters();
-    PhysicsShapeCache::getInstance()->setBodyOnSprite(_frameName, this);
+    if (haveBody)
+    {
+        PhysicsShapeCache::getInstance()->setBodyOnSprite(spriteFrameName, this);
+    }
 }
 
-void Entity::setAnimation(REPEAT _repeat, std::string _animate, int _begin, int _end, float _delay)
+void Entity::setAnimation(REPEAT repeat, std::string animationName, int startFrame, int endFrame, float frameDelay)
 {
     this->stopAllActions();
-    this->frameName = _animate;
-    this->animation = createAnimation(_animate, _begin, _end, _delay);
+    this->frameName = animationName;
+    this->animation = createAnimation(animationName, startFrame, endFrame, frameDelay);
     animate = Animate::create(this->animation);
-    switch (_repeat)
+    switch (repeat)
     {
     case REPEAT::FOREVER:
         this->runAction(RepeatForever::create(animate));
@@ -68,9 +73,7 @@ void Entity::setEntityDirection(cocos2d::Vec2 direction)
 {
     this->direction = direction;
     this->direction.normalize();
-    float smoothspeed = this->speed;
-    //smoothspeed *= Director::getInstance()->getAnimationInterval() / dt;
-    this->getPhysicsBody()->setVelocity(smoothspeed * this->getEntityDirection());
+    this->getPhysicsBody()->setVelocity(this->speed * this->getEntityDirection());
 }
 
 float Entity::getEntitySpeed()

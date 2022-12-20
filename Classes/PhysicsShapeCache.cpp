@@ -234,7 +234,6 @@ PhysicsBody *PhysicsShapeCache::createBodyWithName(const std::string &name)
 
 bool PhysicsShapeCache::setBodyOnSprite(const std::string &name, Sprite *sprite)
 {
-    sprite->unscheduleUpdate();
     PhysicsBody* body = createBodyWithName(name);
     if (body)
     {

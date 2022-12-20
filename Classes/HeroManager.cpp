@@ -29,29 +29,17 @@ void HeroManager::spawnHero(HeroJob heroJob, cocos2d::Vec2& position)
 {
 	switch (heroJob)
 	{
-	case HeroJob::Elf_M:
-		this->hero = new Elf(Gender::Male);
+	case HeroJob::Elf:
+		this->hero = new Elf();
 		break;
-	case HeroJob::Elf_F:
-		this->hero = new Elf(Gender::Female);
+	case HeroJob::Knight:
+		this->hero = new Knight();
 		break;
-	case HeroJob::Knight_M:
-		this->hero = new Knight(Gender::Male);
+	case HeroJob::Lizard:
+		this->hero = new Lizard();
 		break;
-	case HeroJob::Knight_F:
-		this->hero = new Knight(Gender::Female);
-		break;
-	case HeroJob::Lizard_M:
-		this->hero = new Lizard(Gender::Male);
-		break;
-	case HeroJob::Lizard_F:
-		this->hero = new Lizard(Gender::Female);
-		break;
-	case HeroJob::Wizard_M:
-		this->hero = new Wizard(Gender::Male);
-		break;
-	case HeroJob::Wizard_F:
-		this->hero = new Wizard(Gender::Female);
+	case HeroJob::Wizard:
+		this->hero = new Wizard();
 		break;
 	}
 	this->hero->setPosition(position);

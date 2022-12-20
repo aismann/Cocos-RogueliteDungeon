@@ -1,5 +1,6 @@
 #include "RestRoomScene.h"
 #include "PhysicsShapeCache.h"
+#include "AnimeSword.h"
 USING_NS_CC;
 
 void RestRoomScene::initTileMap(cocos2d::Vec2 position)
@@ -116,10 +117,12 @@ bool RestRoomScene::init()
 
     this->initTileMap((Vec2)visibleSize);
 
-    this->hero->spawnHero(HeroJob::Lizard_M, Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    this->hero->getHero()->getPhysicsBody()->setRotationEnable(false);
-    hero->getHero()->getPhysicsBody()->setGravityEnable(false);
-    this->addChild(hero->getHero(),1);
+    Hero* elf = new Elf();
+    elf->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    this->addChild(elf,1);
+
+    //this->hero->spawnHero(HeroJob::Lizard, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    //this->addChild(hero->getHero(),1);
 
     this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     //this->getPhysicsWorld()->setGravity(Vec2(0,-98));
@@ -129,8 +132,8 @@ bool RestRoomScene::init()
 
 void RestRoomScene::update(float dt)
 {
-    hero->update(dt);
-    Vec2 playerPos = this->hero->getHero()->getPosition();
+    //hero->update(dt);
+    //Vec2 playerPos = this->hero->getHero()->getPosition();
 
     //auto tileID = this->bottomWall->getTileGIDAt(tileCoordForPosition(playerPos));
     //if (tileID)

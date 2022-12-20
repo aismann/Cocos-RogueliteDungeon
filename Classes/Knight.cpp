@@ -6,24 +6,15 @@ void Knight::initHero()
 	this->movementSpeed.addModifier(baseMSP);
 }
 
-Knight::Knight(Gender gen):Hero()
+Knight::Knight():Hero()
 {
 	this->initHero();
 	int frameBegin = 0;
 	int frameEnd = 3;
 	float frameDelay = 0.15f;
-	if (gen == Gender::Male)
-	{
-		this->heroJob = HeroJob::Knight_M;
-		this->setSpriteFrame(KNIGHT_M_IDLE, frameBegin);
-		this->setAnimation(REPEAT::FOREVER, KNIGHT_M_IDLE, frameBegin, frameEnd, frameDelay);
-	}
-	else
-	{
-		this->heroJob = HeroJob::Knight_F;
-		this->setSpriteFrame(KNIGHT_F_IDLE, frameBegin);
-		this->setAnimation(REPEAT::FOREVER, KNIGHT_F_IDLE, frameBegin, frameEnd, frameDelay);
-	}
+	this->heroJob = HeroJob::Knight;
+	this->setSpriteFrame(KNIGHT_M_IDLE, frameBegin);
+	this->setAnimation(REPEAT::FOREVER, KNIGHT_M_IDLE, frameBegin, frameEnd, frameDelay);
 }
 
 Knight::~Knight()

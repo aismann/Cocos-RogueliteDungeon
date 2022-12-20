@@ -6,7 +6,7 @@ class Knight:public Hero
 protected:
 	void initHero();
 public:
-	Knight(Gender gen);
+	Knight();
 	~Knight();
 	float getHealth();
 	float getMana();
