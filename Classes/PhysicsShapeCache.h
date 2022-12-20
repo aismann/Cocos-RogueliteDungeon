@@ -101,8 +101,8 @@ public:
     bool setBodyOnSprite(const std::string &name, Sprite *sprite);
 
 private:
-    std::string currentString = "";
-    std::string oldString = "";
+    //std::string currentString = "";
+    //std::string oldString = "";
     typedef enum
     {
         FIXTURE_POLYGON,

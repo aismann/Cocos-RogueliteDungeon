@@ -234,23 +234,14 @@ PhysicsBody *PhysicsShapeCache::createBodyWithName(const std::string &name)
 
 bool PhysicsShapeCache::setBodyOnSprite(const std::string &name, Sprite *sprite)
 {
-    currentString = name;
-    if (currentString != oldString)
+    sprite->unscheduleUpdate();
+    PhysicsBody* body = createBodyWithName(name);
+    if (body)
     {
-        oldString = currentString;
-        sprite->unscheduleUpdate();
-        PhysicsBody* body = createBodyWithName(name);
-        if (body)
-        {
-            sprite->setPhysicsBody(body);
-            sprite->setAnchorPoint(getBodyDef(name)->anchorPoint);
-        }
-        return body != nullptr;
+        sprite->setPhysicsBody(body);
+        sprite->setAnchorPoint(getBodyDef(name)->anchorPoint);
     }
-    else
-    {
-        return false;
-    }
+    return body != nullptr;
 }
 
 

@@ -1,0 +1,75 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        ":/automap-tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BinKazuo/AppData/Local/Temp/Rar$DIa3000.16463/TileGame.tmx": {
+            "scale": 0.39721875,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 801.8251907796396,
+                "y": 801.8251907796398
+            }
+        },
+        "C:/Users/BinKazuo/AppData/Local/Temp/Rar$DIa3000.16463/TileGame.tmx#meta_tiles": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BinKazuo/AppData/Local/Temp/Rar$DIa3000.16463/TileGame.tmx#tmw_desert_spacing": {
+            "scaleInDock": 1
+        },
+        "dungeon.tmx": {
+            "expandedGroupLayers": [
+                5,
+                7,
+                9,
+                8,
+                11,
+                13
+            ],
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 464.5,
+                "y": 398
+            }
+        },
+        "dungeon.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 11
+        }
+    },
+    "frame.defaultDuration": 150,
+    "last.imagePath": "D:/GAMERESOURCES/0x72_DungeonTilesetII_v1.4/0x72_DungeonTilesetII_v1.4",
+    "map.height": 225,
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": null,
+    "map.renderOrder": null,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 400,
+    "openFiles": [
+        "dungeon.tmx",
+        "dungeon.tsx"
+    ],
+    "project": "dungeon.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "dungeon.tmx",
+        "dungeon.tsx",
+        "C:/Users/BinKazuo/AppData/Local/Temp/Rar$DIa3000.16463/TileGame.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

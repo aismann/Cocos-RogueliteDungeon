@@ -4,7 +4,8 @@ USING_NS_CC;
 /*----------------------------------------------------------------------------------------*/
 float HeroBaseState::x_axist = 0;
 float HeroBaseState::y_axist = 0;
-std::vector<cocos2d::EventKeyboard::KeyCode> HeroBaseState::keyList;
+std::vector<EventKeyboard::KeyCode> HeroBaseState::keyList;
+std::vector<EventKeyboard::KeyCode>::iterator HeroBaseState::it;
 /*----------------------------------------------------------------------------------------*/
 #pragma region Idle
 
@@ -48,10 +49,10 @@ void HeroIdleState::onStart(Hero* _entity)
 	{
 		for (auto& key : keyList)
 		{
-			if (key == this->input->getKeyUp()
-				|| key == this->input->getKeyDown()
-				|| key == this->input->getKeyLeft()
-				|| key == this->input->getKeyRight())
+			if (key == EventKeyboard::KeyCode::KEY_W
+				|| key == EventKeyboard::KeyCode::KEY_S
+				|| key == EventKeyboard::KeyCode::KEY_A
+				|| key == EventKeyboard::KeyCode::KEY_D)
 			{
 				//HeroRunState::setRunAnimation(_entity);
 			}
@@ -74,44 +75,44 @@ void HeroIdleState::onExit(Hero* _entity)
 
 HeroBaseState* HeroIdleState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
+	
 #pragma region Movement
-	if (keycode == this->input->getKeyUp())
+	switch (keycode)
 	{
+	case EventKeyboard::KeyCode::KEY_W:
 		keyList.push_back(keycode);
-		it = std::find(keyList.begin(), keyList.end(), keycode);
 		y_axist++;
-	}
-	if (keycode == this->input->getKeyDown())
-	{
+		break;
+	case EventKeyboard::KeyCode::KEY_S:
 		keyList.push_back(keycode);
-		it = std::find(keyList.begin(), keyList.end(), keycode);
 		y_axist--;
-	}
-	if (keycode == this->input->getKeyLeft())
-	{
+		break;
+	case EventKeyboard::KeyCode::KEY_A:
 		keyList.push_back(keycode);
-		it = std::find(keyList.begin(), keyList.end(), keycode);
-		x_axist--;
 		_entity->setFlippedX(true);
-	}
-	if (keycode == this->input->getKeyRight())
-	{
+		x_axist--;
+		break;
+	case EventKeyboard::KeyCode::KEY_D:
 		keyList.push_back(keycode);
-		it = std::find(keyList.begin(), keyList.end(), keycode);
-		x_axist++;
 		_entity->setFlippedX(false);
+		x_axist++;
+		break;
+	default:
+		break;
 	}
+	it = std::find(keyList.begin(), keyList.end(), keycode);
 	if (it != keyList.end())
 	{
-		if (*it == this->input->getKeyUp()
-			|| *it == this->input->getKeyDown()
-			|| *it == this->input->getKeyLeft()
-			|| *it == this->input->getKeyRight())
+		if (*it == EventKeyboard::KeyCode::KEY_W
+			|| *it == EventKeyboard::KeyCode::KEY_S
+			|| *it == EventKeyboard::KeyCode::KEY_A
+			|| *it == EventKeyboard::KeyCode::KEY_D )
 		{
 			_entity->setEntitySpeed(_entity->getMovementSpeed());
 			_entity->setEntityDirection(Vec2(x_axist, y_axist));
 			return new HeroRunState();
 		}
+
 	}
 #pragma endregion
 
@@ -121,32 +122,30 @@ HeroBaseState* HeroIdleState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard
 HeroBaseState* HeroIdleState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
 #pragma region Movement
-	if (keycode == this->input->getKeyUp())
+	switch (keycode)
 	{
-		it = std::find(keyList.begin(), keyList.end(), keycode);
+	case EventKeyboard::KeyCode::KEY_W:
 		y_axist--;
-	}
-	if (keycode == this->input->getKeyDown())
-	{
-		it = std::find(keyList.begin(), keyList.end(), keycode);
+		break;
+	case EventKeyboard::KeyCode::KEY_S:
 		y_axist++;
-	}
-	if (keycode == this->input->getKeyLeft())
-	{
-		it = std::find(keyList.begin(), keyList.end(), keycode);
+		break;
+	case EventKeyboard::KeyCode::KEY_A:
 		x_axist++;
-	}
-	if (keycode == this->input->getKeyRight())
-	{
-		it = std::find(keyList.begin(), keyList.end(), keycode);
+		break;
+	case EventKeyboard::KeyCode::KEY_D:
 		x_axist--;
+		break;
+	default:
+		break;
 	}
+	it = std::find(keyList.begin(), keyList.end(), keycode);
 	if (it != keyList.end())
 	{
-		if (*it == this->input->getKeyUp()
-			|| *it == this->input->getKeyDown()
-			|| *it == this->input->getKeyLeft()
-			|| *it == this->input->getKeyRight())
+		if (*it == EventKeyboard::KeyCode::KEY_W
+			|| *it == EventKeyboard::KeyCode::KEY_S
+			|| *it == EventKeyboard::KeyCode::KEY_A
+			|| *it == EventKeyboard::KeyCode::KEY_D)
 		{
 			keyList.erase(it);
 			_entity->setEntitySpeed(_entity->getMovementSpeed());
@@ -214,38 +213,36 @@ void HeroRunState::onExit(Hero* _entity)
 HeroBaseState* HeroRunState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
 #pragma region Movement
-	if (keycode == this->input->getKeyUp())
+	switch (keycode)
 	{
+	case EventKeyboard::KeyCode::KEY_W:
 		keyList.push_back(keycode);
-		it = std::find(keyList.begin(), keyList.end(), keycode);
 		y_axist++;
-	}
-	if (keycode == this->input->getKeyDown())
-	{
+		break;
+	case EventKeyboard::KeyCode::KEY_S:
 		keyList.push_back(keycode);
-		it = std::find(keyList.begin(), keyList.end(), keycode);
 		y_axist--;
-	}
-	if (keycode == this->input->getKeyLeft())
-	{
+		break;
+	case EventKeyboard::KeyCode::KEY_A:
 		keyList.push_back(keycode);
-		it = std::find(keyList.begin(), keyList.end(), keycode);
-		x_axist--;
 		_entity->setFlippedX(true);
-	}
-	if (keycode == this->input->getKeyRight())
-	{
+		x_axist--;
+		break;
+	case EventKeyboard::KeyCode::KEY_D:
 		keyList.push_back(keycode);
-		it = std::find(keyList.begin(), keyList.end(), keycode);
-		x_axist++;
 		_entity->setFlippedX(false);
+		x_axist++;
+		break;
+	default:
+		break;
 	}
+	it = std::find(keyList.begin(), keyList.end(), keycode);
 	if (it != keyList.end())
 	{
-		if (*it == this->input->getKeyUp()
-			|| *it == this->input->getKeyDown()
-			|| *it == this->input->getKeyLeft()
-			|| *it == this->input->getKeyRight())
+		if (*it == EventKeyboard::KeyCode::KEY_W
+			|| *it == EventKeyboard::KeyCode::KEY_S
+			|| *it == EventKeyboard::KeyCode::KEY_A
+			|| *it == EventKeyboard::KeyCode::KEY_D)
 		{
 			_entity->setEntitySpeed(_entity->getMovementSpeed());
 			_entity->setEntityDirection(Vec2(x_axist, y_axist));
@@ -260,37 +257,34 @@ HeroBaseState* HeroRunState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard:
 HeroBaseState* HeroRunState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
 #pragma region Movement
-	if (keycode == this->input->getKeyUp())
+	switch (keycode)
 	{
-		it = std::find(keyList.begin(), keyList.end(), keycode);
+	case EventKeyboard::KeyCode::KEY_W:
 		y_axist--;
-	}
-	if (keycode == this->input->getKeyDown())
-	{
-		it = std::find(keyList.begin(), keyList.end(), keycode);
+		break;
+	case EventKeyboard::KeyCode::KEY_S:
 		y_axist++;
-	}
-	if (keycode == this->input->getKeyLeft())
-	{
-		it = std::find(keyList.begin(), keyList.end(), keycode);
+		break;
+	case EventKeyboard::KeyCode::KEY_A:
 		x_axist++;
-	}
-	if (keycode == this->input->getKeyRight())
-	{
-		it = std::find(keyList.begin(), keyList.end(), keycode);
+		break;
+	case EventKeyboard::KeyCode::KEY_D:
 		x_axist--;
+		break;
+	default:
+		break;
 	}
+	it = std::find(keyList.begin(), keyList.end(), keycode);
 	if (it != keyList.end())
 	{
-		if (*it == this->input->getKeyUp()
-			|| *it == this->input->getKeyDown()
-			|| *it == this->input->getKeyLeft()
-			|| *it == this->input->getKeyRight())
+		if (*it == EventKeyboard::KeyCode::KEY_W
+			|| *it == EventKeyboard::KeyCode::KEY_S
+			|| *it == EventKeyboard::KeyCode::KEY_A
+			|| *it == EventKeyboard::KeyCode::KEY_D)
 		{
 			keyList.erase(it);
 			_entity->setEntitySpeed(_entity->getMovementSpeed());
 			_entity->setEntityDirection(Vec2(x_axist, y_axist));
-
 			return new HeroIdleState();
 		}
 	}

@@ -1,6 +1,5 @@
 #include <vector>
 #include "cocos2d.h"
-#include "InputManager.h"
 #include "BaseState.h"
 #include "Hero.h"
 #ifndef __HERO_BASE_STATE_H__
@@ -13,8 +12,7 @@ protected:
 	static float x_axist;
 	static float y_axist;
 	static std::vector<cocos2d::EventKeyboard::KeyCode> keyList;
-	std::vector<cocos2d::EventKeyboard::KeyCode>::iterator it;
-	InputManager* input = Singleton<InputManager>::getIntsance();
+	static std::vector<cocos2d::EventKeyboard::KeyCode>::iterator it;
 public:
 	virtual void onStart(Hero* _entity) = 0;
 	virtual void onExit(Hero* _entity) = 0;

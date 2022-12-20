@@ -6,7 +6,6 @@
 #include "Lizard.h"
 #include "Wizard.h"
 #include "Singleton.h"
-#include "InputManager.h"
 #include "HeroState.h"
 class Hero;
 class HeroManager
@@ -14,7 +13,6 @@ class HeroManager
 private:
 	friend class Singleton<HeroManager>;
 	bool isKeyPressed = false;
-	InputManager* input = Singleton<InputManager>::getIntsance();
 	HeroState* state = new HeroState();
 	Hero* hero;
 	cocos2d::Vec2 lastMousePositon;

@@ -1,6 +1,9 @@
 #ifndef __GAME_RESOURCES_H__
 #define __GAME_RESOURCES_H__
 #include <string>
+/*-------------Loading------------------*/
+const std::string LOADING_PLIST = "ui/loading.plist";
+const std::string LOADING = "loading";
 /*-------------Elf-----------------*/
 const std::string ELF_M_PLIST = "hero/elf_m.plist";
 const std::string ELF_M_BODY_PLIST = "hero/elf_m_body.plist";

@@ -22,7 +22,7 @@
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
-                <true/>
+                <false/>
                 <key>linear_damping</key>
                 <real>0</real>
                 <key>velocity_limit</key>

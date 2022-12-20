@@ -67,7 +67,7 @@ bool HelloWorld::init()
     contactListener->onContactSeparate = CC_CALLBACK_1(HelloWorld::onContactSeparate, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
 
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(KNIGHT_M_PLIST);
+    /*SpriteFrameCache::getInstance()->addSpriteFramesWithFile(KNIGHT_M_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(KNIGHT_M_BODY_PLIST);
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(KNIGHT_F_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(KNIGHT_F_BODY_PLIST);
@@ -93,9 +93,9 @@ bool HelloWorld::init()
     this->input->setKeyUp(EventKeyboard::KeyCode::KEY_W);
     this->input->setKeyDown(EventKeyboard::KeyCode::KEY_S);
     this->input->setKeyLeft(EventKeyboard::KeyCode::KEY_A);
-    this->input->setKeyRight(EventKeyboard::KeyCode::KEY_D);
+    this->input->setKeyRight(EventKeyboard::KeyCode::KEY_D);*/
 
-    this->hero->spawnHero(HeroJob::Wizard_F, Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    this->hero->spawnHero(HeroJob::Lizard_M, Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     this->addChild(hero->getHero());
 
     this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
