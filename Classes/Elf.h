@@ -9,7 +9,7 @@ public:
 	Elf();
 	~Elf();
 	float getHealth();
-	float getMana();
+	float getShield();
 	float getDamage();
 	float getMovementSpeed();
 };

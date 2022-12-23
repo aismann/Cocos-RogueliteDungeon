@@ -10,6 +10,8 @@ public:
 	~AnimeSword();
 	float getDamage();
 	float getAttackSpeed();
+	void lightAttack();
+	void update(float dt);
 };
 #endif // !__ANIME_SWORD_H__
 

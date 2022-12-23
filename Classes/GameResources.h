@@ -4,6 +4,8 @@
 /*-------------Loading------------------*/
 const std::string LOADING_PLIST = "ui/loading.plist";
 const std::string LOADING = "loading";
+/*-------------Hero-----------------*/
+const int HERO_TAG = 0;
 /*-------------Elf-----------------*/
 const std::string ELF_M_PLIST = "hero/elf_m.plist";
 const std::string ELF_M_BODY_PLIST = "hero/elf_m_body.plist";
@@ -54,9 +56,11 @@ const std::string WIZARD_F_IDLE = "wizard_f_idle";
 const std::string WIZARD_F_RUN = "wizard_f_run";
 
 /*-------------Weapon---------------*/
+const int WEAPON_NODE_TAG = 1;
+const int WEAPON_TAG = 2;
 const std::string WEAPON_PLIST = "base_weapon/base_weapon.plist";
 const std::string WEAPON_BODY_PLIST = "base_weapon/base_weapon_body.plist";
-const std::string SAW_SWORD = "weapon_saw_sword";
+const std::string ANIME_SWORD = "weapon_anime_sword";
 
 #endif // !__GAME_RESOURCES_H__
 

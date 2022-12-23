@@ -10,7 +10,7 @@ void RestRoomScene::initTileMap(cocos2d::Vec2 position)
     this->restroom->setAnchorPoint(Vec2(0.5,0.5));
     this->restroom->setScaleX((80*16)/ this->restroom->getContentSize().width);
     this->restroom->setScaleY((45 * 16) /this->restroom->getContentSize().height);
-    this->addChild(this->restroom,0);
+    this->addChild(this->restroom,-2);
     this->restroom->getLayer("bottomwall")->setGlobalZOrder(2);
 
     auto objectGroup = this->restroom->getObjectGroup("WallCollision");
@@ -29,7 +29,7 @@ void RestRoomScene::initTileMap(cocos2d::Vec2 position)
         wallNode->setPosition(x, y);
         wallNode->setPhysicsBody(wallBody);
         wallNode->setContentSize(objectSize);
-        this->restroom->addChild(wallNode);
+        this->restroom->addChild(wallNode,2);
     }
 }
 
@@ -39,6 +39,26 @@ cocos2d::Vec2 RestRoomScene::tileCoordForPosition(cocos2d::Vec2 position)
     int y = ((restroom->getMapSize().height * restroom->getTileSize().height) - position.y) / restroom->getTileSize().height;
     return cocos2d::Vec2(x,y);
 }
+
+void RestRoomScene::initCameraUI()
+{
+    this->cameraUI = Camera::create();
+    this->cameraUI->setCameraFlag(CameraFlag::USER1);
+    this->addChild(cameraUI);
+}
+
+void RestRoomScene::followHero()
+{
+    auto camera = getDefaultCamera();
+    Vec2 targetPos = this->heroManager->getHero()->getPosition();
+    auto visibleSize = this->heroManager->getVisibleSize();
+    targetPos.x = clampf(targetPos.x, (visibleSize.x - (BOUNDING_BOX.width - visibleSize.x)) / 2, (visibleSize.x + (BOUNDING_BOX.width - visibleSize.x)) / 2);
+    targetPos.y = clampf(targetPos.y, (visibleSize.y - (BOUNDING_BOX.height - visibleSize.y)) / 2, (visibleSize.y + (BOUNDING_BOX.height - visibleSize.y)) / 2);
+    Vec2 currentPos = camera->getPosition();
+    currentPos = currentPos.lerp(targetPos, 0.1);
+    camera->setPosition(currentPos);
+}
+
 
 Scene* RestRoomScene::createScene()
 {
@@ -58,8 +78,8 @@ bool RestRoomScene::onContactBegin(cocos2d::PhysicsContact& _contact)
 
     if (nodeA && nodeB)
     {
-        nodeA->setColor(Color3B::RED);
-        nodeB->setColor(Color3B::RED);
+        //nodeA->setColor(Color3B::RED);
+        //nodeB->setColor(Color3B::RED);
         //Entity* entityA = GameManager::findEntity((Sprite*)nodeA);
         //Entity* entityB = GameManager::findEntity((Sprite*)nodeB);
 
@@ -81,8 +101,8 @@ void RestRoomScene::onContactSeparate(cocos2d::PhysicsContact& _contact)
 
     if (nodeA && nodeB)
     {
-        nodeA->setColor(Color3B::WHITE);
-        nodeB->setColor(Color3B::WHITE);
+        //nodeA->setColor(Color3B::WHITE);
+        //nodeB->setColor(Color3B::WHITE);
     }
 }
 
@@ -115,15 +135,29 @@ bool RestRoomScene::init()
     mouseListener->onMouseMove = CC_CALLBACK_1(RestRoomScene::onMouseMove, this);
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mouseListener, this);
 
+    this->initCameraUI();
     this->initTileMap((Vec2)visibleSize);
+    this->heroManager->setScene(this);
+    this->heroManager->spawnHero(HeroJob::Lizard, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    //Sprite* sweaponBase = Sprite::create("baseSprite.png");
+    //sweaponBase->setPosition(this->heroManager->getHero()->getContentSize()/2);
+    //this->heroManager->getHero()->addChild(sweaponBase);
 
-    Hero* elf = new Elf();
-    elf->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    this->addChild(elf,1);
-
-    //this->hero->spawnHero(HeroJob::Lizard, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    //this->addChild(hero->getHero(),1);
-
+    Weapon* sword = new AnimeSword();
+    sword->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.5));
+    //this->addChild(sword,1);
+    Weapon* sword2 = new AnimeSword();
+    sword2->setColor(Color3B::RED);
+    //sword2->setTag(2);
+    sword2->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.6));
+    Weapon* sword3 = new AnimeSword();
+    sword3->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.6));
+    sword3->setColor(Color3B::BLUE);
+    Singleton<ItemManager>::getIntsance()->setScene(this);
+    Singleton<ItemManager>::getIntsance()->setVisibleSize((Vec2)visibleSize);
+    Singleton<ItemManager>::getIntsance()->addItem(sword);
+    Singleton<ItemManager>::getIntsance()->addItem(sword2);
+    Singleton<ItemManager>::getIntsance()->addItem(sword3);
     this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     //this->getPhysicsWorld()->setGravity(Vec2(0,-98));
     scheduleUpdate();
@@ -132,7 +166,8 @@ bool RestRoomScene::init()
 
 void RestRoomScene::update(float dt)
 {
-    //hero->update(dt);
+    this->followHero();
+    heroManager->update(dt);
     //Vec2 playerPos = this->hero->getHero()->getPosition();
 
     //auto tileID = this->bottomWall->getTileGIDAt(tileCoordForPosition(playerPos));

@@ -26,9 +26,9 @@ float Wizard::getHealth()
 	return Hero::getHealth();
 }
 
-float Wizard::getMana()
+float Wizard::getShield()
 {
-	return Hero::getMana();
+	return Hero::getShield();
 }
 
 float Wizard::getDamage()

@@ -29,6 +29,7 @@
 
 #include "PhysicsShapeCache.h"
 
+USING_NS_CC;
 
 PhysicsShapeCache::PhysicsShapeCache()
 {
@@ -238,7 +239,7 @@ bool PhysicsShapeCache::setBodyOnSprite(const std::string &name, Sprite *sprite)
     if (body)
     {
         sprite->setPhysicsBody(body);
-        sprite->setAnchorPoint(getBodyDef(name)->anchorPoint);
+        sprite->setAnchorPoint(Vec2(getBodyDef(name)->anchorPoint));
     }
     return body != nullptr;
 }

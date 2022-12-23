@@ -26,9 +26,9 @@ float Elf::getHealth()
 	return Hero::getHealth();
 }
 
-float Elf::getMana()
+float Elf::getShield()
 {
-	return Hero::getMana();
+	return Hero::getShield();
 }
 
 float Elf::getDamage()

@@ -26,9 +26,9 @@ float Knight::getHealth()
 	return Hero::getHealth();
 }
 
-float Knight::getMana()
+float Knight::getShield()
 {
-	return Hero::getMana();
+	return Hero::getShield();
 }
 
 float Knight::getDamage()

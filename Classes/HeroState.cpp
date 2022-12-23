@@ -9,29 +9,29 @@ std::vector<EventKeyboard::KeyCode>::iterator HeroBaseState::it;
 /*----------------------------------------------------------------------------------------*/
 #pragma region Idle
 
-void HeroIdleState::setIdleAnimation(Hero* _entity)
+void HeroIdleState::setIdleAnimation(Hero* hero)
 {
 	int frameBegin = 0;
 	int frameEnd = 3;
 	float frameDelay = 0.15f;
-	switch (_entity->getHeroJob())
+	switch (hero->getHeroJob())
 	{
 	case HeroJob::Elf:
-		_entity->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
+		hero->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
 		break;
 	case HeroJob::Knight:
-		_entity->setAnimation(REPEAT::FOREVER, KNIGHT_M_IDLE, frameBegin, frameEnd, frameDelay);
+		hero->setAnimation(REPEAT::FOREVER, KNIGHT_M_IDLE, frameBegin, frameEnd, frameDelay);
 		break;
 	case HeroJob::Lizard:
-		_entity->setAnimation(REPEAT::FOREVER, LIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
+		hero->setAnimation(REPEAT::FOREVER, LIZARD_M_IDLE, frameBegin, frameEnd, frameDelay);
 		break;
 	case HeroJob::Wizard:
-		_entity->setAnimation(REPEAT::FOREVER, WIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
+		hero->setAnimation(REPEAT::FOREVER, WIZARD_F_IDLE, frameBegin, frameEnd, frameDelay);
 		break;
 	}
 }
 
-void HeroIdleState::onStart(Hero* _entity)
+void HeroIdleState::onStart(Hero* hero)
 {
 	if (keyList.size()!=0)
 	{
@@ -42,26 +42,26 @@ void HeroIdleState::onStart(Hero* _entity)
 				|| key == EventKeyboard::KeyCode::KEY_A
 				|| key == EventKeyboard::KeyCode::KEY_D)
 			{
-				//HeroRunState::setRunAnimation(_entity);
+				//HeroRunState::setRunAnimation(hero);
 			}
 		}
 	}
 	else
 	{
-		this->setIdleAnimation(_entity);
+		this->setIdleAnimation(hero);
 	}
 }
 
-void HeroIdleState::onExit(Hero* _entity)
+void HeroIdleState::onExit(Hero* hero)
 {
 
 	if (keyList.size() == 0)
 	{
-		this->setIdleAnimation(_entity);
+		this->setIdleAnimation(hero);
 	}
 }
 
-HeroBaseState* HeroIdleState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+HeroBaseState* HeroIdleState::onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
 	
 #pragma region Movement
@@ -77,13 +77,30 @@ HeroBaseState* HeroIdleState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard
 		break;
 	case EventKeyboard::KeyCode::KEY_A:
 		keyList.push_back(keycode);
-		_entity->setFlippedX(true);
+		hero->setFlippedX(true);
+		if (hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))
+		{
+			dynamic_cast<Sprite*>(hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))->setFlippedX(true);
+		}
 		x_axist--;
 		break;
 	case EventKeyboard::KeyCode::KEY_D:
 		keyList.push_back(keycode);
-		_entity->setFlippedX(false);
+		hero->setFlippedX(false);
+		if (hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))
+		{
+			dynamic_cast<Sprite*>(hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))->setFlippedX(false);
+		}
 		x_axist++;
+		break;
+	case EventKeyboard::KeyCode::KEY_E:
+		hero->pickupWeapon();
+		break;
+	case EventKeyboard::KeyCode::KEY_X:
+		hero->dropWeapon();
+		break;
+	case EventKeyboard::KeyCode::KEY_F:
+		hero->getChildByTag(WEAPON_NODE_TAG)->setRotation(180);
 		break;
 	default:
 		break;
@@ -96,8 +113,8 @@ HeroBaseState* HeroIdleState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard
 			|| *it == EventKeyboard::KeyCode::KEY_A
 			|| *it == EventKeyboard::KeyCode::KEY_D )
 		{
-			_entity->setEntitySpeed(_entity->getMovementSpeed());
-			_entity->setEntityDirection(Vec2(x_axist, y_axist));
+			hero->setSpeed(hero->getMovementSpeed());
+			hero->setDirection(Vec2(x_axist, y_axist));
 			return new HeroRunState();
 		}
 
@@ -107,7 +124,7 @@ HeroBaseState* HeroIdleState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard
 	return nullptr;
 }
 
-HeroBaseState* HeroIdleState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+HeroBaseState* HeroIdleState::onKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
 #pragma region Movement
 	switch (keycode)
@@ -136,8 +153,8 @@ HeroBaseState* HeroIdleState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboar
 			|| *it == EventKeyboard::KeyCode::KEY_D)
 		{
 			keyList.erase(it);
-			_entity->setEntitySpeed(_entity->getMovementSpeed());
-			_entity->setEntityDirection(Vec2(x_axist, y_axist));
+			hero->setSpeed(hero->getMovementSpeed());
+			hero->setDirection(Vec2(x_axist, y_axist));
 			return new HeroIdleState();
 		}
 	}
@@ -146,47 +163,75 @@ HeroBaseState* HeroIdleState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboar
 	return nullptr;
 }
 
-HeroBaseState* HeroIdleState::update(Hero* _entity, float dt)
+HeroBaseState* HeroIdleState::onMouseDown(Hero* hero, cocos2d::Event* event)
 {
+	if (hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))
+	{
+		auto weaponNode = dynamic_cast<Weapon*>(hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG));
+		weaponNode->lightAttack();
+	}
+	return nullptr;
+}
+
+HeroBaseState* HeroIdleState::onMouseUp(Hero* hero, cocos2d::Event* event)
+{
+	return nullptr;
+}
+
+HeroBaseState* HeroIdleState::onMouseMove(Hero* hero, cocos2d::Event* event)
+{
+	EventMouse* e = (EventMouse*)event;
+	this->lastMousePositon = e->getLocationInView();
+	hero->rotateWeaponbyCursor(this->lastMousePositon);
+	return nullptr;
+}
+
+HeroBaseState* HeroIdleState::update(Hero* hero, float dt)
+{
+	if (hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))
+	{
+		auto weaponNode = dynamic_cast<Weapon*>(hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG));
+		weaponNode->update(dt);
+	}
 	return nullptr;
 }
 #pragma endregion
 /*----------------------------------------------------------------------------------------*/
 #pragma region Run
-void HeroRunState::setRunAnimation(Hero* _entity)
+void HeroRunState::setRunAnimation(Hero* hero)
 {
 	int frameBegin = 0;
 	int frameEnd = 3;
 	float frameDelay = 0.15f;
-	switch (_entity->getHeroJob())
+	switch (hero->getHeroJob())
 	{
 	case HeroJob::Elf:
-		_entity->setAnimation(REPEAT::FOREVER, ELF_M_RUN, frameBegin, frameEnd, frameDelay);
+		hero->setAnimation(REPEAT::FOREVER, ELF_M_RUN, frameBegin, frameEnd, frameDelay);
 		break;
 	case HeroJob::Knight:
-		_entity->setAnimation(REPEAT::FOREVER, KNIGHT_M_RUN, frameBegin, frameEnd, frameDelay);
+		hero->setAnimation(REPEAT::FOREVER, KNIGHT_M_RUN, frameBegin, frameEnd, frameDelay);
 		break;
 	case HeroJob::Lizard:
-		_entity->setAnimation(REPEAT::FOREVER, LIZARD_M_RUN, frameBegin, frameEnd, frameDelay);
+		hero->setAnimation(REPEAT::FOREVER, LIZARD_M_RUN, frameBegin, frameEnd, frameDelay);
 		break;
 	case HeroJob::Wizard:
-		_entity->setAnimation(REPEAT::FOREVER, WIZARD_M_RUN, frameBegin, frameEnd, frameDelay);
+		hero->setAnimation(REPEAT::FOREVER, WIZARD_M_RUN, frameBegin, frameEnd, frameDelay);
 		break;
 	}
 }
-void HeroRunState::onStart(Hero* _entity)
+void HeroRunState::onStart(Hero* hero)
 {
 
-	this->setRunAnimation(_entity);
+	this->setRunAnimation(hero);
 }
 
-void HeroRunState::onExit(Hero* _entity)
+void HeroRunState::onExit(Hero* hero)
 {
 
 	
 }
 
-HeroBaseState* HeroRunState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+HeroBaseState* HeroRunState::onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
 #pragma region Movement
 	switch (keycode)
@@ -201,12 +246,20 @@ HeroBaseState* HeroRunState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard:
 		break;
 	case EventKeyboard::KeyCode::KEY_A:
 		keyList.push_back(keycode);
-		_entity->setFlippedX(true);
+		hero->setFlippedX(true);
+		if (hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))
+		{
+			dynamic_cast<Sprite*>(hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))->setFlippedX(true);
+		}
 		x_axist--;
 		break;
 	case EventKeyboard::KeyCode::KEY_D:
 		keyList.push_back(keycode);
-		_entity->setFlippedX(false);
+		hero->setFlippedX(false);
+		if (hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))
+		{
+			dynamic_cast<Sprite*>(hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))->setFlippedX(false);
+		}
 		x_axist++;
 		break;
 	default:
@@ -220,8 +273,8 @@ HeroBaseState* HeroRunState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard:
 			|| *it == EventKeyboard::KeyCode::KEY_A
 			|| *it == EventKeyboard::KeyCode::KEY_D)
 		{
-			_entity->setEntitySpeed(_entity->getMovementSpeed());
-			_entity->setEntityDirection(Vec2(x_axist, y_axist));
+			hero->setSpeed(hero->getMovementSpeed());
+			hero->setDirection(Vec2(x_axist, y_axist));
 			return new HeroIdleState();
 		}
 	}
@@ -230,7 +283,7 @@ HeroBaseState* HeroRunState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard:
 	return nullptr;
 }
 
-HeroBaseState* HeroRunState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+HeroBaseState* HeroRunState::onKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
 #pragma region Movement
 	switch (keycode)
@@ -259,8 +312,8 @@ HeroBaseState* HeroRunState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboard
 			|| *it == EventKeyboard::KeyCode::KEY_D)
 		{
 			keyList.erase(it);
-			_entity->setEntitySpeed(_entity->getMovementSpeed());
-			_entity->setEntityDirection(Vec2(x_axist, y_axist));
+			hero->setSpeed(hero->getMovementSpeed());
+			hero->setDirection(Vec2(x_axist, y_axist));
 			return new HeroIdleState();
 		}
 	}
@@ -269,43 +322,96 @@ HeroBaseState* HeroRunState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboard
 	return nullptr;
 }
 
-HeroBaseState* HeroRunState::update(Hero* _entity, float dt)
+HeroBaseState* HeroRunState::onMouseDown(Hero* hero, cocos2d::Event* event)
 {
+	if (hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))
+	{
+		auto weaponNode = dynamic_cast<Weapon*>(hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG));
+		weaponNode->lightAttack();
+	}
+	return nullptr;
+}
+
+HeroBaseState* HeroRunState::onMouseUp(Hero* hero, cocos2d::Event* event)
+{
+	return nullptr;
+}
+
+HeroBaseState* HeroRunState::onMouseMove(Hero* hero, cocos2d::Event* event)
+{
+	EventMouse* e = (EventMouse*)event;
+	this->lastMousePositon = e->getLocationInView();
+	hero->rotateWeaponbyCursor(this->lastMousePositon);
+	return nullptr;
+}
+
+HeroBaseState* HeroRunState::update(Hero* hero, float dt)
+{
+	if (hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG))
+	{
+		auto weaponNode = dynamic_cast<Weapon*>(hero->getChildByTag(WEAPON_NODE_TAG)->getChildByTag(WEAPON_TAG));
+		weaponNode->update(dt);
+	}
 	return nullptr;
 }
 
 #pragma endregion
 /*----------------------------------------------------------------------------------------*/
 #pragma region HeroState
-void HeroState::changeState(Hero* _entity, HeroBaseState* newState)
+void HeroState::changeState(Hero* hero, HeroBaseState* newState)
 {
-	this->activeState->onExit(_entity);
+	this->activeState->onExit(hero);
 	delete this->activeState;
 	this->activeState = newState;
-	this->activeState->onStart(_entity);
+	this->activeState->onStart(hero);
 }
-void HeroState::onKeyPressed(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+void HeroState::onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
-	HeroBaseState* newState = this->activeState->onKeyPressed(_entity, keycode, event);
+	HeroBaseState* newState = this->activeState->onKeyPressed(hero, keycode, event);
 	if (newState)
 	{
-		changeState(_entity, newState);
+		changeState(hero, newState);
 	}
 }
-void HeroState::onKeyReleased(Hero* _entity, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+void HeroState::onKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
-	HeroBaseState* newState = this->activeState->onKeyReleased(_entity, keycode, event);
+	HeroBaseState* newState = this->activeState->onKeyReleased(hero, keycode, event);
 	if (newState)
 	{
-		changeState(_entity, newState);
+		changeState(hero, newState);
 	}
 }
-void HeroState::update(Hero* _entity, float dt)
+void HeroState::onMouseDown(Hero* hero, cocos2d::Event* event)
 {
-	HeroBaseState* newState = this->activeState->update(_entity, dt);
+	HeroBaseState* newState = this->activeState->onMouseDown(hero, event);
 	if (newState)
 	{
-		changeState(_entity, newState);
+		changeState(hero, newState);
+	}
+}
+void HeroState::onMouseUp(Hero* hero, cocos2d::Event* event)
+{
+	HeroBaseState* newState = this->activeState->onMouseUp(hero, event);
+	if (newState)
+	{
+		changeState(hero, newState);
+	}
+}
+void HeroState::onMouseMove(Hero* hero, cocos2d::Event* event)
+{
+	HeroBaseState* newState = this->activeState->onMouseMove(hero, event);
+	if (newState)
+	{
+		changeState(hero, newState);
+	}
+}
+void HeroState::update(Hero* hero, float dt)
+{
+	HeroBaseState* newState = this->activeState->update(hero, dt);
+	//log("doing");
+	if (newState)
+	{
+		changeState(hero, newState);
 	}
 }
 #pragma endregion

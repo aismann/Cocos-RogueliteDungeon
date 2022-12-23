@@ -9,7 +9,7 @@ public:
 	Lizard();
 	~Lizard();
 	float getHealth();
-	float getMana();
+	float getShield();
 	float getDamage();
 	float getMovementSpeed();
 };

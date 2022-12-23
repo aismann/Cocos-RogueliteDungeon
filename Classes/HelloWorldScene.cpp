@@ -90,10 +90,11 @@ bool HelloWorld::init()
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(WEAPON_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(WEAPON_BODY_PLIST);
 
-    Entity* entity = new Entity();
-    entity->setSpriteFrame(SAW_SWORD,0,false);
+    Entity* entity = Entity::create();
+
+    entity->setSpriteFrame(LIZARD_F_IDLE,0);
+    entity->setAnimation(REPEAT::FOREVER,LIZARD_F_RUN,0,3,0.2);
     entity->setPosition(visibleSize/2);
-    entity->setPhysicsBody(PhysicsBody::createBox(entity->getContentSize()));
     this->addChild(entity);
 
     this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
