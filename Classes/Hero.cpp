@@ -72,7 +72,7 @@ void Hero::pickupWeapon()
 
             int closestIndex = -1;
             float closestDistance = this->getPickupRange();
-            for (auto i = 0; i < itemManager->getItemList().size(); i++)
+            for (size_t i = 0; i < itemManager->getItemList().size(); i++)
             {
                 if (distance.at(i) <= closestDistance && itemManager->getItemList().at(i)->getTag() == WEAPON_TAG)
                 {
