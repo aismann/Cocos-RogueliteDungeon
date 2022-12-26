@@ -1,6 +1,29 @@
 #include "Hero.h"
-
 USING_NS_CC;
+
+void Hero::changeState(HeroBaseState* newState)
+{
+    this->activeState->onExit(this);
+    CC_SAFE_DELETE(this->activeState);
+    this->activeState = newState;
+    this->activeState->onStart(this);
+}
+
+void Hero::initListener()
+{
+    // Init mouse listener
+    auto mouseListener = EventListenerMouse::create();
+    mouseListener->onMouseDown = CC_CALLBACK_1(Hero::onMouseDown, this);
+    mouseListener->onMouseUp = CC_CALLBACK_1(Hero::onMouseUp, this);
+    mouseListener->onMouseMove = CC_CALLBACK_1(Hero::onMouseMove, this);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mouseListener, this);
+
+    // Init keyboard listener
+    auto keyboardListener = EventListenerKeyboard::create();
+    keyboardListener->onKeyPressed = CC_CALLBACK_2(Hero::onKeyPressed, this);
+    keyboardListener->onKeyReleased = CC_CALLBACK_2(Hero::onKeyReleased, this);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(keyboardListener, this);
+}
 
 void Hero::initHero()
 {
@@ -18,6 +41,8 @@ Hero::Hero():Entity()
 {
     this->heroJob = HeroJob::None;
     itemManager = Singleton<ItemManager>::getIntsance();
+    this->activeState = new HeroIdleState();
+    this->initListener();
     this->initHero();
 }
 
@@ -172,8 +197,58 @@ void Hero::rotateWeaponbyCursor(cocos2d::Vec2 location)
     }
 }
 
+void Hero::onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+    HeroBaseState* newState = this->activeState->onKeyPressed(this, keycode, event);
+    if (newState)
+    {
+        changeState(newState);
+    }
+}
+
+void Hero::onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
+{
+    HeroBaseState* newState = this->activeState->onKeyReleased(this, keycode, event);
+    if (newState)
+    {
+        changeState(newState);
+    }
+}
+
+void Hero::onMouseDown(cocos2d::Event* event)
+{
+    HeroBaseState* newState = this->activeState->onMouseDown(this, event);
+    if (newState)
+    {
+        changeState(newState);
+    }
+}
+
+void Hero::onMouseUp(cocos2d::Event* event)
+{
+    HeroBaseState* newState = this->activeState->onMouseUp(this, event);
+    if (newState)
+    {
+        changeState(newState);
+    }
+}
+
+void Hero::onMouseMove(cocos2d::Event* event)
+{
+    HeroBaseState* newState = this->activeState->onMouseMove(this, event);
+    if (newState)
+    {
+        changeState(newState);
+    }
+}
+
 void Hero::update(float dt)
 {
+    HeroBaseState* newState = this->activeState->update(this, dt);
+    if (newState)
+    {
+        changeState(newState);
+    }
     if (!is)
     {
         //log("is");

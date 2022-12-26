@@ -1,11 +1,10 @@
-#include <vector>
 #include "cocos2d.h"
 #include "BaseState.h"
 #include "Hero.h"
 #ifndef __HERO_BASE_STATE_H__
 #define __HERO_BASE_STATE_H__
 class Hero;
-class HeroBaseState:public BaseState<Hero,HeroBaseState>
+class HeroBaseState :public BaseState<Hero, HeroBaseState>
 {
 protected:
 	bool isMovement = false;
@@ -62,21 +61,3 @@ public:
 	HeroBaseState* update(Hero* hero, float dt);
 };
 #endif // !__HERO_RUN_STATE_H__
-
-#ifndef __HERO_STATE_H__
-#define __HERO_STATE_H__
-class HeroState
-{
-private:
-	HeroBaseState* activeState = new HeroIdleState();
-public:
-	void changeState(Hero* hero, HeroBaseState* newState);
-	void onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
-	void onKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
-	void onMouseDown(Hero* hero, cocos2d::Event* event);
-	void onMouseUp(Hero* hero, cocos2d::Event* event);
-	void onMouseMove(Hero* hero, cocos2d::Event* event);
-	void update(Hero* hero, float dt);
-};
-#endif // !__HERO_STATE_H__
-

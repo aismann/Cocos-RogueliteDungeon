@@ -1,5 +1,6 @@
-#include "HeroState.h"
+#include "HeroBaseState.h"
 USING_NS_CC;
+
 
 /*----------------------------------------------------------------------------------------*/
 float HeroBaseState::x_axist = 0;
@@ -33,7 +34,7 @@ void HeroIdleState::setIdleAnimation(Hero* hero)
 
 void HeroIdleState::onStart(Hero* hero)
 {
-	if (keyList.size()!=0)
+	if (keyList.size() != 0)
 	{
 		for (auto& key : keyList)
 		{
@@ -63,7 +64,7 @@ void HeroIdleState::onExit(Hero* hero)
 
 HeroBaseState* HeroIdleState::onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
-	
+
 #pragma region Movement
 	switch (keycode)
 	{
@@ -111,7 +112,7 @@ HeroBaseState* HeroIdleState::onKeyPressed(Hero* hero, cocos2d::EventKeyboard::K
 		if (*it == EventKeyboard::KeyCode::KEY_W
 			|| *it == EventKeyboard::KeyCode::KEY_S
 			|| *it == EventKeyboard::KeyCode::KEY_A
-			|| *it == EventKeyboard::KeyCode::KEY_D )
+			|| *it == EventKeyboard::KeyCode::KEY_D)
 		{
 			hero->setSpeed(hero->getMovementSpeed());
 			hero->setDirection(Vec2(x_axist, y_axist));
@@ -228,7 +229,7 @@ void HeroRunState::onStart(Hero* hero)
 void HeroRunState::onExit(Hero* hero)
 {
 
-	
+
 }
 
 HeroBaseState* HeroRunState::onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
@@ -279,7 +280,7 @@ HeroBaseState* HeroRunState::onKeyPressed(Hero* hero, cocos2d::EventKeyboard::Ke
 		}
 	}
 #pragma endregion
-	
+
 	return nullptr;
 }
 
@@ -355,63 +356,4 @@ HeroBaseState* HeroRunState::update(Hero* hero, float dt)
 	return nullptr;
 }
 
-#pragma endregion
-/*----------------------------------------------------------------------------------------*/
-#pragma region HeroState
-void HeroState::changeState(Hero* hero, HeroBaseState* newState)
-{
-	this->activeState->onExit(hero);
-	delete this->activeState;
-	this->activeState = newState;
-	this->activeState->onStart(hero);
-}
-void HeroState::onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-{
-	HeroBaseState* newState = this->activeState->onKeyPressed(hero, keycode, event);
-	if (newState)
-	{
-		changeState(hero, newState);
-	}
-}
-void HeroState::onKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
-{
-	HeroBaseState* newState = this->activeState->onKeyReleased(hero, keycode, event);
-	if (newState)
-	{
-		changeState(hero, newState);
-	}
-}
-void HeroState::onMouseDown(Hero* hero, cocos2d::Event* event)
-{
-	HeroBaseState* newState = this->activeState->onMouseDown(hero, event);
-	if (newState)
-	{
-		changeState(hero, newState);
-	}
-}
-void HeroState::onMouseUp(Hero* hero, cocos2d::Event* event)
-{
-	HeroBaseState* newState = this->activeState->onMouseUp(hero, event);
-	if (newState)
-	{
-		changeState(hero, newState);
-	}
-}
-void HeroState::onMouseMove(Hero* hero, cocos2d::Event* event)
-{
-	HeroBaseState* newState = this->activeState->onMouseMove(hero, event);
-	if (newState)
-	{
-		changeState(hero, newState);
-	}
-}
-void HeroState::update(Hero* hero, float dt)
-{
-	HeroBaseState* newState = this->activeState->update(hero, dt);
-	//log("doing");
-	if (newState)
-	{
-		changeState(hero, newState);
-	}
-}
 #pragma endregion

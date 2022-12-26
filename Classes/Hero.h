@@ -2,6 +2,7 @@
 #define __HERO_H__
 #include "Entity.h"
 #include "ItemManager.h"
+#include "HeroBaseState.h"
 enum class HeroJob
 {
 	None =-1,
@@ -26,6 +27,9 @@ protected:
 	std::vector<Weapon*> weaponSlot;
 	cocos2d::Sprite* weaponNode;
 
+	HeroBaseState* activeState;
+	void changeState(HeroBaseState* newState);
+	virtual void initListener();
 	virtual void initHero();
 public:
 	Hero();
@@ -41,6 +45,13 @@ public:
 	void pickupWeapon();
 	void dropWeapon();
 	void rotateWeaponbyCursor(cocos2d::Vec2 location);
+
+	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
+	void onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
+
+	void onMouseDown(cocos2d::Event* event);
+	void onMouseUp(cocos2d::Event* event);
+	void onMouseMove(cocos2d::Event* event);
 
 	void update(float dt);
 };
