@@ -1,57 +1,49 @@
 #include "Hero.h"
+#include "HeroIdleState.h"
 USING_NS_CC;
-
-void Hero::changeState(HeroBaseState* newState)
-{
-    this->activeState->onExit(this);
-    CC_SAFE_DELETE(this->activeState);
-    this->activeState = newState;
-    this->activeState->onStart(this);
-}
-
-void Hero::initListener()
-{
-    // Init mouse listener
-    auto mouseListener = EventListenerMouse::create();
-    mouseListener->onMouseDown = CC_CALLBACK_1(Hero::onMouseDown, this);
-    mouseListener->onMouseUp = CC_CALLBACK_1(Hero::onMouseUp, this);
-    mouseListener->onMouseMove = CC_CALLBACK_1(Hero::onMouseMove, this);
-    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mouseListener, this);
-
-    // Init keyboard listener
-    auto keyboardListener = EventListenerKeyboard::create();
-    keyboardListener->onKeyPressed = CC_CALLBACK_2(Hero::onKeyPressed, this);
-    keyboardListener->onKeyReleased = CC_CALLBACK_2(Hero::onKeyReleased, this);
-    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(keyboardListener, this);
-}
-
-void Hero::initHero()
-{
-    StatModifier* baseHP = new StatModifier(10, StatModifierType::Flat);
-    this->health.addModifier(baseHP);
-    StatModifier* baseMP = new StatModifier(5, StatModifierType::Flat, 0, this);
-    this->shield.addModifier(baseMP);
-    StatModifier* baseATK = new StatModifier(5, StatModifierType::Flat, 0, this);
-    this->damage.addModifier(baseATK);
-    StatModifier* basePickupRange = new StatModifier(100,StatModifierType::Flat,0,this);
-    this->pickupRange.addModifier(basePickupRange);
-}
 
 Hero::Hero():Entity()
 {
+    this->xCoordinate = 0;
+    this->yCoordinate = 0;
+
     this->heroJob = HeroJob::None;
-    itemManager = Singleton<ItemManager>::getIntsance();
+    this->itemManager = Singleton<ItemManager>::getIntsance();
+
     this->activeState = new HeroIdleState();
+    this->activeState->onStart(this);
+
     this->initListener();
     this->initHero();
 }
 
 Hero::~Hero()
 {
+    CC_SAFE_DELETE(this->activeState);
 }
 HeroJob Hero::getHeroJob()
 {
     return this->heroJob;
+}
+
+float Hero::getXCoordinate()
+{
+    return this->xCoordinate;
+}
+
+void Hero::setXCoordinate(float xCoord)
+{
+    this->xCoordinate = xCoord;
+}
+
+float Hero::getYCoordinate()
+{
+    return this->yCoordinate;
+}
+
+void Hero::setYCoordinate(float yCoord)
+{
+    this->yCoordinate = yCoord;
 }
 
 float Hero::getHealth()
@@ -170,7 +162,7 @@ void Hero::dropWeapon()
     }
 }
 
-void Hero::rotateWeaponbyCursor(cocos2d::Vec2 location)
+void Hero::rotateWeaponByCursor(cocos2d::Vec2& location)
 {
     if (this->getChildByTag(WEAPON_NODE_TAG))
     {
@@ -249,9 +241,45 @@ void Hero::update(float dt)
     {
         changeState(newState);
     }
-    if (!is)
-    {
-        //log("is");
-        is = true;
-    }
+    //if (!is)
+    //{
+    //    //log("is");
+    //    is = true;
+    //}
+}
+
+void Hero::changeState(HeroBaseState* newState)
+{
+    this->activeState->onExit(this);
+    CC_SAFE_DELETE(this->activeState);
+    this->activeState = newState;
+    this->activeState->onStart(this);
+}
+
+void Hero::initListener()
+{
+    // Init mouse listener
+    auto mouseListener = EventListenerMouse::create();
+    mouseListener->onMouseDown = CC_CALLBACK_1(Hero::onMouseDown, this);
+    mouseListener->onMouseUp = CC_CALLBACK_1(Hero::onMouseUp, this);
+    mouseListener->onMouseMove = CC_CALLBACK_1(Hero::onMouseMove, this);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mouseListener, this);
+
+    // Init keyboard listener
+    auto keyboardListener = EventListenerKeyboard::create();
+    keyboardListener->onKeyPressed = CC_CALLBACK_2(Hero::onKeyPressed, this);
+    keyboardListener->onKeyReleased = CC_CALLBACK_2(Hero::onKeyReleased, this);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(keyboardListener, this);
+}
+
+void Hero::initHero()
+{
+    StatModifier* baseHP = new StatModifier(10, StatModifierType::Flat);
+    this->health.addModifier(baseHP);
+    StatModifier* baseMP = new StatModifier(5, StatModifierType::Flat, 0, this);
+    this->shield.addModifier(baseMP);
+    StatModifier* baseATK = new StatModifier(5, StatModifierType::Flat, 0, this);
+    this->damage.addModifier(baseATK);
+    StatModifier* basePickupRange = new StatModifier(100, StatModifierType::Flat, 0, this);
+    this->pickupRange.addModifier(basePickupRange);
 }
