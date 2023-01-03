@@ -7,7 +7,8 @@ void Weapon::initWeapon()
 Weapon::Weapon():Entity()
 {
 	this->setTag(WEAPON_TAG);
-	this->isLightAttack = false;
+	this->primaryAttacking = false;
+	this->primaryAttackFinished = false;
 	this->weaponDegree = 0;
 }
 
@@ -30,9 +31,9 @@ void Weapon::lightAttack()
 
 }
 
-bool Weapon::isLightAttackActive()
+bool Weapon::isPrimaryAttacking()
 {
-	return this->isLightAttack;
+	return this->primaryAttacking;
 }
 
 void Weapon::update(float dt)

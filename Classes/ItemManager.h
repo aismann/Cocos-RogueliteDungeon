@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "Singleton.h"
 #include "Weapon.h"
-#include "AnimeSword.h"
+#include "Sword.h"
 class ItemManager
 {
 private:

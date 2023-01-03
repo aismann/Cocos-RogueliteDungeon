@@ -1,16 +1,16 @@
-#ifndef __ANIME_SWORD_H__
-#define __ANIME_SWORD_H__
+#ifndef __SWORD_H__
+#define __SWORD_H__
 #include "Weapon.h"
-class AnimeSword:public Weapon
+class Sword:public Weapon
 {
 protected:
 	void initWeapon();
 public:
-	AnimeSword();
-	~AnimeSword();
+	Sword();
+	~Sword();
 	float getDamage();
 	float getAttackSpeed();
-	void lightAttack();
+	void primaryAttack();
 	void update(float dt);
 };
 #endif // !__ANIME_SWORD_H__

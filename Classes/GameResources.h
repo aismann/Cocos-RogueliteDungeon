@@ -60,7 +60,7 @@ const int WEAPON_NODE_TAG = 1;
 const int WEAPON_TAG = 2;
 const std::string WEAPON_PLIST = "base_weapon/base_weapon.plist";
 const std::string WEAPON_BODY_PLIST = "base_weapon/base_weapon_body.plist";
-const std::string ANIME_SWORD = "weapon_anime_sword";
+const std::string SWORD = "weapon_anime_sword";
 
 #endif // !__GAME_RESOURCES_H__
 

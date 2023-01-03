@@ -5,7 +5,8 @@ class Weapon :public Entity
 {
 private:
 protected:
-	bool isLightAttack;
+	bool primaryAttacking;
+	bool primaryAttackFinished;
 	float weaponDegree;
 	EntityStats damage;
 	EntityStats attackSpeed;
@@ -16,7 +17,7 @@ public:
 	virtual float getDamage();
 	virtual float getAttackSpeed();
 	virtual void lightAttack();
-	bool isLightAttackActive();
+	bool isPrimaryAttacking();
 	virtual void update(float dt);
 };
 #endif // !__WEAPON_H__

@@ -1,6 +1,6 @@
 #include "RestRoomScene.h"
 #include "PhysicsShapeCache.h"
-#include "AnimeSword.h"
+#include "Sword.h"
 USING_NS_CC;
 
 void RestRoomScene::initTileMap(cocos2d::Vec2 position)
@@ -139,18 +139,15 @@ bool RestRoomScene::init()
     this->initTileMap((Vec2)visibleSize);
     this->heroManager->setScene(this);
     this->heroManager->spawnHero(HeroJob::Lizard, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    //Sprite* sweaponBase = Sprite::create("baseSprite.png");
-    //sweaponBase->setPosition(this->heroManager->getHero()->getContentSize()/2);
-    //this->heroManager->getHero()->addChild(sweaponBase);
 
-    Weapon* sword = new AnimeSword();
+    Weapon* sword = new Sword();
     sword->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.5));
     //this->addChild(sword,1);
-    Weapon* sword2 = new AnimeSword();
+    Weapon* sword2 = new Sword();
     sword2->setColor(Color3B::RED);
     //sword2->setTag(2);
     sword2->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.6));
-    Weapon* sword3 = new AnimeSword();
+    Weapon* sword3 = new Sword();
     sword3->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.6));
     sword3->setColor(Color3B::BLUE);
     Singleton<ItemManager>::getIntsance()->setScene(this);
