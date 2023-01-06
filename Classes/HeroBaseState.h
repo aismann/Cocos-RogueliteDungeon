@@ -7,20 +7,21 @@ class Hero;
 class HeroBaseState :public BaseState<Hero, HeroBaseState>
 {
 protected:
-	static float x_axist;
-	static float y_axist;
 	cocos2d::Vec2 lastMousePositon;
-	float degree = 0;
+	static Hero* hero;
 	static std::vector<cocos2d::EventKeyboard::KeyCode> keyList;
-	static std::vector<cocos2d::EventKeyboard::KeyCode>::iterator it;
+	static std::vector<cocos2d::EventKeyboard::KeyCode>::iterator keyIt;
+	static std::vector<cocos2d::EventMouse::MouseButton> buttonList;
+	static std::vector<cocos2d::EventMouse::MouseButton>::iterator buttonIt;
 public:
-	virtual void onStart(Hero* hero) = 0;
-	virtual void onExit(Hero* hero) = 0;
-	virtual HeroBaseState* onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) = 0;
-	virtual HeroBaseState* onKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) = 0;
-	virtual HeroBaseState* onMouseDown(Hero* hero, cocos2d::Event* event) = 0;
-	virtual HeroBaseState* onMouseUp(Hero* hero, cocos2d::Event* event) = 0;
-	virtual HeroBaseState* onMouseMove(Hero* hero, cocos2d::Event* event) = 0;
-	virtual HeroBaseState* update(Hero* hero, float dt) = 0;
+	void addHero(Hero* hero);
+	virtual void onStart() = 0;
+	virtual void onExit() = 0;
+	virtual HeroBaseState* onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) = 0;
+	virtual HeroBaseState* onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event) = 0;
+	virtual HeroBaseState* onMouseDown(cocos2d::Event* event) = 0;
+	virtual HeroBaseState* onMouseUp(cocos2d::Event* event) = 0;
+	virtual HeroBaseState* onMouseMove(cocos2d::Event* event) = 0;
+	virtual HeroBaseState* update(float dt) = 0;
 };
 #endif // !__HERO_STATE_H__

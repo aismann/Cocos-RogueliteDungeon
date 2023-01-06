@@ -2,8 +2,9 @@
 #define __HERO_H__
 
 #include "Entity.h"
-#include "ItemManager.h"
+//#include "ItemManager.h"
 #include "HeroBaseState.h"
+#include "Weapon.h"
 
 enum class HeroJob
 {
@@ -43,7 +44,12 @@ public:
     void onMouseUp(cocos2d::Event* event);
     void onMouseMove(cocos2d::Event* event);
 
+    Weapon* getWeapon();
+    cocos2d::Sprite* getWeaponNode();
+
     void update(float dt);
+
+    void takeDamage(float damage);
 
 protected:
     void changeState(HeroBaseState* newState);
@@ -52,15 +58,21 @@ protected:
 
     HeroJob heroJob;
 
-    EntityStats health;
-    EntityStats shield;
-    EntityStats damage;
-    EntityStats movementSpeed;
-    EntityStats pickupRange;
+    EntityStats maxHealth;
+    float health;
+    EntityStats maxShield;
+    float shield;
+    EntityStats maxDamage;
+    float damage;
+    EntityStats maxMovementSpeed;
+    float movementSpeed;
+    EntityStats maxPickupRange;
+    float pickupRange;
 
-    ItemManager* itemManager;
-    std::vector<Weapon*> weaponSlot;
+    //ItemManager* itemManager;
+    //std::vector<Weapon*> weaponSlot;
     cocos2d::Sprite* weaponNode;
+    Weapon* weapon;
 
     HeroBaseState* activeState;
 

@@ -1,6 +1,9 @@
 #include "RestRoomScene.h"
 #include "PhysicsShapeCache.h"
 #include "Sword.h"
+#include "SwordSlash.h"
+#include "GameManager.h"
+#include "Enemy.h"
 USING_NS_CC;
 
 void RestRoomScene::initTileMap(cocos2d::Vec2 position)
@@ -23,8 +26,8 @@ void RestRoomScene::initTileMap(cocos2d::Vec2 position)
         auto wallBody = PhysicsBody::createBox(objectSize, PhysicsMaterial(1.0f, 0.0f, 0.0f));
         wallBody->setDynamic(false);
         wallBody->setContactTestBitmask(0xffff);
-        wallBody->setCategoryBitmask(40);
-        wallBody->setContactTestBitmask(1);
+        wallBody->setCategoryBitmask(64);
+        wallBody->setContactTestBitmask(51);
         auto wallNode = Node::create();
         wallNode->setPosition(x, y);
         wallNode->setPhysicsBody(wallBody);
@@ -51,9 +54,9 @@ void RestRoomScene::followHero()
 {
     auto camera = getDefaultCamera();
     Vec2 targetPos = this->heroManager->getHero()->getPosition();
-    auto visibleSize = this->heroManager->getVisibleSize();
-    targetPos.x = clampf(targetPos.x, (visibleSize.x - (BOUNDING_BOX.width - visibleSize.x)) / 2, (visibleSize.x + (BOUNDING_BOX.width - visibleSize.x)) / 2);
-    targetPos.y = clampf(targetPos.y, (visibleSize.y - (BOUNDING_BOX.height - visibleSize.y)) / 2, (visibleSize.y + (BOUNDING_BOX.height - visibleSize.y)) / 2);
+    auto visibleSize = Singleton<GameManager>::getIntsance()->getVisibleSize();
+    targetPos.x = clampf(targetPos.x, (visibleSize.width - (BOUNDING_BOX.width - visibleSize.width)) / 2, (visibleSize.width + (BOUNDING_BOX.width - visibleSize.width)) / 2);
+    targetPos.y = clampf(targetPos.y, (visibleSize.height - (BOUNDING_BOX.height - visibleSize.height)) / 2, (visibleSize.height + (BOUNDING_BOX.height - visibleSize.height)) / 2);
     Vec2 currentPos = camera->getPosition();
     currentPos = currentPos.lerp(targetPos, 0.1);
     camera->setPosition(currentPos);
@@ -67,6 +70,10 @@ Scene* RestRoomScene::createScene()
 
 bool RestRoomScene::onContactBegin(cocos2d::PhysicsContact& _contact)
 {
+    if (m_contactStarted)
+    {
+        return true;
+    }
     if ((_contact.getShapeA()->getCategoryBitmask() & _contact.getShapeB()->getCollisionBitmask()) <= 0 ||
         (_contact.getShapeB()->getCategoryBitmask() & _contact.getShapeA()->getCollisionBitmask()) <= 0)
     {
@@ -78,19 +85,17 @@ bool RestRoomScene::onContactBegin(cocos2d::PhysicsContact& _contact)
 
     if (nodeA && nodeB)
     {
-        //nodeA->setColor(Color3B::RED);
-        //nodeB->setColor(Color3B::RED);
-        //Entity* entityA = GameManager::findEntity((Sprite*)nodeA);
-        //Entity* entityB = GameManager::findEntity((Sprite*)nodeB);
-
-        //if (entityA && entityB)
-        //{
-        //    float damageA = entityA->getAtk();
-        //    float damageB = entityB->getAtk();
-        //    entityA->takeDamage(damageB);
-        //    entityB->takeDamage(damageA);
-        //}
+        int tagA = nodeA->getTag();
+        int tagB = nodeB->getTag();
+        if ((tagA == PLAYER_ATTACK_TAG && tagB == ENEMY_TAG)
+            || (tagB == PLAYER_ATTACK_TAG && tagA == ENEMY_TAG))
+        {
+            WeaponSkill* attack = (WeaponSkill*)(tagA == PLAYER_ATTACK_TAG ? nodeA : nodeB);
+            Enemy* enemy = (Enemy*)(tagA == ENEMY_TAG ? nodeA : nodeB);
+            enemy->takeDamage(attack->getDamage());
+        }
     }
+    m_contactStarted = true;
     return true;
 }
 
@@ -103,6 +108,7 @@ void RestRoomScene::onContactSeparate(cocos2d::PhysicsContact& _contact)
     {
         //nodeA->setColor(Color3B::WHITE);
         //nodeB->setColor(Color3B::WHITE);
+        m_contactStarted = false;
     }
 }
 
@@ -137,24 +143,17 @@ bool RestRoomScene::init()
 
     this->initCameraUI();
     this->initTileMap((Vec2)visibleSize);
-    this->heroManager->setScene(this);
-    this->heroManager->spawnHero(HeroJob::Lizard, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
-    Weapon* sword = new Sword();
-    sword->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.5));
-    //this->addChild(sword,1);
-    Weapon* sword2 = new Sword();
-    sword2->setColor(Color3B::RED);
-    //sword2->setTag(2);
-    sword2->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.6));
-    Weapon* sword3 = new Sword();
-    sword3->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.6));
-    sword3->setColor(Color3B::BLUE);
-    Singleton<ItemManager>::getIntsance()->setScene(this);
-    Singleton<ItemManager>::getIntsance()->setVisibleSize((Vec2)visibleSize);
-    Singleton<ItemManager>::getIntsance()->addItem(sword);
-    Singleton<ItemManager>::getIntsance()->addItem(sword2);
-    Singleton<ItemManager>::getIntsance()->addItem(sword3);
+    Singleton<GameManager>::getIntsance()->addScene(this);
+    Singleton<GameManager>::getIntsance()->addVisibleSize(visibleSize);
+
+    this->heroManager->setScene(this);
+    this->heroManager->spawnHero(HeroJob::Knight, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+
+    auto enemy = new Enemy();
+    enemy->setPosition(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100));
+    this->addChild(enemy);
+
     this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     //this->getPhysicsWorld()->setGravity(Vec2(0,-98));
     scheduleUpdate();

@@ -8,15 +8,15 @@ class HeroBaseState;
 class HeroAttackState :public HeroBaseState
 {
 public:
-	void onStart(Hero* hero);
-	void onExit(Hero* hero);
-	HeroBaseState* onKeyPressed(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
-	HeroBaseState* onKeyReleased(Hero* hero, cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
-	HeroBaseState* onMouseDown(Hero* hero, cocos2d::Event* event);
-	HeroBaseState* onMouseUp(Hero* hero, cocos2d::Event* event);
-	HeroBaseState* onMouseMove(Hero* hero, cocos2d::Event* event);
-	HeroBaseState* update(Hero* hero, float dt);
+	void onStart();
+	void onExit();
+	HeroBaseState* onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
+	HeroBaseState* onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
+	HeroBaseState* onMouseDown(cocos2d::Event* event);
+	HeroBaseState* onMouseUp(cocos2d::Event* event);
+	HeroBaseState* onMouseMove(cocos2d::Event* event);
+	HeroBaseState* update(float dt);
 private:
-	void setAttackAnimation(Hero* hero);
+	void setAttackAnimation();
 };
 #endif // !__HERO_RUN_STATE_H__

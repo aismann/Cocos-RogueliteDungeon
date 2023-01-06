@@ -69,21 +69,12 @@ bool HelloWorld::init()
 
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(KNIGHT_M_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(KNIGHT_M_BODY_PLIST);
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(KNIGHT_F_PLIST);
-    PhysicsShapeCache::getInstance()->addShapesWithFile(KNIGHT_F_BODY_PLIST);
 
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ELF_M_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(ELF_M_BODY_PLIST);
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ELF_F_PLIST);
-    PhysicsShapeCache::getInstance()->addShapesWithFile(ELF_F_BODY_PLIST);
 
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(LIZARD_M_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(LIZARD_M_BODY_PLIST);
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(LIZARD_F_PLIST);
-    PhysicsShapeCache::getInstance()->addShapesWithFile(LIZARD_F_BODY_PLIST);
-
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(WIZARD_M_PLIST);
-    PhysicsShapeCache::getInstance()->addShapesWithFile(WIZARD_M_BODY_PLIST);
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(WIZARD_F_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(WIZARD_F_BODY_PLIST);
 
@@ -92,8 +83,8 @@ bool HelloWorld::init()
 
     Entity* entity = Entity::create();
 
-    entity->setSpriteFrame(LIZARD_F_IDLE,0);
-    entity->setAnimation(REPEAT::FOREVER,LIZARD_F_RUN,0,3,0.2);
+    entity->setSpriteFrame(LIZARD_M_IDLE,0);
+    entity->setAnimation(REPEAT::FOREVER,LIZARD_M_RUN,0,3,0.2);
     entity->setPosition(visibleSize/2);
     this->addChild(entity);
 

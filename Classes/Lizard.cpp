@@ -3,7 +3,8 @@ USING_NS_CC;
 void Lizard::initHero()
 {
 	StatModifier* baseMSP = new StatModifier(90, StatModifierType::Flat, 0, this);
-	this->movementSpeed.addModifier(baseMSP);
+	this->maxMovementSpeed.addModifier(baseMSP);
+	this->movementSpeed = this->maxMovementSpeed.getValue();
 }
 
 Lizard::Lizard():Hero()

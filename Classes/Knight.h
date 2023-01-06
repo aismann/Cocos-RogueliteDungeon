@@ -12,6 +12,7 @@ public:
 	float getShield();
 	float getDamage();
 	float getMovementSpeed();
+
 };
 #endif // !__KNIGHT_H__
 

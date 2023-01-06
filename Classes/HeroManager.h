@@ -16,7 +16,7 @@ private:
 
 	Hero* hero;
 
-	cocos2d::Sprite* weaponNode;
+	//cocos2d::Sprite* weaponNode;
 
 	cocos2d::Vec2 lastMousePositon;
 	cocos2d::Vec2 visibleSize;
@@ -25,14 +25,12 @@ public:
 	~HeroManager();
 
 	void setScene(cocos2d::Scene* scene);
-	void setVisibleSize(cocos2d::Vec2 visibleSize);
-	cocos2d::Vec2 getVisibleSize();
 
 	void spawnHero(HeroJob heroJob, cocos2d::Vec2& position);
 
 	Hero* getHero();
 
-	cocos2d::Node* getWeaponNode();
+	//cocos2d::Node* getWeaponNode();
 
 	void update(float dt);
 };

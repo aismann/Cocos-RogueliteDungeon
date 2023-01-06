@@ -8,6 +8,7 @@ class RestRoomScene : public cocos2d::Scene
 private:
     bool properties;
     int count = 0;
+    bool m_contactStarted = false;
     cocos2d::Vec2 lastMousePositon;
     cocos2d::TMXTiledMap* restroom;
     HeroManager* heroManager = Singleton<HeroManager>::getIntsance();

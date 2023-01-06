@@ -106,3 +106,7 @@ void Entity::update(float dt)
 {
 }
 
+void Entity::takeDamage(float damage)
+{
+}
+

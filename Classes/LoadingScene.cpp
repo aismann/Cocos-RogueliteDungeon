@@ -16,29 +16,13 @@ void LoadingScene::initLoading(Vec2 position)
     PhysicsShapeCache::getInstance()->addShapesWithFile(KNIGHT_M_BODY_PLIST);
     resourceList.push_back(KNIGHT_M_PLIST);
 
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(KNIGHT_F_PLIST);
-    PhysicsShapeCache::getInstance()->addShapesWithFile(KNIGHT_F_BODY_PLIST);
-    resourceList.push_back(KNIGHT_F_PLIST);
-
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ELF_M_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(ELF_M_BODY_PLIST);
     resourceList.push_back(ELF_M_PLIST);
 
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ELF_F_PLIST);
-    PhysicsShapeCache::getInstance()->addShapesWithFile(ELF_F_BODY_PLIST);
-    resourceList.push_back(ELF_F_PLIST);
-
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(LIZARD_M_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(LIZARD_M_BODY_PLIST);
     resourceList.push_back(LIZARD_M_PLIST);
-
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(LIZARD_F_PLIST);
-    PhysicsShapeCache::getInstance()->addShapesWithFile(LIZARD_F_BODY_PLIST);
-    resourceList.push_back(LIZARD_F_PLIST);
-
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(WIZARD_M_PLIST);
-    PhysicsShapeCache::getInstance()->addShapesWithFile(WIZARD_M_BODY_PLIST);
-    resourceList.push_back(WIZARD_M_PLIST);
 
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(WIZARD_F_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(WIZARD_F_BODY_PLIST);
@@ -47,6 +31,14 @@ void LoadingScene::initLoading(Vec2 position)
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(WEAPON_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(WEAPON_BODY_PLIST);
     resourceList.push_back(WEAPON_PLIST);
+
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(SWORD_SLASH_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(SWORD_SLASH_BODY);
+    resourceList.push_back(SWORD_SLASH_PLIST);
+
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(SKELETON_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(SKELETON_BODY_PLIST);
+    resourceList.push_back(SKELETON_PLIST);
 
     auto loadingbar_bg = Sprite::create("ui/LoadingBarBackground.png");
     loadingbar_bg->setPosition(Vec2(position.x * 0.5, position.y * 0.4));

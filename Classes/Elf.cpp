@@ -3,7 +3,8 @@
 void Elf::initHero()
 {
 	StatModifier* baseMSP = new StatModifier(100, StatModifierType::Flat, 0, this);
-	this->movementSpeed.addModifier(baseMSP);
+	this->maxMovementSpeed.addModifier(baseMSP);
+	this->movementSpeed = this->maxMovementSpeed.getValue();
 }
 
 Elf::Elf():Hero()

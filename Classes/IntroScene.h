@@ -7,7 +7,7 @@ class IntroScene : public cocos2d::Scene
 private:
     bool changeScene = false;
     float delay = 0;
-    float maxDelay = 2;
+    float maxDelay = 0.5f;
 public:
     static cocos2d::Scene* createScene();
 

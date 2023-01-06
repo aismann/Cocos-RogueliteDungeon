@@ -5,19 +5,15 @@ class Weapon :public Entity
 {
 private:
 protected:
-	bool primaryAttacking;
-	bool primaryAttackFinished;
-	float weaponDegree;
-	EntityStats damage;
-	EntityStats attackSpeed;
+	bool primarySkill;
+	bool primaryFinished;
+	float timeElapsed;
 	virtual void initWeapon();
 public:
 	Weapon();
 	~Weapon();
-	virtual float getDamage();
-	virtual float getAttackSpeed();
-	virtual void lightAttack();
-	bool isPrimaryAttacking();
+	virtual void PrimarySkill(cocos2d::Sprite* weaponnode) = 0;
+	bool isPrimarySkillActive();
 	virtual void update(float dt);
 };
 #endif // !__WEAPON_H__

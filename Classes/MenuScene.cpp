@@ -1,6 +1,7 @@
 #include "MenuScene.h"
 #include "AudioEngine.h"
 #include "RestRoomScene.h"
+#include "MapLevel1_1.h"
 
 USING_NS_CC;
 
@@ -60,8 +61,10 @@ bool MenuScene::init()
 
     Vector<MenuItem*> menuItems = {
         MenuItemLabel::create(play  , [=](Ref* sender) {
-            auto restRoomScene = RestRoomScene::create();
-            Director::getInstance()->replaceScene(restRoomScene);
+            /*auto restRoomScene = RestRoomScene::create();
+            Director::getInstance()->replaceScene(restRoomScene);*/
+            auto map1 = MapLevel1_1::create();
+            Director::getInstance()->replaceScene(map1);
         }),
         MenuItemLabel::create(this->soundLabel, [&](Ref* sender) {
             this->soundOn = !this->soundOn;

@@ -38,6 +38,8 @@ public:
 	void setSpeed(float speed);
 
 	virtual void update(float dt);
+
+	virtual void takeDamage(float damage);
 };
 #endif // !__ENTITY_H__
 

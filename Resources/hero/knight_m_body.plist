@@ -18,7 +18,7 @@
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.00000 }</string>
                 <key>is_dynamic</key>
-                <true/>
+                <false/>
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
@@ -46,11 +46,11 @@
                         <key>group</key>
                         <integer>0</integer>
                         <key>category_mask</key>
-                        <integer>1</integer>
+                        <integer>0</integer>
                         <key>collision_mask</key>
-                        <integer>42</integer>
+                        <integer>0</integer>
                         <key>contact_test_mask</key>
-                        <integer>65535</integer>
+                        <integer>0</integer>
                         <key>fixture_type</key>
                         <string>POLYGON</string>
                         
@@ -78,7 +78,7 @@
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
-                <true/>
+                <false/>
                 <key>linear_damping</key>
                 <real>0</real>
                 <key>velocity_limit</key>
@@ -104,7 +104,7 @@
                         <key>category_mask</key>
                         <integer>1</integer>
                         <key>collision_mask</key>
-                        <integer>42</integer>
+                        <integer>98</integer>
                         <key>contact_test_mask</key>
                         <integer>65535</integer>
                         <key>fixture_type</key>
@@ -130,11 +130,11 @@
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.00000 }</string>
                 <key>is_dynamic</key>
-                <true/>
+                <false/>
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
-                <true/>
+                <false/>
                 <key>linear_damping</key>
                 <real>0</real>
                 <key>velocity_limit</key>
@@ -158,19 +158,19 @@
                         <key>group</key>
                         <integer>0</integer>
                         <key>category_mask</key>
-                        <integer>1</integer>
+                        <integer>0</integer>
                         <key>collision_mask</key>
-                        <integer>42</integer>
+                        <integer>0</integer>
                         <key>contact_test_mask</key>
-                        <integer>65535</integer>
+                        <integer>0</integer>
                         <key>fixture_type</key>
                         <string>POLYGON</string>
                         
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ -5.00000,1.00000 }</string>
-                                <string>{ 5.00000,1.00000 }</string>
+                                <string>{ -5.00000,2.00000 }</string>
+                                <string>{ 5.00000,2.00000 }</string>
                                 <string>{ 5.00000,-14.00000 }</string>
                                 <string>{ -5.00000,-14.00000 }</string>
                             </array>
@@ -186,11 +186,11 @@
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.00000 }</string>
                 <key>is_dynamic</key>
-                <true/>
+                <false/>
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
-                <true/>
+                <false/>
                 <key>linear_damping</key>
                 <real>0</real>
                 <key>velocity_limit</key>
@@ -214,19 +214,19 @@
                         <key>group</key>
                         <integer>0</integer>
                         <key>category_mask</key>
-                        <integer>1</integer>
+                        <integer>0</integer>
                         <key>collision_mask</key>
-                        <integer>42</integer>
+                        <integer>0</integer>
                         <key>contact_test_mask</key>
-                        <integer>65535</integer>
+                        <integer>0</integer>
                         <key>fixture_type</key>
                         <string>POLYGON</string>
                         
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ -5.00000,0.00000 }</string>
-                                <string>{ 5.00000,0.00000 }</string>
+                                <string>{ -5.00000,2.00000 }</string>
+                                <string>{ 5.00000,2.00000 }</string>
                                 <string>{ 5.00000,-14.00000 }</string>
                                 <string>{ -5.00000,-14.00000 }</string>
                             </array>
@@ -242,11 +242,11 @@
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.00000 }</string>
                 <key>is_dynamic</key>
-                <true/>
+                <false/>
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
-                <true/>
+                <false/>
                 <key>linear_damping</key>
                 <real>0</real>
                 <key>velocity_limit</key>
@@ -270,19 +270,19 @@
                         <key>group</key>
                         <integer>0</integer>
                         <key>category_mask</key>
-                        <integer>1</integer>
+                        <integer>0</integer>
                         <key>collision_mask</key>
-                        <integer>42</integer>
+                        <integer>0</integer>
                         <key>contact_test_mask</key>
-                        <integer>65535</integer>
+                        <integer>0</integer>
                         <key>fixture_type</key>
                         <string>POLYGON</string>
                         
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ -5.00000,1.00000 }</string>
-                                <string>{ 5.00000,1.00000 }</string>
+                                <string>{ -5.00000,2.00000 }</string>
+                                <string>{ 5.00000,2.00000 }</string>
                                 <string>{ 5.00000,-14.00000 }</string>
                                 <string>{ -5.00000,-14.00000 }</string>
                             </array>
@@ -298,11 +298,11 @@
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.00000 }</string>
                 <key>is_dynamic</key>
-                <true/>
+                <false/>
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
-                <true/>
+                <false/>
                 <key>linear_damping</key>
                 <real>0</real>
                 <key>velocity_limit</key>
@@ -326,21 +326,21 @@
                         <key>group</key>
                         <integer>0</integer>
                         <key>category_mask</key>
-                        <integer>1</integer>
+                        <integer>0</integer>
                         <key>collision_mask</key>
-                        <integer>42</integer>
+                        <integer>0</integer>
                         <key>contact_test_mask</key>
-                        <integer>65535</integer>
+                        <integer>0</integer>
                         <key>fixture_type</key>
                         <string>POLYGON</string>
                         
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ -5.00000,3.00000 }</string>
-                                <string>{ 5.00000,3.00000 }</string>
-                                <string>{ 5.00000,-11.00000 }</string>
-                                <string>{ -5.00000,-11.00000 }</string>
+                                <string>{ -5.00000,2.00000 }</string>
+                                <string>{ 5.00000,2.00000 }</string>
+                                <string>{ 5.00000,-14.00000 }</string>
+                                <string>{ -5.00000,-14.00000 }</string>
                             </array>
                         </array>
                         
@@ -354,11 +354,11 @@
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.00000 }</string>
                 <key>is_dynamic</key>
-                <true/>
+                <false/>
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
-                <true/>
+                <false/>
                 <key>linear_damping</key>
                 <real>0</real>
                 <key>velocity_limit</key>
@@ -382,21 +382,21 @@
                         <key>group</key>
                         <integer>0</integer>
                         <key>category_mask</key>
-                        <integer>1</integer>
+                        <integer>0</integer>
                         <key>collision_mask</key>
-                        <integer>42</integer>
+                        <integer>0</integer>
                         <key>contact_test_mask</key>
-                        <integer>65535</integer>
+                        <integer>0</integer>
                         <key>fixture_type</key>
                         <string>POLYGON</string>
                         
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ -5.00000,4.00000 }</string>
-                                <string>{ 5.00000,4.00000 }</string>
-                                <string>{ 5.00000,-10.00000 }</string>
-                                <string>{ -5.00000,-10.00000 }</string>
+                                <string>{ -5.00000,2.00000 }</string>
+                                <string>{ 5.00000,2.00000 }</string>
+                                <string>{ 5.00000,-14.00000 }</string>
+                                <string>{ -5.00000,-14.00000 }</string>
                             </array>
                         </array>
                         
@@ -410,11 +410,11 @@
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.00000 }</string>
                 <key>is_dynamic</key>
-                <true/>
+                <false/>
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
-                <true/>
+                <false/>
                 <key>linear_damping</key>
                 <real>0</real>
                 <key>velocity_limit</key>
@@ -438,21 +438,21 @@
                         <key>group</key>
                         <integer>0</integer>
                         <key>category_mask</key>
-                        <integer>1</integer>
+                        <integer>0</integer>
                         <key>collision_mask</key>
-                        <integer>42</integer>
+                        <integer>0</integer>
                         <key>contact_test_mask</key>
-                        <integer>65535</integer>
+                        <integer>0</integer>
                         <key>fixture_type</key>
                         <string>POLYGON</string>
                         
                         <key>polygons</key>
                         <array>
                             <array>
-                                <string>{ -5.00000,3.00000 }</string>
-                                <string>{ 5.00000,3.00000 }</string>
-                                <string>{ 5.00000,-11.00000 }</string>
-                                <string>{ -5.00000,-11.00000 }</string>
+                                <string>{ -5.00000,2.00000 }</string>
+                                <string>{ 5.00000,2.00000 }</string>
+                                <string>{ 5.00000,-14.00000 }</string>
+                                <string>{ -5.00000,-14.00000 }</string>
                             </array>
                         </array>
                         
@@ -466,11 +466,11 @@
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.00000 }</string>
                 <key>is_dynamic</key>
-                <true/>
+                <false/>
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
-                <true/>
+                <false/>
                 <key>linear_damping</key>
                 <real>0</real>
                 <key>velocity_limit</key>
@@ -494,11 +494,11 @@
                         <key>group</key>
                         <integer>0</integer>
                         <key>category_mask</key>
-                        <integer>1</integer>
+                        <integer>0</integer>
                         <key>collision_mask</key>
-                        <integer>42</integer>
+                        <integer>0</integer>
                         <key>contact_test_mask</key>
-                        <integer>65535</integer>
+                        <integer>0</integer>
                         <key>fixture_type</key>
                         <string>POLYGON</string>
                         
