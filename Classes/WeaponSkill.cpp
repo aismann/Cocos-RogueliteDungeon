@@ -5,6 +5,7 @@ USING_NS_CC;
 WeaponSkill::WeaponSkill():Entity()
 {
 	this->setTag(PLAYER_ATTACK_TAG);
+	this->lifeTime = 0;
 }
 
 WeaponSkill::~WeaponSkill()

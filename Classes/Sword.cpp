@@ -35,6 +35,7 @@ void Sword::PrimarySkill(cocos2d::Sprite* weaponnode)
 		aimDirection.normalize();
 
 		slash = slashPool.getOnce();
+		slash->setScale(2.f);
 		slash->setLifeTime(0.6f);
 		Vec2 slashPos = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->convertToWorldSpace(weaponnode->getContentSize() / 2));
 		slash->setPosition(slashPos);
@@ -62,10 +63,13 @@ void Sword::update(float dt)
 	std::list<SwordSlash*> removeArray;
 	for (it = slashList.begin(); it != slashList.end(); ++it)
 	{
-		SwordSlash* slash = *it;
+		slash = *it;
 		float life = slash->lifeTimeCouting(dt);
-		auto direction = Singleton<HeroManager>::getIntsance()->getHero()->getDirection();
-		slash->setDirection(direction);
+
+		auto hero = Singleton<HeroManager>::getIntsance()->getHero();
+		auto heroPos = hero->getPosition();
+		slash->setPosition(Vec2(heroPos.x, heroPos.y + hero->getContentSize().height / 4));
+
 		if (life <= 0)
 		{
 			Singleton<GameManager>::getIntsance()->getScene()->removeChild(slash);

@@ -6,6 +6,10 @@ const std::string LOADING_PLIST = "ui/loading.plist";
 const std::string LOADING = "loading";
 /*-------------Hero-----------------*/
 const int HERO_TAG = 0;
+const int KNIGHT_TAG = 1;
+const int ELF_TAG = 2;
+const int LIZARD_TAG = 3;
+const int WIZARD_TAG = 4;
 /*-------------Elf-----------------*/
 const std::string ELF_M_PLIST = "hero/elf_m.plist";
 const std::string ELF_M_BODY_PLIST = "hero/elf_m_body.plist";
@@ -38,16 +42,22 @@ const std::string WIZARD_F_RUN = "wizard_f_run";
 const std::string WEAPON_PLIST = "base_weapon/base_weapon.plist";
 const std::string WEAPON_BODY_PLIST = "base_weapon/base_weapon_body.plist";
 const std::string SWORD = "weapon_knight_sword";
-const int PLAYER_ATTACK_TAG = 1;
+
+const int PLAYER_ATTACK_TAG = 5;
 const std::string SWORD_SLASH_PLIST = "base_weapon/SwordSlash.plist";
 const std::string SWORD_SLASH_BODY = "base_weapon/SwordSlashBody.plist";
 const std::string SWORD_SLASH = "sword_slash";
 
+/*-------------ENEMY---------------*/
 /*-------------SKELETON---------------*/
-const int ENEMY_TAG = 2;
+const int ENEMY_TAG = 6;
 const std::string SKELETON_PLIST = "mobs/Skeleton.plist";
 const std::string SKELETON_BODY_PLIST = "mobs/SkeletonBody.plist";
 const std::string SKELETON_IDLE = "skeleton_idle";
 const std::string SKELETON_RUN = "skeleton_run";
+
+/*-------------ARCHITECTURE---------------*/
+/*-------------WALL---------------*/
+const int WALL_TAG = 7;
 #endif // !__GAME_RESOURCES_H__
 

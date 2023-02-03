@@ -11,6 +11,7 @@ public:
 	virtual float lifeTimeCouting(float dt);
 
 	virtual float getDamage();
+
 private:
 	float lifeTime;
 };

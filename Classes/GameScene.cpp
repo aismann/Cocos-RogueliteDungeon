@@ -8,11 +8,11 @@ USING_NS_CC;
 
 void MapLevel1_1::initTileMap(cocos2d::Vec2 position)
 {
-    this->restroom = TMXTiledMap::create("maps/map1.2.tmx");
+    this->restroom = TMXTiledMap::create("maps/dungeon.tmx");
     this->restroom->setPosition(Vec2(position.x*0.5,position.y*0.5));
     this->restroom->setAnchorPoint(Vec2(0.5,0.5));
-    this->restroom->setScaleX((80*16)/ this->restroom->getContentSize().width);
-    this->restroom->setScaleY((45 * 16) /this->restroom->getContentSize().height);
+    this->restroom->setScaleX((120*16)/ this->restroom->getContentSize().width);
+    this->restroom->setScaleY((68*16) /this->restroom->getContentSize().height);
     this->addChild(this->restroom,-1);
 
     auto objectGroup = this->restroom->getObjectGroup("WallCollision");
@@ -28,6 +28,7 @@ void MapLevel1_1::initTileMap(cocos2d::Vec2 position)
         wallBody->setCategoryBitmask(64);
         wallBody->setContactTestBitmask(51);
         auto wallNode = Node::create();
+        wallNode->setTag(WALL_TAG);
         wallNode->setPosition(x, y);
         wallNode->setPhysicsBody(wallBody);
         wallNode->setContentSize(objectSize);
@@ -108,6 +109,8 @@ void MapLevel1_1::onContactSeparate(cocos2d::PhysicsContact& _contact)
         //nodeA->setColor(Color3B::WHITE);
         //nodeB->setColor(Color3B::WHITE);
         m_contactStarted = false;
+        int tagA = nodeA->getTag();
+        int tagB = nodeB->getTag();
     }
 }
 

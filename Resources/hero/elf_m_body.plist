@@ -104,7 +104,7 @@
                         <key>category_mask</key>
                         <integer>1</integer>
                         <key>collision_mask</key>
-                        <integer>98</integer>
+                        <integer>99</integer>
                         <key>contact_test_mask</key>
                         <integer>65535</integer>
                         <key>fixture_type</key>

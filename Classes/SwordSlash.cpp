@@ -2,7 +2,6 @@
 USING_NS_CC;
 SwordSlash::SwordSlash():WeaponSkill()
 {
-	this->lifeTime = 0;
 	this->setSpriteFrame(SWORD_SLASH, 0);
 }
 

@@ -8,85 +8,116 @@
             <dict>
                 <key>aliases</key>
                 <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
                 <key>spriteOffset</key>
-                <string>{-22,0}</string>
+                <string>{0,12.5}</string>
                 <key>spriteSize</key>
-                <string>{30,12}</string>
+                <string>{58,33}</string>
                 <key>spriteSourceSize</key>
-                <string>{74,74}</string>
+                <string>{58,58}</string>
                 <key>textureRect</key>
-                <string>{{229,1},{30,12}}</string>
+                <string>{{1,71},{58,33}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
-                <string>1 2 3 0 1 3</string>
+                <string>2 3 4 1 2 4 0 1 4</string>
                 <key>vertices</key>
-                <string>30 43 0 43 0 31 30 31</string>
+                <string>58 10 58 33 0 33 0 0 41 0</string>
                 <key>verticesUV</key>
-                <string>259 13 229 13 229 1 259 1</string>
+                <string>59 81 59 104 1 104 1 71 42 71</string>
             </dict>
             <key>sword_slash(1)</key>
             <dict>
                 <key>aliases</key>
                 <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
                 <key>spriteOffset</key>
                 <string>{0,12.5}</string>
                 <key>spriteSize</key>
-                <string>{74,49}</string>
+                <string>{58,33}</string>
                 <key>spriteSourceSize</key>
-                <string>{74,74}</string>
+                <string>{58,58}</string>
                 <key>textureRect</key>
-                <string>{{153,1},{74,49}}</string>
+                <string>{{1,36},{58,33}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
-                <string>2 3 4 2 4 5 0 2 5 0 1 2</string>
+                <string>2 3 4 1 2 4 0 1 4</string>
                 <key>vertices</key>
-                <string>74 41 42 45 31 15 0 49 0 0 74 0</string>
+                <string>58 10 58 33 0 33 0 0 41 0</string>
                 <key>verticesUV</key>
-                <string>227 42 195 46 184 16 153 50 153 1 227 1</string>
+                <string>59 46 59 69 1 69 1 36 42 36</string>
             </dict>
             <key>sword_slash(2)</key>
             <dict>
                 <key>aliases</key>
                 <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
                 <key>spriteOffset</key>
                 <string>{0,12.5}</string>
                 <key>spriteSize</key>
-                <string>{74,49}</string>
+                <string>{58,33}</string>
                 <key>spriteSourceSize</key>
-                <string>{74,74}</string>
+                <string>{58,58}</string>
                 <key>textureRect</key>
-                <string>{{77,1},{74,49}}</string>
+                <string>{{1,1},{58,33}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
-                <string>2 3 4 2 4 5 0 2 5 0 1 2</string>
+                <string>2 3 4 1 2 4 0 1 4</string>
                 <key>vertices</key>
-                <string>74 41 42 45 31 15 0 49 0 0 74 0</string>
+                <string>58 10 58 33 0 33 0 0 41 0</string>
                 <key>verticesUV</key>
-                <string>151 42 119 46 108 16 77 50 77 1 151 1</string>
+                <string>59 11 59 34 1 34 1 1 42 1</string>
             </dict>
             <key>sword_slash(3)</key>
             <dict>
                 <key>aliases</key>
                 <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
                 <key>spriteOffset</key>
                 <string>{0,12.5}</string>
                 <key>spriteSize</key>
-                <string>{74,49}</string>
+                <string>{58,33}</string>
                 <key>spriteSourceSize</key>
-                <string>{74,74}</string>
+                <string>{58,58}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{74,49}}</string>
+                <string>{{1,1},{58,33}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
-                <string>2 3 4 2 4 5 0 2 5 0 1 2</string>
+                <string>2 3 4 1 2 4 0 1 4</string>
                 <key>vertices</key>
-                <string>74 41 42 45 31 15 0 49 0 0 74 0</string>
+                <string>58 10 58 33 0 33 0 0 41 0</string>
                 <key>verticesUV</key>
-                <string>75 42 43 46 32 16 1 50 1 1 75 1</string>
+                <string>59 11 59 34 1 34 1 1 42 1</string>
+            </dict>
+            <key>sword_slash(4)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
+                <key>spriteOffset</key>
+                <string>{0,12.5}</string>
+                <key>spriteSize</key>
+                <string>{58,33}</string>
+                <key>spriteSourceSize</key>
+                <string>{58,58}</string>
+                <key>textureRect</key>
+                <string>{{1,71},{58,33}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>2 3 4 1 2 4 0 1 4</string>
+                <key>vertices</key>
+                <string>58 10 58 33 0 33 0 0 41 0</string>
+                <key>verticesUV</key>
+                <string>59 81 59 104 1 104 1 71 42 71</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -100,9 +131,9 @@
             <key>realTextureFileName</key>
             <string>SwordSlash.png</string>
             <key>size</key>
-            <string>{260,51}</string>
+            <string>{60,105}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:0a3497171ba0581d730b30e4803483a0:0981e28e9333d0448a2d09a65bd60bcc:ca0762ee09c3c02b0d16fbbc6c09e624$</string>
+            <string>$TexturePacker:SmartUpdate:c2c54990559c844d009d781aa5e42de0:a9ebdc3a86a5fad5d6557bdb24489bee:ca0762ee09c3c02b0d16fbbc6c09e624$</string>
             <key>textureFileName</key>
             <string>SwordSlash.png</string>
         </dict>

@@ -8,6 +8,7 @@ Hero::Hero():Entity()
     this->setTag(HERO_TAG);
     this->xCoordinate = 0;
     this->yCoordinate = 0;
+    this->wallContact = false;
 
     this->heroJob = HeroJob::None;
     //this->itemManager = Singleton<ItemManager>::getIntsance();
@@ -310,4 +311,14 @@ void Hero::initHero()
     StatModifier* basePickupRange = new StatModifier(100, StatModifierType::Flat, 0, this);
     this->maxPickupRange.addModifier(basePickupRange);
     this->pickupRange = this->maxPickupRange.getValue();
+}
+
+bool Hero::isWallContact()
+{
+    return this->wallContact;
+}
+
+void Hero::setWallContact(bool contact)
+{
+    this->wallContact = contact;
 }

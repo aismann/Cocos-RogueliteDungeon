@@ -4,17 +4,17 @@
 #include "SwordSlash.h"
 #include "GameManager.h"
 #include "Enemy.h"
+
 USING_NS_CC;
 
 void RestRoomScene::initTileMap(cocos2d::Vec2 position)
 {
-    this->restroom = TMXTiledMap::create("tilemaps/dungeon.tmx");
+    this->restroom = TMXTiledMap::create("maps/beginroom.tmx");
     this->restroom->setPosition(Vec2(position.x*0.5,position.y*0.5));
     this->restroom->setAnchorPoint(Vec2(0.5,0.5));
-    this->restroom->setScaleX((80*16)/ this->restroom->getContentSize().width);
-    this->restroom->setScaleY((45 * 16) /this->restroom->getContentSize().height);
-    this->addChild(this->restroom,-2);
-    this->restroom->getLayer("bottomwall")->setGlobalZOrder(2);
+    this->restroom->setScaleX(((30*16)/this->restroom->getContentSize().width)*2);
+    this->restroom->setScaleY(((20*16)/this->restroom->getContentSize().height)*2);
+    this->addChild(this->restroom,-1);
 
     auto objectGroup = this->restroom->getObjectGroup("WallCollision");
     for (auto &object: objectGroup->getObjects())
@@ -34,13 +34,6 @@ void RestRoomScene::initTileMap(cocos2d::Vec2 position)
         wallNode->setContentSize(objectSize);
         this->restroom->addChild(wallNode,2);
     }
-}
-
-cocos2d::Vec2 RestRoomScene::tileCoordForPosition(cocos2d::Vec2 position)
-{
-    int x = position.x / restroom->getTileSize().width;
-    int y = ((restroom->getMapSize().height * restroom->getTileSize().height) - position.y) / restroom->getTileSize().height;
-    return cocos2d::Vec2(x,y);
 }
 
 void RestRoomScene::initCameraUI()
@@ -87,12 +80,10 @@ bool RestRoomScene::onContactBegin(cocos2d::PhysicsContact& _contact)
     {
         int tagA = nodeA->getTag();
         int tagB = nodeB->getTag();
-        if ((tagA == PLAYER_ATTACK_TAG && tagB == ENEMY_TAG)
-            || (tagB == PLAYER_ATTACK_TAG && tagA == ENEMY_TAG))
+        if ((tagA == HERO_TAG && tagB == KNIGHT_TAG)
+            || (tagB == HERO_TAG && tagA == KNIGHT_TAG))
         {
-            WeaponSkill* attack = (WeaponSkill*)(tagA == PLAYER_ATTACK_TAG ? nodeA : nodeB);
-            Enemy* enemy = (Enemy*)(tagA == ENEMY_TAG ? nodeA : nodeB);
-            enemy->takeDamage(attack->getDamage());
+            log("KNIGHT TAG DETECTED");
         }
     }
     m_contactStarted = true;
@@ -147,41 +138,111 @@ bool RestRoomScene::init()
     Singleton<GameManager>::getIntsance()->addScene(this);
     Singleton<GameManager>::getIntsance()->addVisibleSize(visibleSize);
 
-    this->heroManager->setScene(this);
-    this->heroManager->spawnHero(HeroJob::Knight, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-
-    auto enemy = new Enemy();
-    enemy->setPosition(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100));
-    this->addChild(enemy);
+    this->chooseHero();
+    this->goDungeon();
 
     this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
-    //this->getPhysicsWorld()->setGravity(Vec2(0,-98));
     scheduleUpdate();
     return true;
 }
 
 void RestRoomScene::update(float dt)
 {
-    this->followHero();
-    heroManager->update(dt);
-    //Vec2 playerPos = this->hero->getHero()->getPosition();
+    //this->followHero();
+    //heroManager->update(dt);
+}
 
-    //auto tileID = this->bottomWall->getTileGIDAt(tileCoordForPosition(playerPos));
-    //if (tileID)
-    //{
-    //    log("[%d]",tileID);
-    //    //auto properties = this->collision->getProperties().at("Collision").asBool();
-    //    //auto pos = this->collision->getTileAt(tileCoordForPosition(playerPos));
-    //    if (properties == true)
-    //    {
-    //        //log("[%f][%f]", pos->getPositionX(), pos->getPositionY());
-    //        //pos->unscheduleUpdate();
-    //        //auto body = PhysicsBody::createBox(pos->getContentSize(),PhysicsMaterial(1,0,0));
-    //        //body->setDynamic(false);
-    //        //body->setContactTestBitmask(0xffff);
-    //        //body->setCategoryBitmask(40);
-    //        //body->setContactTestBitmask(1);
-    //        //pos->setPhysicsBody(body);
-    //    }
-    //}
+void RestRoomScene::spawnHero(HeroJob job)
+{
+    auto visibleSize = Singleton<GameManager>::getIntsance()->getVisibleSize();
+    this->heroManager->setScene(this);
+    this->heroManager->spawnHero(job, Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    this->heroManager->getHero()->setScale(2);
+
+}
+
+void RestRoomScene::chooseHero()
+{
+    auto visibleSize = Singleton<GameManager>::getIntsance()->getVisibleSize();
+
+    knightButton = new Entity();
+    elfButton = new Entity();
+
+    knightButton->setTag(KNIGHT_TAG);
+    elfButton->setTag(ELF_TAG);
+
+    knightButton->setSpriteFrame(KNIGHT_M_IDLE, 0);
+    elfButton->setSpriteFrame(ELF_M_IDLE, 0);
+
+    knightButton->setScale(2);
+    elfButton->setScale(2);
+
+    auto knightBody = knightButton->getPhysicsBody();
+    auto elfBody = elfButton->getPhysicsBody();
+
+    knightBody->setDynamic(false);
+    elfBody->setDynamic(false);
+
+    elfButton->setFlippedX(true);
+
+    knightButton->setPosition(Vec2(visibleSize.width / 2 - 100, visibleSize.height / 2));
+    elfButton->setPosition(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2));
+
+    this->addChild(knightButton);
+    this->addChild(elfButton);
+
+    auto touchKnightListener = EventListenerTouchOneByOne::create();
+    touchKnightListener->onTouchBegan = [this,knightButton = knightButton](Touch* touch, Event* event)
+    {
+        Vec2 touchPos = touch->getLocation();
+        if (knightButton->getBoundingBox().containsPoint(touchPos))
+        {
+            CCLOG("knight touched %s", "yes");
+            heroJob = HeroJob::Knight;
+            this->goDungeonLayer->setVisible(true);
+        }
+        return true;
+    };
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(touchKnightListener, knightButton);
+
+    auto touchElfListener = EventListenerTouchOneByOne::create();
+    touchElfListener->onTouchBegan = [this,elfButton = elfButton](Touch* touch, Event* event)
+    {
+        Vec2 touchPos = touch->getLocation();
+        if (elfButton->getBoundingBox().containsPoint(touchPos))
+        {
+            CCLOG("elf touched %s", "yes");
+            heroJob = HeroJob::Elf;
+            this->goDungeonLayer->setVisible(true);
+        }
+        return true;
+    };
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(touchElfListener, elfButton);
+
+}
+
+void RestRoomScene::goDungeon()
+{
+    auto visibleSize = Singleton<GameManager>::getIntsance()->getVisibleSize();
+    goDungeonLayer = LayerColor::create(Color4B::GRAY);
+    goDungeonLayer->setOpacity(100);
+    goDungeonLayer->setContentSize(Size(160, 160));
+    goDungeonLayer->setPosition(visibleSize / 2 - goDungeonLayer->getContentSize() / 2);
+    goDungeonLayer->setVisible(false);
+    this->addChild(goDungeonLayer);
+    Vector<MenuItem*> menuItems = {
+    MenuItemLabel::create(Label::createWithSystemFont("Play", "Arial", 40)  , [=](Ref* sender) {
+        this->isGoDungeonLayerOpen = false;
+        //pauseBtn->setEnabled(true);
+        //GameManager::resume();
+    }),
+    MenuItemLabel::create(Label::createWithSystemFont("Back", "Arial", 40)  , [=](Ref* sender) {
+        this->goDungeonLayer->setVisible(false);
+    }),
+    };
+
+    auto menu = Menu::createWithArray(menuItems);
+    goDungeonLayer->addChild(menu);
+    menu->alignItemsVertically();
+    menu->setPosition(goDungeonLayer->getContentSize() / 2);
 }

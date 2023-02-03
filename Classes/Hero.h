@@ -51,6 +51,9 @@ public:
 
     void takeDamage(float damage);
 
+    bool isWallContact();
+    void setWallContact(bool contact);
+
 protected:
     void changeState(HeroBaseState* newState);
     void initListener();
@@ -79,6 +82,7 @@ protected:
 private:
     float xCoordinate;
     float yCoordinate;
+    bool wallContact;
 };
 
 #endif // !__HERO_H__

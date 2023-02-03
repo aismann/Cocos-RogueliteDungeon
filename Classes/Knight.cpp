@@ -3,12 +3,13 @@
 void Knight::initHero()
 {
 	this->weaponNode = Sprite::create("baseSprite.png");
-	this->weaponNode->setOpacity(255);
+	this->weaponNode->setOpacity(0);
 	this->weaponNode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 4);
+	this->weaponNode->setLocalZOrder(-1);
 	this->addChild(this->weaponNode);
 
 	this->weapon = new Sword();
-	this->weapon->setPosition(this->weaponNode->getContentSize().width / 2.f, this->weaponNode->getContentSize().height * (3.f / 4.f));
+	this->weapon->setPosition(this->weaponNode->getContentSize().width / 2.f, this->weaponNode->getContentSize().height /2.f);
 	this->weaponNode->addChild(this->weapon);
 
 	StatModifier* baseMSP = new StatModifier(90, StatModifierType::Flat, 0, this);

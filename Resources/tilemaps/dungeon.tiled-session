@@ -28,18 +28,18 @@
         },
         "dungeon.tmx": {
             "expandedGroupLayers": [
-                8,
-                9,
                 7,
-                5,
+                9,
+                8,
+                11,
                 13,
-                11
+                5
             ],
-            "scale": 1.5,
-            "selectedLayer": 4,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 563.6666666666667,
-                "y": 319.3333333333333
+                "x": 596.5,
+                "y": 382
             }
         },
         "dungeon.tsx": {

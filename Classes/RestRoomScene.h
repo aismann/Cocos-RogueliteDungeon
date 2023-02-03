@@ -7,17 +7,22 @@ class RestRoomScene : public cocos2d::Scene
 {
 private:
     bool properties;
+    bool isGoDungeonLayerOpen = false;
+    cocos2d::LayerColor* goDungeonLayer;
     int count = 0;
     bool m_contactStarted = false;
     cocos2d::Vec2 lastMousePositon;
     cocos2d::TMXTiledMap* restroom;
     HeroManager* heroManager = Singleton<HeroManager>::getIntsance();
     void initTileMap(cocos2d::Vec2 position);
-    cocos2d::Vec2 tileCoordForPosition(cocos2d::Vec2 position);
 
     cocos2d::Camera* cameraUI;
     void initCameraUI();
     void followHero();
+
+    HeroJob heroJob;
+    Entity* knightButton;
+    Entity* elfButton;
 public:
     static cocos2d::Scene* createScene();
     bool onContactBegin(cocos2d::PhysicsContact& _contact);
@@ -25,6 +30,11 @@ public:
     void onMouseMove(cocos2d::Event* event);
     virtual bool init();
     void update(float dt);
+
+    void spawnHero(HeroJob job);
+    void chooseHero();
+    void goDungeon();
+
     CREATE_FUNC(RestRoomScene);
 };
 
