@@ -2,7 +2,6 @@
 #define __HERO_H__
 
 #include "Entity.h"
-//#include "ItemManager.h"
 #include "HeroBaseState.h"
 #include "Weapon.h"
 
@@ -32,10 +31,7 @@ public:
     virtual float getShield();
     virtual float getDamage();
     virtual float getMovementSpeed();
-    float getPickupRange();
 
-    void pickupWeapon();
-    void dropWeapon();
     void rotateWeaponByCursor(cocos2d::Vec2& location);
 
     void onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event);
@@ -69,11 +65,7 @@ protected:
     float damage;
     EntityStats maxMovementSpeed;
     float movementSpeed;
-    EntityStats maxPickupRange;
-    float pickupRange;
 
-    //ItemManager* itemManager;
-    //std::vector<Weapon*> weaponSlot;
     cocos2d::Sprite* weaponNode;
     Weapon* weapon;
 

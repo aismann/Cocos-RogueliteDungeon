@@ -43,6 +43,16 @@ Hero* HeroManager::getHero()
 	return this->hero;
 }
 
+void HeroManager::setHeroJob(HeroJob job)
+{
+	this->heroJob = job;
+}
+
+HeroJob HeroManager::getHeroJob()
+{
+	return this->heroJob;
+}
+
 void HeroManager::update(float dt)
 {
 	//log("[%f][%f]",lastMousePositon.x,lastMousePositon.y);

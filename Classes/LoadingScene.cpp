@@ -42,15 +42,11 @@ void LoadingScene::initLoading(Vec2 position)
 
     auto loadingbar_bg = Sprite::create("ui/LoadingBarBackground.png");
     loadingbar_bg->setPosition(Vec2(position.x * 0.5, position.y * 0.4));
-    /*loadingbar_bg->setScaleX(loadingbar_bg->getContentSize().width/position.x);
-    loadingbar_bg->setScaleY(loadingbar_bg->getContentSize().height / position.y);*/
     this->addChild(loadingbar_bg);
 
     auto loadingbar = ui::LoadingBar::create("ui/LoadingBar.png");
     loadingbar->setPosition(loadingbar_bg->getPosition());
     loadingbar->setDirection(ui::LoadingBar::Direction::LEFT);
-    /*loadingbar->setScaleX(loadingbar->getContentSize().width/position.x);
-    loadingbar->setScaleY(loadingbar->getContentSize().height/position.y);*/
     this->addChild(loadingbar);
     schedule([=](float dt) {
         float percent = loadingbar->getPercent();

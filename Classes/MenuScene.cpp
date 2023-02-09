@@ -1,7 +1,6 @@
 #include "MenuScene.h"
 #include "AudioEngine.h"
-#include "RestRoomScene.h"
-#include "MapLevel1_1.h"
+#include "ChooseHeroScene.h"
 
 USING_NS_CC;
 
@@ -48,7 +47,6 @@ bool MenuScene::init()
     play->setTextColor(Color4B(248, 246, 194, 255));
     play->enableShadow(Color4B(249, 248, 217, 255));
     play->enableOutline(Color4B::BLACK, 1);
-    play->setScale(1920 / visibleSize.width, 1080 / visibleSize.height);
 
     this->soundLabel = Label::createWithTTF(std::string("Sound: ") + std::string(this->soundOn ? "ON" : "OFF"), "fonts/dogicapixel.ttf", 40);
     this->soundLabel->setTextColor(Color4B(248, 246, 194, 255));
@@ -62,8 +60,8 @@ bool MenuScene::init()
 
     Vector<MenuItem*> menuItems = {
         MenuItemLabel::create(play  , [=](Ref* sender) {
-            auto restroom = RestRoomScene::create();
-            Director::getInstance()->replaceScene(restroom);
+            auto heroRoom = ChooseHeroScene::create();
+            Director::getInstance()->replaceScene(heroRoom);
         }),
         MenuItemLabel::create(this->soundLabel, [&](Ref* sender) {
             this->soundOn = !this->soundOn;
@@ -86,7 +84,6 @@ bool MenuScene::init()
     addChild(menu);
     menu->alignItemsVerticallyWithPadding(20);
     menu->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    menu->setScale(1920/visibleSize.width,1080/visibleSize.height);
     return true;
 }
 

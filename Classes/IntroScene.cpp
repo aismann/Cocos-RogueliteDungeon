@@ -34,6 +34,7 @@ bool IntroScene::init()
     gameName->setPosition(Vec2(visibleSize.width*0.5,visibleSize.height*0.7));
     gameName->enableShadow(Color4B(249,248,217,255));
     gameName->enableOutline(Color4B::BLACK,1);
+    gameName->setVisible(false);
     this->addChild(gameName);
 
     auto anyKey = Label::createWithTTF("[Press any key]", "fonts/dogicapixel.ttf", 40);
@@ -47,6 +48,7 @@ bool IntroScene::init()
         if (delay >= maxDelay)
         {
             anyKey->setVisible(true);
+            gameName->setVisible(true);
             changeScene = true;
             delay = 0;
         }

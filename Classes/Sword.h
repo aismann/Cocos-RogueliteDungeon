@@ -6,7 +6,7 @@
 class Sword:public Weapon
 {
 protected:
-	void initWeapon();
+
 public:
 	Sword();
 	~Sword();

@@ -70,101 +70,6 @@ float Hero::getMovementSpeed()
     return this->movementSpeed;
 }
 
-float Hero::getPickupRange()
-{
-    return this->pickupRange;
-}
-
-void Hero::pickupWeapon()
-{
-    //if (this->getChildByTag(WEAPON_NODE_TAG))
-    //{
-    //    weaponNode = dynamic_cast<Sprite*>(this->getChildByTag(WEAPON_NODE_TAG));
-    //}
-    //if (weaponNode)
-    //{
-    //    if (!itemManager->getItemList().empty())
-    //    {
-    //        std::vector<float> distance;
-    //        for (auto& item : itemManager->getItemList())
-    //        {
-    //            distance.push_back(item->getPosition().distance(this->getPosition()));
-    //        }
-
-    //        int closestIndex = -1;
-    //        float closestDistance = this->getPickupRange();
-    //        for (size_t i = 0; i < itemManager->getItemList().size(); i++)
-    //        {
-    //            if (distance.at(i) <= closestDistance && itemManager->getItemList().at(i)->getTag() == WEAPON_TAG)
-    //            {
-    //                closestIndex = i;
-    //                closestDistance = distance.at(i);
-    //            }
-    //        }
-
-    //        if (closestIndex != -1)
-    //        {
-    //            if (weaponSlot.empty())
-    //            {
-    //                auto item = itemManager->getItemList().at(closestIndex);
-    //                if (this->isFlippedX())
-    //                {
-    //                    item->setFlippedX(true);
-    //                }
-    //                else
-    //                {
-    //                    item->setFlippedX(false);
-    //                }
-    //                item->setPosition(weaponNode->getContentSize().width/2, weaponNode->getContentSize().height*(3.f/4.f));
-    //                itemManager->removeItem(item);
-    //                weaponSlot.push_back(item);
-    //                weaponNode->addChild(item);
-    //            }
-    //            else
-    //            {
-    //                auto oldWeapon = weaponSlot.back();
-    //                weaponSlot.pop_back();
-
-    //                auto item = itemManager->getItemList().at(closestIndex);
-    //                if (this->isFlippedX())
-    //                {
-    //                    item->setFlippedX(true);
-    //                }
-    //                else
-    //                {
-    //                    item->setFlippedX(false);
-    //                }
-    //                item->setPosition(weaponNode->getContentSize().width/2, weaponNode->getContentSize().height*(3.f/4.f));
-    //                itemManager->removeItem(item);
-    //                weaponSlot.push_back(item);
-    //                weaponNode->addChild(item);
-
-    //                weaponNode->removeChild(oldWeapon, true);
-    //                oldWeapon->setPosition(this->getPosition());
-    //                itemManager->addItem(oldWeapon);
-    //            }
-    //        }
-    //    }
-    //}
-}
-
-void Hero::dropWeapon()
-{
-    //if (this->getChildByTag(WEAPON_NODE_TAG))
-    //{
-    //    weaponNode = dynamic_cast<Sprite*>(this->getChildByTag(WEAPON_NODE_TAG));
-    //}
-    //if (weaponNode)
-    //{
-    //    if (!weaponSlot.empty())
-    //    {
-    //        weaponNode->removeChild(weaponSlot.back(), true);
-    //        weaponSlot.back()->setPosition(this->getPosition());
-    //        itemManager->addItem(weaponSlot.back());
-    //        weaponSlot.pop_back();
-    //    }
-    //}
-}
 
 void Hero::rotateWeaponByCursor(cocos2d::Vec2& location)
 {
@@ -308,9 +213,6 @@ void Hero::initHero()
     StatModifier* baseATK = new StatModifier(5, StatModifierType::Flat, 0, this);
     this->maxDamage.addModifier(baseATK);
     this->damage = this->maxDamage.getValue();
-    StatModifier* basePickupRange = new StatModifier(100, StatModifierType::Flat, 0, this);
-    this->maxPickupRange.addModifier(basePickupRange);
-    this->pickupRange = this->maxPickupRange.getValue();
 }
 
 bool Hero::isWallContact()

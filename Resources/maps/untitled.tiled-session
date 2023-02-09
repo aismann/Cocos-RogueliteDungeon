@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "beginroom.tmx",
+    "activeFile": "dungeon.tmx",
     "expandedProjectPaths": [
         ".",
         "0x72_DungeonTilesetII_v1.4"
@@ -29,8 +29,8 @@
             "scale": 2.4086458333333334,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 240.59161873459325,
-                "y": 160.67119318427538
+                "x": 239.96886217186352,
+                "y": 159.6332655797258
             }
         },
         "dungeon.tmx": {
@@ -156,13 +156,14 @@
     "map.tileWidth": 16,
     "map.width": 30,
     "openFiles": [
-        "beginroom.tmx"
+        "beginroom.tmx",
+        "dungeon.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
         "beginroom.tmx",
-        "restroom.tmx",
         "dungeon.tmx",
+        "restroom.tmx",
         "D:/C++/2DGame/Cocos/ProjectsGame/RogueliteDungeon/Resources/tilemaps/dungeon.tmx",
         "map1.3.tmx",
         "map1.2.tmx",

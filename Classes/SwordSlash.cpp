@@ -14,7 +14,7 @@ void SwordSlash::setLifeTime(float life)
 	this->lifeTime = life;
 
 	int frameBegin = 0;
-	int frameEnd = 3;
+	int frameEnd = 2;
 	float frameDelay = 0.15f;
 	this->setAnimation(REPEAT::FOREVER, SWORD_SLASH, frameBegin, frameEnd, frameDelay);
 }

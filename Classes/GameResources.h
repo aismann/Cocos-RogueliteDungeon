@@ -44,9 +44,9 @@ const std::string WEAPON_BODY_PLIST = "base_weapon/base_weapon_body.plist";
 const std::string SWORD = "weapon_knight_sword";
 
 const int PLAYER_ATTACK_TAG = 5;
-const std::string SWORD_SLASH_PLIST = "base_weapon/SwordSlash.plist";
-const std::string SWORD_SLASH_BODY = "base_weapon/SwordSlashBody.plist";
-const std::string SWORD_SLASH = "sword_slash";
+const std::string SWORD_SLASH_PLIST = "base_weapon/swordslash.plist";
+const std::string SWORD_SLASH_BODY = "base_weapon/swordslashbody.plist";
+const std::string SWORD_SLASH = "swordslash";
 
 /*-------------ENEMY---------------*/
 /*-------------SKELETON---------------*/

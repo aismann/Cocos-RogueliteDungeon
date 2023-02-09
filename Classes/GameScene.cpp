@@ -1,4 +1,4 @@
-#include "MapLevel1_1.h"
+#include "GameScene.h"
 #include "PhysicsShapeCache.h"
 #include "Sword.h"
 #include "SwordSlash.h"
@@ -6,13 +6,13 @@
 #include "Skeleton.h"
 USING_NS_CC;
 
-void MapLevel1_1::initTileMap(cocos2d::Vec2 position)
+void GameScene::initTileMap(cocos2d::Vec2 position)
 {
     this->restroom = TMXTiledMap::create("maps/dungeon.tmx");
     this->restroom->setPosition(Vec2(position.x*0.5,position.y*0.5));
     this->restroom->setAnchorPoint(Vec2(0.5,0.5));
-    this->restroom->setScaleX((120*16)/ this->restroom->getContentSize().width);
-    this->restroom->setScaleY((68*16) /this->restroom->getContentSize().height);
+    this->restroom->setScaleX(((120*16)/this->restroom->getContentSize().width));
+    this->restroom->setScaleY(((68*16)/this->restroom->getContentSize().height));
     this->addChild(this->restroom,-1);
 
     auto objectGroup = this->restroom->getObjectGroup("WallCollision");
@@ -36,21 +36,14 @@ void MapLevel1_1::initTileMap(cocos2d::Vec2 position)
     }
 }
 
-cocos2d::Vec2 MapLevel1_1::tileCoordForPosition(cocos2d::Vec2 position)
-{
-    int x = position.x / restroom->getTileSize().width;
-    int y = ((restroom->getMapSize().height * restroom->getTileSize().height) - position.y) / restroom->getTileSize().height;
-    return cocos2d::Vec2(x,y);
-}
-
-void MapLevel1_1::initCameraUI()
+void GameScene::initCameraUI()
 {
     this->cameraUI = Camera::create();
     this->cameraUI->setCameraFlag(CameraFlag::USER1);
     this->addChild(cameraUI);
 }
 
-void MapLevel1_1::followHero()
+void GameScene::followHero()
 {
     auto camera = getDefaultCamera();
     Vec2 targetPos = this->heroManager->getHero()->getPosition();
@@ -63,12 +56,12 @@ void MapLevel1_1::followHero()
 }
 
 
-Scene* MapLevel1_1::createScene()
+Scene* GameScene::createScene()
 {
-    return MapLevel1_1::create();
+    return GameScene::create();
 }
 
-bool MapLevel1_1::onContactBegin(cocos2d::PhysicsContact& _contact)
+bool GameScene::onContactBegin(cocos2d::PhysicsContact& _contact)
 {
     if (m_contactStarted)
     {
@@ -99,7 +92,7 @@ bool MapLevel1_1::onContactBegin(cocos2d::PhysicsContact& _contact)
     return true;
 }
 
-void MapLevel1_1::onContactSeparate(cocos2d::PhysicsContact& _contact)
+void GameScene::onContactSeparate(cocos2d::PhysicsContact& _contact)
 {
     auto nodeA = _contact.getShapeA()->getBody()->getNode();
     auto nodeB = _contact.getShapeB()->getBody()->getNode();
@@ -114,7 +107,7 @@ void MapLevel1_1::onContactSeparate(cocos2d::PhysicsContact& _contact)
     }
 }
 
-void MapLevel1_1::onMouseMove(cocos2d::Event* event)
+void GameScene::onMouseMove(cocos2d::Event* event)
 {
     EventMouse* e = (EventMouse*)event;
     this->lastMousePositon = e->getLocationInView();
@@ -122,7 +115,7 @@ void MapLevel1_1::onMouseMove(cocos2d::Event* event)
 }
 
 // on "init" you need to initialize your instance
-bool MapLevel1_1::init()
+bool GameScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -135,12 +128,12 @@ bool MapLevel1_1::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     auto contactListener = EventListenerPhysicsContact::create();
-    contactListener->onContactBegin = CC_CALLBACK_1(MapLevel1_1::onContactBegin, this);
-    contactListener->onContactSeparate = CC_CALLBACK_1(MapLevel1_1::onContactSeparate, this);
+    contactListener->onContactBegin = CC_CALLBACK_1(GameScene::onContactBegin, this);
+    contactListener->onContactSeparate = CC_CALLBACK_1(GameScene::onContactSeparate, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
 
     auto mouseListener = EventListenerMouse::create();
-    mouseListener->onMouseMove = CC_CALLBACK_1(MapLevel1_1::onMouseMove, this);
+    mouseListener->onMouseMove = CC_CALLBACK_1(GameScene::onMouseMove, this);
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mouseListener, this);
 
     this->initCameraUI();
@@ -150,7 +143,7 @@ bool MapLevel1_1::init()
     Singleton<GameManager>::getIntsance()->addVisibleSize(visibleSize);
 
     this->heroManager->setScene(this);
-    this->heroManager->spawnHero(HeroJob::Knight, Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    this->heroManager->spawnHero(this->heroManager->getHeroJob(), Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
     auto enemy = new Skeleton();
     enemy->setPosition(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100));
@@ -162,7 +155,7 @@ bool MapLevel1_1::init()
     return true;
 }
 
-void MapLevel1_1::update(float dt)
+void GameScene::update(float dt)
 {
     this->followHero();
     heroManager->update(dt);

@@ -16,6 +16,7 @@ private:
 
 	Hero* hero;
 
+	HeroJob heroJob;
 	//cocos2d::Sprite* weaponNode;
 
 	cocos2d::Vec2 lastMousePositon;
@@ -29,6 +30,8 @@ public:
 	void spawnHero(HeroJob heroJob, cocos2d::Vec2& position);
 
 	Hero* getHero();
+	void setHeroJob(HeroJob job);
+	HeroJob getHeroJob();
 
 	//cocos2d::Node* getWeaponNode();
 

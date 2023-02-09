@@ -13,36 +13,12 @@
         <key>bodies</key>
         <dict>
 
-            <key>sword_slash(3)</key>
+            <key>swordslash(0)</key>
             <dict>
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.50000 }</string>
                 <key>is_dynamic</key>
-                <false/>
-                <key>affected_by_gravity</key>
-                <false/>
-                <key>allows_rotation</key>
                 <true/>
-                <key>linear_damping</key>
-                <real>0</real>
-                <key>velocity_limit</key>
-                <real>1e+06</real>
-                <key>angular_damping</key>
-                <real>0</real>
-                <key>angular_velocity_limit</key>
-                <real>1e+06</real>
-                <key>fixtures</key>
-                <array>
-
-                </array>
-            </dict>
-
-            <key>sword_slash(0)</key>
-            <dict>
-                <key>anchorpoint</key>
-                <string>{ 0.50000,0.50000 }</string>
-                <key>is_dynamic</key>
-                <false/>
                 <key>affected_by_gravity</key>
                 <false/>
                 <key>allows_rotation</key>
@@ -62,9 +38,9 @@
                         <key>density</key>
                         <real>1</real>
                         <key>restitution</key>
-                        <real>0</real>
+                        <real>0.2</real>
                         <key>friction</key>
-                        <real>0</real>
+                        <real>0.7</real>
                         <key>tag</key>
                         <integer>0</integer>
                         <key>group</key>
@@ -82,10 +58,10 @@
                         <array>
                             <array>
                                 <string>{ 19.00000,22.00000 }</string>
-                                <string>{ 29.00000,7.00000 }</string>
-                                <string>{ 27.00000,-3.00000 }</string>
-                                <string>{ -27.00000,-3.00000 }</string>
-                                <string>{ -29.00000,7.00000 }</string>
+                                <string>{ 27.00000,9.00000 }</string>
+                                <string>{ 29.00000,-3.00000 }</string>
+                                <string>{ -29.00000,-3.00000 }</string>
+                                <string>{ -27.00000,9.00000 }</string>
                                 <string>{ -19.00000,22.00000 }</string>
                                 <string>{ 0.00000,29.00000 }</string>
                             </array>
@@ -96,14 +72,14 @@
                 </array>
             </dict>
 
-            <key>sword_slash(2)</key>
+            <key>swordslash(1)</key>
             <dict>
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.50000 }</string>
                 <key>is_dynamic</key>
-                <false/>
+                <true/>
                 <key>affected_by_gravity</key>
-                <false/>
+                <true/>
                 <key>allows_rotation</key>
                 <true/>
                 <key>linear_damping</key>
@@ -120,14 +96,14 @@
                 </array>
             </dict>
 
-            <key>sword_slash(1)</key>
+            <key>swordslash(2)</key>
             <dict>
                 <key>anchorpoint</key>
                 <string>{ 0.50000,0.50000 }</string>
                 <key>is_dynamic</key>
-                <false/>
+                <true/>
                 <key>affected_by_gravity</key>
-                <false/>
+                <true/>
                 <key>allows_rotation</key>
                 <true/>
                 <key>linear_damping</key>

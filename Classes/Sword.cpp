@@ -2,14 +2,10 @@
 #include "GameManager.h"
 #include "HeroManager.h"
 USING_NS_CC;
-void Sword::initWeapon()
-{
-}
 
 Sword::Sword():Weapon()
 {
-	this->initWeapon();
-	this->setSpriteFrame(SWORD,0,false);
+
 }
 
 Sword::~Sword()
@@ -35,7 +31,14 @@ void Sword::PrimarySkill(cocos2d::Sprite* weaponnode)
 		aimDirection.normalize();
 
 		slash = slashPool.getOnce();
-		slash->setScale(2.f);
+		if (aimAngle < 0)
+		{
+			slash->setFlippedX(true);
+		}
+		else
+		{
+			slash->setFlippedX(false);
+		}
 		slash->setLifeTime(0.6f);
 		Vec2 slashPos = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->convertToWorldSpace(weaponnode->getContentSize() / 2));
 		slash->setPosition(slashPos);
