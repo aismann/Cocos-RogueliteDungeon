@@ -12,11 +12,11 @@ enum class REPEAT
 class Entity :public cocos2d::Sprite
 {
 private:
-	std::string spriteFrameName;
 	cocos2d::Vec2 direction;
 	float speed;
 
 protected:
+	std::string spriteFrameName;
 	cocos2d::Animate* animate;
 	cocos2d::Animation* animation;
 	cocos2d::Animation* createAnimation(std::string animationName, int startFrame, int endFrame, float frameDelay);
