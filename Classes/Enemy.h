@@ -1,6 +1,7 @@
 #ifndef _ENEMY_H__
 #define _ENEMY_H__
 #include "Entity.h"
+#include "Weapon.h"
 enum Behavior
 {
 	None,
@@ -17,12 +18,15 @@ protected:
 	Behavior nextBehavior = Behavior::None;
 	EntityStats maxHealth;
 	float health;
+	EntityStats maxMana;
+	float mana;
 	EntityStats maxDamage;
 	float damage;
 	EntityStats maxAttackSpeed;
 	float attackSpeed;
 	EntityStats maxMovementSpeed;
 	float movementSpeed;
+
 	bool isDie = false;
 	bool isTakeDamage = false;
 	bool isRun = false;
@@ -37,6 +41,8 @@ public:
 
 	virtual void setMaxHealth(float value);
 	virtual float getHealth();
+	virtual void setMaxMana(float value);
+	virtual float getMana();
 	virtual void setMaxDamage(float value);
 	virtual float getDamage();
 	virtual void setMaxAttackSpeed(float value);
@@ -44,12 +50,18 @@ public:
 	virtual void setMaxMovementSpeed(float value);
 	virtual float getMovementSpeed();
 
+	virtual float getMaxHealth();
+	virtual float getMaxMana();
+	virtual float getMaxDamage();
+	virtual float getMaxAttackSpeed();
+	virtual float getMaxMovementSpeed();
+
 	virtual void takeDamage(float damage);
 	virtual void entityIdle();
 	virtual void entityRun();
 	virtual void entityAttack(std::function<void()> onFinish);
 	virtual void entityShoot(std::function<void()> onFinish);
-	virtual void entityBehavior();
+	virtual void entityBehavior(float dt);
 	virtual void entityDie();
 	virtual void setIsEntityTakeDamage(bool value);
 	virtual bool getIsEntityTakeDamage();

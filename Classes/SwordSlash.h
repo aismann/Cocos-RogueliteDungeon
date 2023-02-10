@@ -11,6 +11,7 @@ public:
 	float getLifeTime();
 	float lifeTimeCouting(float dt);
 
+	void setDamage(float value);
 	float getDamage();
 private:
 	float lifeTime;

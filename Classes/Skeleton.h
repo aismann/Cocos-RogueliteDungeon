@@ -1,6 +1,8 @@
 #ifndef _SKELETON_H__
 #define _SKELETON_H__
 #include "Enemy.h"
+#include "ObjectPool.h"
+#include "SkeletonSlash.h"
 class Skeleton:public Enemy
 {
 public:
@@ -11,18 +13,21 @@ public:
 	void entityRun();
 	void entityAttack(std::function<void()> onFinish);
 	void entityShoot(std::function<void()> onFinish);
-	void entityBehavior();
+	void entityBehavior(float dt);
 	void entityDie();
 	void setIsEntityTakeDamage(bool value);
 	bool getIsEntityTakeDamage();
 	void setIsEntityRun(bool value);
 	bool getIsEntityRun();
 	void attacking();
-	void setIsEntityAttack(bool value);
 	void shooting();
-	void setIsEntityShooting(bool value);
 	void update(float dt);
 private:
+	ObjectPool<SkeletonSlash> slashPool;
+	std::list<SkeletonSlash*> slashList;
+	void addToPool(SkeletonSlash* slash);
+	SkeletonSlash* slash;
+
 };
 #endif // !_SKELETON_H__
 

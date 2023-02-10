@@ -44,6 +44,22 @@ void LoadingScene::initLoading(Vec2 position)
     PhysicsShapeCache::getInstance()->addShapesWithFile(SKELETON_BODY_PLIST);
     resourceList.push_back(SKELETON_PLIST);
 
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(SKELETON_SLASH_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(SKELETON_SLASH_BODY);
+    resourceList.push_back(SKELETON_SLASH);
+
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ZOMBIEBOSS_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(ZOMBIEBOSS_BODY_PLIST);
+    resourceList.push_back(ZOMBIEBOSS_PLIST);
+
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ZOMBIEBOSS_PUNCH_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(ZOMBIEBOSS_PUNCH_BODY);
+    resourceList.push_back(ZOMBIEBOSS_PUNCH);
+
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ZOMBIEBOSS_GROUND_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(ZOMBIEBOSS_GROUND_BODY);
+    resourceList.push_back(ZOMBIEBOSS_GROUND);
+
     auto loadingbar_bg = Sprite::create("ui/LoadingBarBackground.png");
     loadingbar_bg->setPosition(Vec2(position.x * 0.5, position.y * 0.4));
     this->addChild(loadingbar_bg);

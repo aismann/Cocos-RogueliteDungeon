@@ -122,7 +122,6 @@ HeroBaseState* HeroAttackState::onKeyReleased(cocos2d::EventKeyboard::KeyCode ke
 
 HeroBaseState* HeroAttackState::onMouseDown(cocos2d::Event* event)
 {
-	hero->getWeapon()->PrimarySkill(hero->getWeaponNode());
 	return nullptr;
 }
 

@@ -29,6 +29,7 @@ void Bow::PrimarySkill(cocos2d::Sprite* weaponnode)
 	aimDirection.normalize();
 	this->setVisible(true);
 	shot = shotPool.getOnce();
+	shot->setDamage(heroManager->getHero()->getDamage());
 	shot->setLifeTime(5);
 	Vec2 shotPos = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->convertToWorldSpace(Vec2(weaponnode->getContentSize() / 2) + Vec2(0,10)));
 	shot->setPosition(shotPos);
@@ -44,16 +45,20 @@ void Bow::setIsAttack(bool isAttack)
 {
 	if (isAttack)
 	{
-		//heroManager->getHero()->getWeapon()->PrimarySkill(heroManager->getHero()->getWeaponNode());
-		this->schedule([&](float dt) {
+		auto attack = CallFunc::create([&]() {
 			heroManager->getHero()->getWeapon()->PrimarySkill(heroManager->getHero()->getWeaponNode());
-			}, 1.0/ heroManager->getHero()->getAttackSpeed(), "Attack");
+			});
+		auto sequence = Sequence::create(attack, DelayTime::create(1.0 / heroManager->getHero()->getAttackSpeed()), nullptr);
+		auto repeatAttack = RepeatForever::create(sequence);
+		repeatAttack->setFlags(1);
+		this->runAction(repeatAttack);
 	}
 	else
 	{
-		this->unschedule("Attack");
+		this->stopAllActions();
 		this->setVisible(false);
 	}
+
 }
 
 void Bow::update(float dt)

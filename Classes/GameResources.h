@@ -55,13 +55,31 @@ const std::string BOW_SHOT = "weapon_arrow";
 /*-------------ENEMY---------------*/
 /*-------------SKELETON---------------*/
 const int ENEMY_TAG = 6;
+const int ENEMY_ATTACK_TAG = 7;
 const std::string SKELETON_PLIST = "mobs/Skeleton.plist";
 const std::string SKELETON_BODY_PLIST = "mobs/SkeletonBody.plist";
 const std::string SKELETON_IDLE = "skeleton_idle";
 const std::string SKELETON_RUN = "skeleton_run";
+const std::string SKELETON_ATTACK = "skeleton_idle";
 
-/*-------------ARCHITECTURE---------------*/
+const std::string SKELETON_SLASH_PLIST = "base_weapon/SkeletonSlash.plist";
+const std::string SKELETON_SLASH_BODY = "base_weapon/SkeletonSlashBody.plist";
+const std::string SKELETON_SLASH = "skeleton_slash";
+/*----------------ZOMBIEBOSS----------------*/
+const std::string ZOMBIEBOSS_PLIST = "mobs/BossZombie.plist";
+const std::string ZOMBIEBOSS_BODY_PLIST = "mobs/BossZombieBody.plist";
+const std::string ZOMBIEBOSS_IDLE = "boss_zombie_idle";
+const std::string ZOMBIEBOSS_RUN = "boss_zombie_run";
+const std::string ZOMBIEBOSS_ATTACK = "boss_zombie_idle";
+
+const std::string ZOMBIEBOSS_PUNCH_PLIST = "base_weapon/BossZombiePunch.plist";
+const std::string ZOMBIEBOSS_PUNCH_BODY = "base_weapon/BossZombiePunchBody.plist";
+const std::string ZOMBIEBOSS_PUNCH = "zombie_punch";
+
+const std::string ZOMBIEBOSS_GROUND_PLIST = "base_weapon/BossZombieGround.plist";
+const std::string ZOMBIEBOSS_GROUND_BODY = "base_weapon/BossZombieGroundBody.plist";
+const std::string ZOMBIEBOSS_GROUND = "zombie_ground";
 /*-------------WALL---------------*/
-const int WALL_TAG = 7;
+const int WALL_TAG = 8;
 #endif // !__GAME_RESOURCES_H__
 

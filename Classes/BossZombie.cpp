@@ -1,18 +1,23 @@
-#include "Skeleton.h"
+#include "BossZombie.h"
 #include "HeroManager.h"
 #include "GameManager.h"
 #include "SkeletonSlash.h"
 USING_NS_CC;
 
-Skeleton::Skeleton():Enemy()
+BossZombie::BossZombie():Enemy()
 {
-    StatModifier* baseHP = new StatModifier(10, StatModifierType::Flat, this);
-    StatModifier* baseATK = new StatModifier(2, StatModifierType::Flat, 0, this);
-    StatModifier* baseATSP = new StatModifier(0.55, StatModifierType::Flat, 0, this);
-    StatModifier* baseMSP = new StatModifier(85, StatModifierType::Flat, 0, this);
+
+    StatModifier* baseHP = new StatModifier(50, StatModifierType::Flat, this);
+    StatModifier* baseMN = new StatModifier(10, StatModifierType::Flat, this);
+    StatModifier* baseATK = new StatModifier(3, StatModifierType::Flat, 0, this);
+    StatModifier* baseATSP = new StatModifier(0.65, StatModifierType::Flat, 0, this);
+    StatModifier* baseMSP = new StatModifier(80, StatModifierType::Flat, 0, this);
 
     this->maxHealth.addModifier(baseHP);
     this->health = this->maxHealth.getValue();
+
+    this->maxMana.addModifier(baseMN);
+    this->mana = this->maxMana.getValue();
 
     this->maxDamage.addModifier(baseATK);
     this->damage = this->maxDamage.getValue();
@@ -26,15 +31,29 @@ Skeleton::Skeleton():Enemy()
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->setSpriteFrame(SKELETON_IDLE, frameBegin, true);
-    this->setAnimation(REPEAT::FOREVER, SKELETON_IDLE, frameBegin, frameEnd, frameDelay);
+    this->setSpriteFrame(ZOMBIEBOSS_IDLE, frameBegin, true);
+    this->setAnimation(REPEAT::FOREVER, ZOMBIEBOSS_IDLE, frameBegin, frameEnd, frameDelay);
+
+    hpBarBG = Sprite::create("ui/hpBarBG.png");
+    hpBar = Sprite::create("ui/hpBar.png");
+
+    hpBarBG->setContentSize(Size(30, 3));
+    hpBarBG->setAnchorPoint(Vec2(0, 0.5));
+    hpBar->setContentSize(Size(30, 3));
+    hpBar->setAnchorPoint(Vec2(0, 0.5));
+
+    hpBarBG->setPosition(this->getContentSize().width/2 - hpBarBG->getContentSize().width/2, -4);
+    hpBar->setPosition(this->getContentSize().width / 2 - hpBar->getContentSize().width / 2, -4);
+
+    this->addChild(hpBarBG);
+    this->addChild(hpBar);
 }
 
-Skeleton::~Skeleton()
+BossZombie::~BossZombie()
 {
 }
 
-void Skeleton::takeDamage(float damage)
+void BossZombie::takeDamage(float damage)
 {
     this->health -= damage;
     if (this->health <= 0)
@@ -45,34 +64,34 @@ void Skeleton::takeDamage(float damage)
     log("Enemy HP [%f]", this->health);
 }
 
-void Skeleton::entityIdle()
+void BossZombie::entityIdle()
 {
     this->stopAllActions();
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->setAnimation(REPEAT::FOREVER, SKELETON_IDLE, frameBegin, frameEnd, frameDelay);
+    this->setAnimation(REPEAT::FOREVER, ZOMBIEBOSS_IDLE, frameBegin, frameEnd, frameDelay);
 
 }
 
-void Skeleton::entityRun()
+void BossZombie::entityRun()
 {
     this->stopAllActions();
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->setAnimation(REPEAT::FOREVER, SKELETON_RUN, frameBegin, frameEnd, frameDelay);
+    this->setAnimation(REPEAT::FOREVER, ZOMBIEBOSS_RUN, frameBegin, frameEnd, frameDelay);
 
 }
 
-void Skeleton::entityAttack(std::function<void()> onFinish)
+void BossZombie::entityAttack(std::function<void()> onFinish)
 {
     this->stopAllActions();
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->spriteFrameName = SKELETON_ATTACK;
-    this->animation = createAnimation(SKELETON_ATTACK, frameBegin, frameEnd, frameDelay);
+    this->spriteFrameName = ZOMBIEBOSS_ATTACK;
+    this->animation = createAnimation(ZOMBIEBOSS_ATTACK, frameBegin, frameEnd, frameDelay);
     this->animate = Animate::create(this->animation);
     this->runAction(RepeatForever::create(animate));
     this->attacking();
@@ -81,16 +100,16 @@ void Skeleton::entityAttack(std::function<void()> onFinish)
         }), nullptr));
 }
 
-void Skeleton::entityShoot(std::function<void()> onFinish)
+void BossZombie::entityShoot(std::function<void()> onFinish)
 {
     this->stopAllActions();
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->setAnimation(REPEAT::FOREVER, SKELETON_IDLE, frameBegin, frameEnd, frameDelay);
+    this->setAnimation(REPEAT::FOREVER, ZOMBIEBOSS_IDLE, frameBegin, frameEnd, frameDelay);
 }
 
-void Skeleton::entityBehavior(float dt)
+void BossZombie::entityBehavior(float dt)
 {
     Vec2 heroPos = Singleton<HeroManager>::getIntsance()->getHero()->getPosition();
     Vec2 aimDirection = heroPos - this->getPosition();
@@ -167,86 +186,114 @@ void Skeleton::entityBehavior(float dt)
     }
 }
 
-void Skeleton::entityDie()
+void BossZombie::entityDie()
 {
 }
 
-void Skeleton::setIsEntityTakeDamage(bool value)
+void BossZombie::setIsEntityTakeDamage(bool value)
 {
     this->isTakeDamage = value;
 }
 
-bool Skeleton::getIsEntityTakeDamage()
+bool BossZombie::getIsEntityTakeDamage()
 {
     return this->isTakeDamage;
 }
 
-void Skeleton::setIsEntityRun(bool value)
+void BossZombie::setIsEntityRun(bool value)
 {
     this->isRun = value;
 }
 
-bool Skeleton::getIsEntityRun()
+bool BossZombie::getIsEntityRun()
 {
     return this->isRun;
 }
 
-void Skeleton::attacking()
+void BossZombie::attacking()
 {
     Vec2 heroPos = Singleton<HeroManager>::getIntsance()->getHero()->getPosition();
     Vec2 aimDirection = heroPos - this->getPosition();
     aimDirection.normalize();
-    this->slash = this->slashPool.getOnce();
-    this->slash->setScale(0.75f);
-    this->slash->getPhysicsBody()->setRotationEnable(false);
-    this->slash->setDamage(this->getDamage());
-    this->slash->setLifeTime(0.5f);
-    this->slash->setPosition(this->getPosition() + 0 * aimDirection);
-    this->slash->setDirection(aimDirection);
+    this->punch = this->punchPool.getOnce();
+    this->punch->getPhysicsBody()->setRotationEnable(false);
+    this->punch->setDamage(this->getDamage());
+    this->punch->setLifeTime(0.5f);
+    this->punch->setPosition(this->getPosition() + 20 * aimDirection);
+    this->punch->setDirection(aimDirection);
 
     float radian = aimDirection.getAngle(Vec2(0, 1));
     float angle = radian * 180 / M_PI;
-    this->slash->setRotation(angle);
+    this->punch->setRotation(angle);
     auto speed = this->getMovementSpeed();
-    slash->setSpeed(speed);
-    Singleton<GameManager>::getIntsance()->getScene()->addChild(slash);
-    slashList.push_back(slash);
+    punch->setSpeed(speed);
+    Singleton<GameManager>::getIntsance()->getScene()->addChild(punch);
+    punchList.push_back(punch);
 }
 
-void Skeleton::shooting()
+void BossZombie::shooting()
 {
 }
 
-void Skeleton::update(float dt)
+void BossZombie::update(float dt)
 {
     if (isDie == false)
     {
         this->entityBehavior(dt);
     }
-    std::list<SkeletonSlash*>::iterator it;
-    std::list<SkeletonSlash*> removeArray;
-    for (it = slashList.begin(); it != slashList.end(); ++it)
+    std::list<BossZombiePunch*>::iterator it;
+    std::list<BossZombiePunch*> removeArray;
+    for (it = punchList.begin(); it != punchList.end(); ++it)
     {
-        slash = *it;
-        float life = slash->lifeTimeCouting(dt);
+        punch = *it;
+        float life = punch->lifeTimeCouting(dt);
 
         auto skeletonPos = this->getPosition();
-        slash->setPosition(Vec2(skeletonPos.x, skeletonPos.y + this->getContentSize().height / 4));
+        punch->setPosition(Vec2(skeletonPos.x, skeletonPos.y + this->getContentSize().height / 4));
 
         if (life <= 0)
         {
-            Singleton<GameManager>::getIntsance()->getScene()->removeChild(slash);
-            removeArray.push_back(slash);
-            addToPool(slash);
+            Singleton<GameManager>::getIntsance()->getScene()->removeChild(punch);
+            removeArray.push_back(punch);
+            addToPool(punch);
         }
     }
     for (it = removeArray.begin(); it != removeArray.end(); ++it) {
-        slashList.remove(*it);
+        punchList.remove(*it);
     }
+    this->updateHPBar(dt);
 }
 
-void Skeleton::addToPool(SkeletonSlash* slash)
+void BossZombie::addToPool(BossZombiePunch* punch)
 {
-    slash->getPhysicsBody()->setRotationEnable(true);
-    this->slashPool.returnObject(slash);
+    punch->getPhysicsBody()->setRotationEnable(true);
+    this->punchPool.returnObject(punch);
+}
+
+void BossZombie::addToPool(BossZombieGround* ground)
+{
+    ground->getPhysicsBody()->setRotationEnable(true);
+    this->groundPool.returnObject(ground);
+}
+
+float BossZombie::getManaPoint()
+{
+    return this->manaPoint;
+}
+
+void BossZombie::addManaPoint(float value)
+{
+    this->manaPoint += value;
+}
+
+void BossZombie::updateHPBar(float dt)
+{
+
+    Size hpBarSize = hpBar->getContentSize();
+
+    float speed = 1.5f;
+    float newHP = this->getHealth() / this->getMaxHealth()
+        * hpBarBG->getContentSize().width;
+    hpBarSize.width = MathUtil::lerp(hpBarSize.width, newHP, dt * speed);
+    hpBar->setContentSize(hpBarSize);
 }

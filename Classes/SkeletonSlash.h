@@ -1,16 +1,15 @@
-#ifndef __BOW_SHOT_H__
-#define __BOW_SHOT_H__
+#ifndef __SKELETON_SLASH_H__
+#define __SKELETON_SLASH_H__
 #include "WeaponSkill.h"
 
-class BowShot:public WeaponSkill
+class SkeletonSlash:public WeaponSkill
 {
 public:
-	BowShot();
-	~BowShot();
+	SkeletonSlash();
+	~SkeletonSlash();
 	void setLifeTime(float life);
 	float getLifeTime();
 	float lifeTimeCouting(float dt);
-
 	void setDamage(float value);
 	float getDamage();
 private:

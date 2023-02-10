@@ -4,7 +4,6 @@ USING_NS_CC;
 
 WeaponSkill::WeaponSkill():Entity()
 {
-	this->setTag(PLAYER_ATTACK_TAG);
 	this->lifeTime = 0;
 }
 
@@ -26,9 +25,14 @@ float WeaponSkill::lifeTimeCouting(float dt)
 	return 0.0f;
 }
 
+void WeaponSkill::setDamage(float value)
+{
+	this->damage = value;
+}
+
 float WeaponSkill::getDamage()
 {
-	return Singleton<HeroManager>::getIntsance()->getHero()->getDamage();
+	return this->damage;
 }
 
 void WeaponSkill::takeHit()

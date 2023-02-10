@@ -2,6 +2,7 @@
 USING_NS_CC;
 SwordSlash::SwordSlash():WeaponSkill()
 {
+	this->setTag(PLAYER_ATTACK_TAG);
 	this->setSpriteFrame(SWORD_SLASH, 0);
 }
 
@@ -31,6 +32,11 @@ float SwordSlash::lifeTimeCouting(float dt)
 		return this->lifeTime -= dt;
 	}
 	return 0.0f;
+}
+
+void SwordSlash::setDamage(float value)
+{
+	WeaponSkill::setDamage(value);
 }
 
 float SwordSlash::getDamage()

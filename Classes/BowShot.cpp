@@ -3,6 +3,7 @@
 USING_NS_CC;
 BowShot::BowShot():WeaponSkill()
 {
+	this->setTag(PLAYER_ATTACK_TAG);
 	this->setSpriteFrame(BOW_SHOT, 0);
 }
 
@@ -27,6 +28,11 @@ float BowShot::lifeTimeCouting(float dt)
 		return this->lifeTime -= dt;
 	}
 	return 0.0f;
+}
+
+void BowShot::setDamage(float value)
+{
+	WeaponSkill::setDamage(value);
 }
 
 float BowShot::getDamage()

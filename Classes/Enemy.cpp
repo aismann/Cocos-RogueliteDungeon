@@ -10,7 +10,6 @@ Enemy::~Enemy()
 {
 }
 
-
 void Enemy::setMaxHealth(float value)
 {
     StatModifier* baseValue = new StatModifier(value, StatModifierType::Flat, this);
@@ -21,6 +20,18 @@ void Enemy::setMaxHealth(float value)
 float Enemy::getHealth()
 {
     return this->health;
+}
+
+void Enemy::setMaxMana(float value)
+{
+    StatModifier* baseValue = new StatModifier(value, StatModifierType::Flat, this);
+    this->maxMana.addModifier(baseValue);
+    this->mana = this->maxMana.getValue();
+}
+
+float Enemy::getMana()
+{
+    return this->mana;
 }
 
 void Enemy::setMaxDamage(float value)
@@ -59,6 +70,31 @@ float Enemy::getMovementSpeed()
     return this->movementSpeed;
 }
 
+float Enemy::getMaxHealth()
+{
+    return this->maxHealth.getValue();
+}
+
+float Enemy::getMaxMana()
+{
+    return this->maxMana.getValue();
+}
+
+float Enemy::getMaxDamage()
+{
+    return this->maxDamage.getValue();
+}
+
+float Enemy::getMaxAttackSpeed()
+{
+    return this->maxAttackSpeed.getValue();
+}
+
+float Enemy::getMaxMovementSpeed()
+{
+    return this->maxMovementSpeed.getValue();
+}
+
 void Enemy::takeDamage(float damage)
 {
 }
@@ -79,7 +115,7 @@ void Enemy::entityShoot(std::function<void()> onFinish)
 {
 }
 
-void Enemy::entityBehavior()
+void Enemy::entityBehavior(float dt)
 {
 }
 

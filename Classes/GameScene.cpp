@@ -3,6 +3,9 @@
 #include "SwordSlash.h"
 #include "BowShot.h"
 #include "Skeleton.h"
+#include "SkeletonSlash.h"
+#include "BossZombie.h"
+#include "BossZombiePunch.h"
 USING_NS_CC;
 
 void GameScene::initTileMap(cocos2d::Vec2 position)
@@ -51,26 +54,25 @@ void GameScene::initPlayerInfo()
     hpBar->setAnchorPoint(Vec2(0, 0.5));
 
     this->playerSH = Node::create();
-    playerSH->setAnchorPoint(Vec2(1,0.5));
+    playerSH->setAnchorPoint(Vec2(0,0.5));
 
-    Sprite* shieldBarBG = Sprite::create("ui/shieldBarBG.png");
+    Sprite* shieldBarBG = Sprite::create("ui/hpBarBG.png");
     shieldBarBG->setName("shieldBarBG");
     shieldBarBG->setContentSize(Size(200, 20));
-    shieldBarBG->setAnchorPoint(Vec2(1, 0.5));
+    shieldBarBG->setAnchorPoint(Vec2(0, 0.5));
 
     Sprite* shieldBar = Sprite::create("ui/shieldBar.png");
     shieldBar->setName("shieldBar");
     shieldBar->setContentSize(Size(200, 20));
-    shieldBar->setAnchorPoint(Vec2(1,0.5));
+    shieldBar->setAnchorPoint(Vec2(0,0.5));
 
     playerHP->addChild(hpBarBG);
-    playerHP->addChild(hpBar);
-
     playerSH->addChild(shieldBarBG);
+    playerHP->addChild(hpBar);
     playerSH->addChild(shieldBar);
 
     playerHP->setPosition(Vec2(gameManager->getVisibleSize().width * 0.01, gameManager->getVisibleSize().height * 0.05));
-    playerSH->setPosition(Vec2(this->playerHP->getPosition().x + shieldBar->getContentSize().width, this->playerHP->getPosition().y));
+    playerSH->setPosition(Vec2(this->playerHP->getPosition().x, this->playerHP->getPosition().y - shieldBar->getContentSize().height));
 
     this->addChild(playerHP);
     this->addChild(playerSH);
@@ -639,6 +641,8 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& _contact)
     {
         int tagA = nodeA->getTag();
         int tagB = nodeB->getTag();
+        std::string NodeAName = nodeA->getName();
+        std::string NodeBName = nodeB->getName();
         if ((tagA == PLAYER_ATTACK_TAG && tagB == ENEMY_TAG)
             || (tagB == PLAYER_ATTACK_TAG && tagA == ENEMY_TAG))
         {
@@ -656,6 +660,17 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& _contact)
                 attack->setLifeTime(0.0f);
                 Enemy* enemy = (Enemy*)(tagA == ENEMY_TAG ? nodeA : nodeB);
                 enemy->takeDamage(attack->getDamage());
+            }
+        } else
+        if ((tagA == ENEMY_ATTACK_TAG && tagB == HERO_TAG)
+            || (tagB == ENEMY_ATTACK_TAG && tagA == HERO_TAG))
+        {
+            if (NodeAName == "EnemyAttack")
+            {
+                WeaponSkill* attack = (WeaponSkill*)(tagA == ENEMY_ATTACK_TAG ? nodeA : nodeB);
+                attack->getPhysicsBody()->setRotationEnable(false);
+                Hero* hero = (Hero*)(tagA == HERO_TAG ? nodeA : nodeB);
+                hero->takeDamage(attack->getDamage());
             }
         }
     }
@@ -753,11 +768,11 @@ bool GameScene::init()
     this->heroManager->setScene(this);
     this->heroManager->spawnHero(this->heroManager->getHeroJob(), Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
-    auto enemy = new Skeleton();
+    auto enemy = new BossZombie();
     enemy->setPosition(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100));
     this->addChild(enemy);
 
-    //this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     //this->getPhysicsWorld()->setGravity(Vec2(0,-98));
     scheduleUpdate();
     return true;

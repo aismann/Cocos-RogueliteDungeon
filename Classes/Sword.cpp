@@ -36,6 +36,7 @@ void Sword::PrimarySkill(cocos2d::Sprite* weaponnode)
 	{
 		slash->setFlippedX(false);
 	}
+	slash->setDamage(heroManager->getHero()->getDamage());
 	slash->setLifeTime(0.6f);
 	Vec2 slashPos = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->convertToWorldSpace(Vec2(weaponnode->getContentSize() / 2)));
 	slash->setPosition(slashPos);
@@ -50,14 +51,17 @@ void Sword::setIsAttack(bool isAttack)
 {
 	if (isAttack)
 	{
-		heroManager->getHero()->getWeapon()->PrimarySkill(heroManager->getHero()->getWeaponNode());
-		this->schedule([&](float dt) {
+		auto attack = CallFunc::create([&]() {
 			heroManager->getHero()->getWeapon()->PrimarySkill(heroManager->getHero()->getWeaponNode());
-			}, 1.0/ heroManager->getHero()->getAttackSpeed(), "Attack");
+		});
+		auto sequence = Sequence::create(attack, DelayTime::create(1.0 / heroManager->getHero()->getAttackSpeed()), nullptr);
+		auto repeatAttack = RepeatForever::create(sequence);
+		repeatAttack->setFlags(1);
+		this->runAction(repeatAttack);
 	}
 	else
 	{
-		this->unschedule("Attack");
+		this->stopAllActions();
 	}
 }
 

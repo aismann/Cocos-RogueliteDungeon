@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>skeleton_idle(0)</key>
+            <key>skeleton_attack(0)</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -24,6 +24,90 @@
                 <string>14 16 2 16 2 1 14 1</string>
                 <key>verticesUV</key>
                 <string>41 16 29 16 29 1 41 1</string>
+            </dict>
+            <key>skeleton_attack(1)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-0.5}</string>
+                <key>spriteSize</key>
+                <string>{12,15}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,16}</string>
+                <key>textureRect</key>
+                <string>{{29,1},{12,15}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>14 16 2 16 2 1 14 1</string>
+                <key>verticesUV</key>
+                <string>41 16 29 16 29 1 41 1</string>
+            </dict>
+            <key>skeleton_attack(2)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-0.5}</string>
+                <key>spriteSize</key>
+                <string>{12,15}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,16}</string>
+                <key>textureRect</key>
+                <string>{{29,1},{12,15}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>14 16 2 16 2 1 14 1</string>
+                <key>verticesUV</key>
+                <string>41 16 29 16 29 1 41 1</string>
+            </dict>
+            <key>skeleton_attack(3)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-0.5}</string>
+                <key>spriteSize</key>
+                <string>{12,15}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,16}</string>
+                <key>textureRect</key>
+                <string>{{29,1},{12,15}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>14 16 2 16 2 1 14 1</string>
+                <key>verticesUV</key>
+                <string>41 16 29 16 29 1 41 1</string>
+            </dict>
+            <key>skeleton_idle(0)</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-0.5}</string>
+                <key>spriteSize</key>
+                <string>{12,15}</string>
+                <key>spriteSourceSize</key>
+                <string>{16,16}</string>
+                <key>textureRect</key>
+                <string>{{1,19},{12,15}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>14 16 2 16 2 1 14 1</string>
+                <key>verticesUV</key>
+                <string>13 34 1 34 1 19 13 19</string>
             </dict>
             <key>skeleton_idle(1)</key>
             <dict>
@@ -162,7 +246,7 @@
                 <key>spriteSourceSize</key>
                 <string>{16,16}</string>
                 <key>textureRect</key>
-                <string>{{1,19},{12,15}}</string>
+                <string>{{29,1},{12,15}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
@@ -170,7 +254,7 @@
                 <key>vertices</key>
                 <string>14 16 2 16 2 1 14 1</string>
                 <key>verticesUV</key>
-                <string>13 34 1 34 1 19 13 19</string>
+                <string>41 16 29 16 29 1 41 1</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -186,7 +270,7 @@
             <key>size</key>
             <string>{56,35}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:25db48572c461d9b0799ec980f9b9070:cff5c9ab6d7c7bacfeba1539897b65a3:ce2e4bf3ac52445ac8403f911e85bd80$</string>
+            <string>$TexturePacker:SmartUpdate:f2409d2a3a85012a912ee9fd4c50904b:70da69cc7416d556940468c2aa31abb4:ce2e4bf3ac52445ac8403f911e85bd80$</string>
             <key>textureFileName</key>
             <string>Skeleton.png</string>
         </dict>
