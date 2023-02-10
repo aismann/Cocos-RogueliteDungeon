@@ -5,7 +5,7 @@ USING_NS_CC;
 
 Sword::Sword():Weapon()
 {
-
+	//this->setSpriteFrame(SWORD, 0, false);
 }
 
 Sword::~Sword()
@@ -14,54 +14,55 @@ Sword::~Sword()
 
 void Sword::PrimarySkill(cocos2d::Sprite* weaponnode)
 {
-	if (!this->primarySkill)
+	float aimAngle = weaponnode->getRotation();
+	Vec2 aimDirection = Vec2(0, 1);
+	aimDirection.rotate(Vec2(0, 0), -aimAngle * M_PI / 180);
+
+	Vec2 point1 = aimDirection;
+	Vec2 point2 = aimDirection * 10;
+
+	Vec2 point1WorldSpace = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->getParent()->convertToWorldSpace(point1));
+	Vec2 point2WorldSpace = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->getParent()->convertToWorldSpace(point2));
+
+	aimDirection = point2WorldSpace - point1WorldSpace;
+	aimDirection.normalize();
+
+	slash = slashPool.getOnce();
+	if (aimAngle < 0)
 	{
-		this->primarySkill = true;
-		float aimAngle = weaponnode->getRotation();
-		Vec2 aimDirection = Vec2(0, 1);
-		aimDirection.rotate(Vec2(0, 0), -aimAngle * M_PI / 180);
+		slash->setFlippedX(true);
+	}
+	else
+	{
+		slash->setFlippedX(false);
+	}
+	slash->setLifeTime(0.6f);
+	Vec2 slashPos = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->convertToWorldSpace(Vec2(weaponnode->getContentSize() / 2)));
+	slash->setPosition(slashPos);
+	slash->setRotation(aimAngle);
+	auto speed = Singleton<HeroManager>::getIntsance()->getHero()->getMovementSpeed();
+	slash->setSpeed(speed);
+	Singleton<GameManager>::getIntsance()->getScene()->addChild(slash);
+	slashList.push_back(slash);
+}
 
-		Vec2 point1 = aimDirection;
-		Vec2 point2 = aimDirection * 10;
-
-		Vec2 point1WorldSpace = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->getParent()->convertToWorldSpace(point1));
-		Vec2 point2WorldSpace = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->getParent()->convertToWorldSpace(point2));
-
-		aimDirection = point2WorldSpace - point1WorldSpace;
-		aimDirection.normalize();
-
-		slash = slashPool.getOnce();
-		if (aimAngle < 0)
-		{
-			slash->setFlippedX(true);
-		}
-		else
-		{
-			slash->setFlippedX(false);
-		}
-		slash->setLifeTime(0.6f);
-		Vec2 slashPos = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->convertToWorldSpace(weaponnode->getContentSize() / 2));
-		slash->setPosition(slashPos);
-		slash->setRotation(aimAngle);
-		auto speed = Singleton<HeroManager>::getIntsance()->getHero()->getMovementSpeed();
-		slash->setSpeed(speed);
-		Singleton<GameManager>::getIntsance()->getScene()->addChild(slash);
-		slashList.push_back(slash);
+void Sword::setIsAttack(bool isAttack)
+{
+	if (isAttack)
+	{
+		heroManager->getHero()->getWeapon()->PrimarySkill(heroManager->getHero()->getWeaponNode());
+		this->schedule([&](float dt) {
+			heroManager->getHero()->getWeapon()->PrimarySkill(heroManager->getHero()->getWeaponNode());
+			}, 1.0/ heroManager->getHero()->getAttackSpeed(), "Attack");
+	}
+	else
+	{
+		this->unschedule("Attack");
 	}
 }
 
 void Sword::update(float dt)
 {
-	if (this->primarySkill)
-	{
-		this->timeElapsed += dt;
-		float primaryAttackSpeed = 1.0 / 2.5;
-		if (this->timeElapsed >= primaryAttackSpeed)
-		{
-			this->timeElapsed = 0.0;
-			this->primarySkill = false;
-		}
-	}
 	std::list<SwordSlash*>::iterator it;
 	std::list<SwordSlash*> removeArray;
 	for (it = slashList.begin(); it != slashList.end(); ++it)

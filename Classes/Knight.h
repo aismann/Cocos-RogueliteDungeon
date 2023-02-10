@@ -8,11 +8,6 @@ protected:
 public:
 	Knight();
 	~Knight();
-	float getHealth();
-	float getShield();
-	float getDamage();
-	float getMovementSpeed();
-
 };
 #endif // !__KNIGHT_H__
 

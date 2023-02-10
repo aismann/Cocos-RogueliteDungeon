@@ -8,10 +8,6 @@ protected:
 public:
 	Elf();
 	~Elf();
-	float getHealth();
-	float getShield();
-	float getDamage();
-	float getMovementSpeed();
 };
 #endif // !__ELF_H__
 

@@ -36,6 +36,10 @@ void LoadingScene::initLoading(Vec2 position)
     PhysicsShapeCache::getInstance()->addShapesWithFile(SWORD_SLASH_BODY);
     resourceList.push_back(SWORD_SLASH_PLIST);
 
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(BOW_SHOT_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(BOW_SHOT_BODY);
+    resourceList.push_back(BOW_SHOT_PLIST);
+
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(SKELETON_PLIST);
     PhysicsShapeCache::getInstance()->addShapesWithFile(SKELETON_BODY_PLIST);
     resourceList.push_back(SKELETON_PLIST);

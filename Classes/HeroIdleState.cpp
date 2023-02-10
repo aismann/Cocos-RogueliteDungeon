@@ -65,12 +65,6 @@ HeroBaseState* HeroIdleState::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyco
 		hero->setFlippedX(false);
 		hero->setXCoordinate(1);
 		break;
-	case EventKeyboard::KeyCode::KEY_E:
-		hero->pickupWeapon();
-		break;
-	case EventKeyboard::KeyCode::KEY_X:
-		hero->dropWeapon();
-		break;
 	default:
 		break;
 	}
@@ -135,12 +129,13 @@ HeroBaseState* HeroIdleState::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyc
 
 HeroBaseState* HeroIdleState::onMouseDown(cocos2d::Event* event)
 {
-	hero->getWeapon()->PrimarySkill(hero->getWeaponNode());
+	hero->getWeapon()->setIsAttack(true);
 	return nullptr;
 }
 
 HeroBaseState* HeroIdleState::onMouseUp(cocos2d::Event* event)
 {
+	hero->getWeapon()->setIsAttack(false);
 	return nullptr;
 }
 

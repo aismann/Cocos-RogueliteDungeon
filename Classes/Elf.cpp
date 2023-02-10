@@ -1,43 +1,50 @@
 #include "Elf.h"
-
+#include "Bow.h"
 void Elf::initHero()
 {
-	StatModifier* baseMSP = new StatModifier(100, StatModifierType::Flat, 0, this);
+	this->weaponNode = Sprite::create("baseSprite.png");
+	this->weaponNode->setOpacity(0);
+	this->weaponNode->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 4);
+	this->weaponNode->setLocalZOrder(-1);
+	this->addChild(this->weaponNode);
+
+	this->weapon = new Bow();
+	this->weapon->setPosition(this->weaponNode->getContentSize().width / 2.f, this->weaponNode->getContentSize().height * (3.f/4.f));
+	this->weaponNode->addChild(this->weapon);
+
+	StatModifier* baseHP = new StatModifier(7, StatModifierType::Flat);
+	StatModifier* baseSH = new StatModifier(3, StatModifierType::Flat, 0, this);
+	StatModifier* baseATK = new StatModifier(3, StatModifierType::Flat, 0, this);
+	StatModifier* baseATSP = new StatModifier(1, StatModifierType::Flat, 0, this);
+	StatModifier* baseMSP = new StatModifier(95, StatModifierType::Flat, 0, this);
+
+	this->maxHealth.addModifier(baseHP);
+	this->health = this->maxHealth.getValue();
+
+	this->maxShield.addModifier(baseSH);
+	this->shield = this->maxShield.getValue();
+
+	this->maxDamage.addModifier(baseATK);
+	this->damage = this->maxDamage.getValue();
+
+	this->maxAttackSpeed.addModifier(baseATSP);
+	this->attackSpeed = this->maxAttackSpeed.getValue();
+
 	this->maxMovementSpeed.addModifier(baseMSP);
 	this->movementSpeed = this->maxMovementSpeed.getValue();
 }
 
 Elf::Elf():Hero()
 {
-	this->initHero();
 	int frameBegin = 0;
 	int frameEnd = 3;
 	float frameDelay = 0.15f;
 	this->heroJob = HeroJob::Elf;
 	this->setSpriteFrame(ELF_M_IDLE, frameBegin);
 	this->setAnimation(REPEAT::FOREVER, ELF_M_IDLE, frameBegin, frameEnd, frameDelay);
+	this->initHero();
 }
 
 Elf::~Elf()
 {
-}
-
-float Elf::getHealth()
-{
-	return Hero::getHealth();
-}
-
-float Elf::getShield()
-{
-	return Hero::getShield();
-}
-
-float Elf::getDamage()
-{
-	return Hero::getDamage();
-}
-
-float Elf::getMovementSpeed()
-{
-	return Hero::getMovementSpeed();
 }

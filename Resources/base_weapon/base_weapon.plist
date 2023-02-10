@@ -40,7 +40,7 @@
                 <key>spriteSourceSize</key>
                 <string>{7,21}</string>
                 <key>textureRect</key>
-                <string>{{31,110},{7,21}}</string>
+                <string>{{24,168},{7,21}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
@@ -48,7 +48,7 @@
                 <key>vertices</key>
                 <string>7 21 0 21 0 0 7 0</string>
                 <key>verticesUV</key>
-                <string>38 131 31 131 31 110 38 110</string>
+                <string>31 189 24 189 24 168 31 168</string>
             </dict>
             <key>weapon_axe(0)</key>
             <dict>
@@ -63,7 +63,7 @@
                 <key>spriteSourceSize</key>
                 <string>{9,21}</string>
                 <key>textureRect</key>
-                <string>{{30,133},{9,21}}</string>
+                <string>{{13,168},{9,21}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
@@ -71,7 +71,7 @@
                 <key>vertices</key>
                 <string>9 21 0 21 0 0 9 0</string>
                 <key>verticesUV</key>
-                <string>39 154 30 154 30 133 39 133</string>
+                <string>22 189 13 189 13 168 22 168</string>
             </dict>
             <key>weapon_baton_with_spikes(0)</key>
             <dict>
@@ -124,23 +124,23 @@
                 <key>aliases</key>
                 <array/>
                 <key>anchor</key>
-                <string>{0,0.5}</string>
+                <string>{0.5,0}</string>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{7,25}</string>
+                <string>{25,7}</string>
                 <key>spriteSourceSize</key>
-                <string>{7,25}</string>
+                <string>{25,7}</string>
                 <key>textureRect</key>
-                <string>{{9,136},{7,25}}</string>
+                <string>{{9,136},{25,7}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
-                <string>0 3 4 0 1 2 0 2 3</string>
+                <string>1 2 3 0 1 3</string>
                 <key>vertices</key>
-                <string>7 4 7 25 0 25 0 0 5 0</string>
+                <string>25 7 0 7 0 0 25 0</string>
                 <key>verticesUV</key>
-                <string>16 140 16 161 9 161 9 136 14 136</string>
+                <string>34 143 9 143 9 136 34 136</string>
             </dict>
             <key>weapon_cleaver(0)</key>
             <dict>
@@ -155,7 +155,7 @@
                 <key>spriteSourceSize</key>
                 <string>{8,19}</string>
                 <key>textureRect</key>
-                <string>{{13,179},{8,19}}</string>
+                <string>{{1,191},{8,19}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
@@ -163,7 +163,7 @@
                 <key>vertices</key>
                 <string>8 15 5 19 0 19 0 0 8 0</string>
                 <key>verticesUV</key>
-                <string>21 194 18 198 13 198 13 179 21 179</string>
+                <string>9 206 6 210 1 210 1 191 9 191</string>
             </dict>
             <key>weapon_duel_sword(0)</key>
             <dict>
@@ -293,7 +293,7 @@
                 <key>spriteSourceSize</key>
                 <string>{6,13}</string>
                 <key>textureRect</key>
-                <string>{{23,180},{6,13}}</string>
+                <string>{{11,191},{6,13}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
@@ -301,7 +301,7 @@
                 <key>vertices</key>
                 <string>6 13 0 13 0 0 6 0</string>
                 <key>verticesUV</key>
-                <string>29 193 23 193 23 180 29 180</string>
+                <string>17 204 11 204 11 191 17 191</string>
             </dict>
             <key>weapon_knight_sword(0)</key>
             <dict>
@@ -385,7 +385,7 @@
                 <key>spriteSourceSize</key>
                 <string>{5,22}</string>
                 <key>textureRect</key>
-                <string>{{30,156},{5,22}}</string>
+                <string>{{31,112},{5,22}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
@@ -393,7 +393,7 @@
                 <key>vertices</key>
                 <string>5 22 0 22 0 0 5 0</string>
                 <key>verticesUV</key>
-                <string>35 178 30 178 30 156 35 156</string>
+                <string>36 134 31 134 31 112 36 112</string>
             </dict>
             <key>weapon_red_gem_sword(0)</key>
             <dict>
@@ -454,7 +454,7 @@
                 <key>spriteSourceSize</key>
                 <string>{10,21}</string>
                 <key>textureRect</key>
-                <string>{{18,156},{10,21}}</string>
+                <string>{{21,145},{10,21}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
@@ -462,7 +462,7 @@
                 <key>vertices</key>
                 <string>10 21 0 21 0 0 10 0</string>
                 <key>verticesUV</key>
-                <string>28 177 18 177 18 156 28 156</string>
+                <string>31 166 21 166 21 145 31 145</string>
             </dict>
             <key>weapon_rusty_sword(0)</key>
             <dict>
@@ -477,7 +477,7 @@
                 <key>spriteSourceSize</key>
                 <string>{10,21}</string>
                 <key>textureRect</key>
-                <string>{{18,133},{10,21}}</string>
+                <string>{{9,145},{10,21}}</string>
                 <key>textureRotated</key>
                 <false/>
                 <key>triangles</key>
@@ -485,7 +485,7 @@
                 <key>vertices</key>
                 <string>10 21 0 21 0 0 10 0</string>
                 <key>verticesUV</key>
-                <string>28 154 18 154 18 133 28 133</string>
+                <string>19 166 9 166 9 145 19 145</string>
             </dict>
             <key>weapon_saw_sword(0)</key>
             <dict>
@@ -545,9 +545,9 @@
             <key>realTextureFileName</key>
             <string>base_weapon.png</string>
             <key>size</key>
-            <string>{40,199}</string>
+            <string>{38,211}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fb6cc88408ace10a1c94f55619c0f5f7:f96a70312641d8ff29b1c17122cee2d3:00e7f247cc0bc0ac851f658237372322$</string>
+            <string>$TexturePacker:SmartUpdate:feca34ca362fd63efd41d1be072a6af4:b9bb57f13ddd12984201f9908bad455f:00e7f247cc0bc0ac851f658237372322$</string>
             <key>textureFileName</key>
             <string>base_weapon.png</string>
         </dict>

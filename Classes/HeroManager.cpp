@@ -26,12 +26,6 @@ void HeroManager::spawnHero(HeroJob heroJob, cocos2d::Vec2& position)
 	case HeroJob::Knight:
 		this->hero = new Knight();
 		break;
-	case HeroJob::Lizard:
-		this->hero = new Lizard();
-		break;
-	case HeroJob::Wizard:
-		this->hero = new Wizard();
-		break;
 	}
 
 	this->hero->setPosition(position);
@@ -55,6 +49,5 @@ HeroJob HeroManager::getHeroJob()
 
 void HeroManager::update(float dt)
 {
-	//log("[%f][%f]",lastMousePositon.x,lastMousePositon.y);
 	this->hero->update(dt);
 }

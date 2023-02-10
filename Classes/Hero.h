@@ -27,10 +27,29 @@ public:
     float getYCoordinate();
     void setYCoordinate(float yCoord);
 
+    virtual int getExp();
+    virtual void setExp(int exp);
+    virtual int getLevel();
+    virtual void setLevel(int level);
+    virtual int getUpgradePoint();
+    virtual void setUpgradePoint(int upgradepoint);
+
+    virtual void setMaxHealth(float value);
     virtual float getHealth();
+    virtual void setMaxShield(float value);
     virtual float getShield();
+    virtual void setMaxDamage(float value);
     virtual float getDamage();
+    virtual void setMaxAttackSpeed(float value);
+    virtual float getAttackSpeed();
+    virtual void setMaxMovementSpeed(float value);
     virtual float getMovementSpeed();
+
+    virtual float getMaxHealth();
+    virtual float getMaxShield();
+    virtual float getMaxDamage();
+    virtual float getMaxAttackSpeed();
+    virtual float getMaxMovementSpeed();
 
     void rotateWeaponByCursor(cocos2d::Vec2& location);
 
@@ -57,12 +76,21 @@ protected:
 
     HeroJob heroJob;
 
+    int exp = 0;
+    int level = 1;
+    int maxLevel = 100;
+    float expList[100];
+    int upgradepoint = 1;
+    int scorepoint = 0;
+
     EntityStats maxHealth;
     float health;
     EntityStats maxShield;
     float shield;
     EntityStats maxDamage;
     float damage;
+    EntityStats maxAttackSpeed;
+    float attackSpeed;
     EntityStats maxMovementSpeed;
     float movementSpeed;
 

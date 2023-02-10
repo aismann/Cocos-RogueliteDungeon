@@ -42,11 +42,15 @@ const std::string WIZARD_F_RUN = "wizard_f_run";
 const std::string WEAPON_PLIST = "base_weapon/base_weapon.plist";
 const std::string WEAPON_BODY_PLIST = "base_weapon/base_weapon_body.plist";
 const std::string SWORD = "weapon_knight_sword";
+const std::string BOW = "weapon_bow";
 
 const int PLAYER_ATTACK_TAG = 5;
 const std::string SWORD_SLASH_PLIST = "base_weapon/swordslash.plist";
 const std::string SWORD_SLASH_BODY = "base_weapon/swordslashbody.plist";
 const std::string SWORD_SLASH = "swordslash";
+const std::string BOW_SHOT_PLIST = "base_weapon/arrowshot.plist";
+const std::string BOW_SHOT_BODY = "base_weapon/arrowshotbody.plist";
+const std::string BOW_SHOT = "weapon_arrow";
 
 /*-------------ENEMY---------------*/
 /*-------------SKELETON---------------*/

@@ -30,3 +30,9 @@ float WeaponSkill::getDamage()
 {
 	return Singleton<HeroManager>::getIntsance()->getHero()->getDamage();
 }
+
+void WeaponSkill::takeHit()
+{
+
+}
+

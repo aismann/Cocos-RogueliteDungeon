@@ -11,7 +11,6 @@ Hero::Hero():Entity()
     this->wallContact = false;
 
     this->heroJob = HeroJob::None;
-    //this->itemManager = Singleton<ItemManager>::getIntsance();
 
     this->activeState = new HeroIdleState();
     this->activeState->addHero(this);
@@ -50,9 +49,58 @@ void Hero::setYCoordinate(float yCoord)
     this->yCoordinate += yCoord;
 }
 
+int Hero::getExp()
+{
+    return this->exp;
+}
+
+void Hero::setExp(int exp)
+{
+    this->exp = exp;
+    if (this->exp >= (int)this->expList[this->getLevel()-1])
+    {
+        this->setLevel(this->getLevel() + 1);
+    }
+}
+
+int Hero::getLevel()
+{
+    return this->level;
+}
+
+void Hero::setLevel(int level)
+{
+    this->level = level;
+    this->upgradepoint += 1;
+}
+
+int Hero::getUpgradePoint()
+{
+    return this->upgradepoint;
+}
+
+void Hero::setUpgradePoint(int upgradepoint)
+{
+    this->upgradepoint = upgradepoint;
+}
+
+void Hero::setMaxHealth(float value)
+{
+    StatModifier* baseValue = new StatModifier(value, StatModifierType::Flat, this);
+    this->maxHealth.addModifier(baseValue);
+    this->health = this->maxHealth.getValue();
+}
+
 float Hero::getHealth()
 {
     return this->health;
+}
+
+void Hero::setMaxShield(float value)
+{
+    StatModifier* baseValue = new StatModifier(value, StatModifierType::Flat, this);
+    this->maxShield.addModifier(baseValue);
+    this->shield = this->maxShield.getValue();
 }
 
 float Hero::getShield()
@@ -60,14 +108,65 @@ float Hero::getShield()
     return this->shield;
 }
 
+void Hero::setMaxDamage(float value)
+{
+    StatModifier* baseValue = new StatModifier(value, StatModifierType::Flat, this);
+    this->maxDamage.addModifier(baseValue);
+    this->damage = this->maxDamage.getValue();
+}
+
 float Hero::getDamage()
 {
     return this->damage;
 }
 
+void Hero::setMaxAttackSpeed(float value)
+{
+    StatModifier* baseValue = new StatModifier(value, StatModifierType::Flat, this);
+    this->maxAttackSpeed.addModifier(baseValue);
+    this->attackSpeed = this->maxAttackSpeed.getValue();
+}
+
+float Hero::getAttackSpeed()
+{
+    return this->attackSpeed;
+}
+
+void Hero::setMaxMovementSpeed(float value)
+{
+    StatModifier* baseValue = new StatModifier(value, StatModifierType::Flat, this);
+    this->maxMovementSpeed.addModifier(baseValue);
+    this->movementSpeed = this->maxMovementSpeed.getValue();
+}
+
 float Hero::getMovementSpeed()
 {
     return this->movementSpeed;
+}
+
+float Hero::getMaxHealth()
+{
+    return this->maxHealth.getValue();
+}
+
+float Hero::getMaxShield()
+{
+    return this->maxShield.getValue();
+}
+
+float Hero::getMaxDamage()
+{
+    return this->maxDamage.getValue();
+}
+
+float Hero::getMaxAttackSpeed()
+{
+    return this->maxAttackSpeed.getValue();
+}
+
+float Hero::getMaxMovementSpeed()
+{
+    return this->maxMovementSpeed.getValue();
 }
 
 
@@ -79,16 +178,6 @@ void Hero::rotateWeaponByCursor(cocos2d::Vec2& location)
     float radian = aimDirection.getAngle(Vec2(0, 1));
     float degree = radian * 180 / M_PI;
     weaponNode->setRotation(degree);
-    //if (degree < 0)
-    //{
-    //    this->setFlippedX(true);
-    //    dynamic_cast<Sprite*>(weaponNode->getChildByTag(WEAPON_TAG))->setFlippedX(true);
-    //}
-    //else
-    //{
-    //    this->setFlippedX(false);
-    //    dynamic_cast<Sprite*>(weaponNode->getChildByTag(WEAPON_TAG))->setFlippedX(false);
-    //}
 }
 
 void Hero::onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
@@ -203,16 +292,11 @@ void Hero::initListener()
 
 void Hero::initHero()
 {
-
-    StatModifier* baseHP = new StatModifier(10, StatModifierType::Flat);
-    this->maxHealth.addModifier(baseHP);
-    this->health = this->maxHealth.getValue();
-    StatModifier* baseMP = new StatModifier(5, StatModifierType::Flat, 0, this);
-    this->maxShield.addModifier(baseMP);
-    this->shield = this->maxShield.getValue();
-    StatModifier* baseATK = new StatModifier(5, StatModifierType::Flat, 0, this);
-    this->maxDamage.addModifier(baseATK);
-    this->damage = this->maxDamage.getValue();
+    expList[0] = 10.f;
+    for (auto i = 1; i < maxLevel; i++)
+    {
+        expList[i] = expList[i-1]* 0.25f;
+    }
 }
 
 bool Hero::isWallContact()

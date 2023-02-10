@@ -5,7 +5,7 @@ class Enemy:public Entity
 {
 protected:
 	EntityStats maxHealth;
-	float health = 100;
+	float health = 10;
 public:
 	Enemy();
 	~Enemy();

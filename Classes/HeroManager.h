@@ -4,8 +4,6 @@
 #include "Singleton.h"
 #include "Elf.h"
 #include "Knight.h"
-#include "Lizard.h"
-#include "Wizard.h"
 class Hero;
 class HeroManager
 {

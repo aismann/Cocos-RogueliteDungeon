@@ -14,6 +14,7 @@ public:
 	~Weapon();
 	virtual void PrimarySkill(cocos2d::Sprite* weaponnode) = 0;
 	bool isPrimarySkillActive();
+	virtual void setIsAttack(bool isAttack) = 0;
 	virtual void update(float dt);
 };
 #endif // !__WEAPON_H__
