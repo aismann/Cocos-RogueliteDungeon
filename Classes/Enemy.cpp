@@ -10,6 +10,16 @@ Enemy::~Enemy()
 {
 }
 
+void Enemy::setEnemyAlived()
+{
+
+}
+
+bool Enemy::getIsDie() 
+{
+    return this->isDie;
+}
+
 void Enemy::setMaxHealth(float value)
 {
     StatModifier* baseValue = new StatModifier(value, StatModifierType::Flat, this);
@@ -111,7 +121,7 @@ void Enemy::entityAttack(std::function<void()> onFinish)
 {
 }
 
-void Enemy::entityShoot(std::function<void()> onFinish)
+void Enemy::entitySkill(std::function<void()> onFinish)
 {
 }
 
@@ -149,11 +159,11 @@ void Enemy::setIsEntityAttack(bool value)
 {
 }
 
-void Enemy::shooting()
+void Enemy::bossSkill()
 {
 }
 
-void Enemy::setIsEntityShooting(bool value)
+void Enemy::setIsEntitySkill(bool value)
 {
 }
 

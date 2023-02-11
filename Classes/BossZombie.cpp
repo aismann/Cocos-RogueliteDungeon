@@ -2,6 +2,7 @@
 #include "HeroManager.h"
 #include "GameManager.h"
 #include "SkeletonSlash.h"
+#include "ClosingScene.h"
 USING_NS_CC;
 
 BossZombie::BossZombie():Enemy()
@@ -53,15 +54,40 @@ BossZombie::~BossZombie()
 {
 }
 
+void BossZombie::setEnemyAlived()
+{
+    this->health = this->maxHealth.getValue();
+    this->isDie = false;
+}
+
 void BossZombie::takeDamage(float damage)
 {
+    GameManager* gameManager = Singleton<GameManager>::getIntsance();
+    HeroManager* heroManager = Singleton<HeroManager>::getIntsance();
     this->health -= damage;
     if (this->health <= 0)
     {
-        this->health = 10;
-        Singleton<HeroManager>::getIntsance()->getHero()->setExp(10);
+        this->health = 0;
+        heroManager->getHero()->setExp(heroManager->getHero()->getExp()+25);
+        heroManager->getHero()->setScorePoint(heroManager->getHero()->getScorePoint() + 10);
+        if (this->isDie == false)
+        {
+            this->isDie = true;
+        }
     }
     log("Enemy HP [%f]", this->health);
+
+    if (this->isDie == true)
+    {
+        this->stopAllActions();
+        Sprite* effectNode = Sprite::create();
+        effectNode->setSpriteFrame(ZOMBIEBOSS_IDLE + "(0)");
+        effectNode->setAnchorPoint(Vec2(0.5, 0));
+        gameManager->getScene()->addChild(effectNode);
+        effectNode->setPosition(this->getPosition());
+        auto sequence = Sequence::create(DelayTime::create(1.5), CallFunc::create([&]() {auto clossingscene = ClosingScene::create(); Director::getInstance()->replaceScene(clossingscene); }), nullptr);
+        effectNode->runAction(sequence);
+    }
 }
 
 void BossZombie::entityIdle()
@@ -95,18 +121,26 @@ void BossZombie::entityAttack(std::function<void()> onFinish)
     this->animate = Animate::create(this->animation);
     this->runAction(RepeatForever::create(animate));
     this->attacking();
+    this->addManaPoint(2);
     this->runAction(Sequence::create(DelayTime::create(1/this->getAttackSpeed()), CallFunc::create([=]() {
         onFinish();
         }), nullptr));
 }
 
-void BossZombie::entityShoot(std::function<void()> onFinish)
+void BossZombie::entitySkill(std::function<void()> onFinish)
 {
     this->stopAllActions();
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->setAnimation(REPEAT::FOREVER, ZOMBIEBOSS_IDLE, frameBegin, frameEnd, frameDelay);
+    this->spriteFrameName = ZOMBIEBOSS_ATTACK;
+    this->animation = createAnimation(ZOMBIEBOSS_ATTACK, frameBegin, frameEnd, frameDelay);
+    this->animate = Animate::create(this->animation);
+    this->runAction(RepeatForever::create(animate));
+    this->bossSkill();
+    this->runAction(Sequence::create(DelayTime::create(1 / this->getAttackSpeed()), CallFunc::create([=]() {
+        onFinish();
+        }), nullptr));
 }
 
 void BossZombie::entityBehavior(float dt)
@@ -137,7 +171,15 @@ void BossZombie::entityBehavior(float dt)
     }
     else if (distance <=20 && this->currentBehavior == Behavior::None)
     {
-        this->nextBehavior = Behavior::Attack;
+        if (this->manaPoint >= this->getMana())
+        {
+            this->nextBehavior = Behavior::Skill;
+            this->manaPoint = 0;
+        }
+        else
+        {
+            this->nextBehavior = Behavior::Attack;
+        }
     }
     else if (distance <= 20 &&this->currentBehavior == Behavior::None)
     {
@@ -160,6 +202,24 @@ void BossZombie::entityBehavior(float dt)
         auto sequence = Sequence::create(attack, nullptr);
         auto repeatAttack = RepeatForever::create(sequence);
         this->runAction(repeatAttack);
+    }
+
+    if (nextBehavior == Behavior::Skill && this->currentBehavior == Behavior::None)
+    {
+        auto skill = CallFunc::create([&]() {
+            this->setSpeed(0);
+        this->isIdleActive = false;
+        this->isRunActive = false;
+        this->currentBehavior = Behavior::Skill;
+        std::function<void()> onFinish = [=]() {
+            this->currentBehavior = Behavior::None;
+            this->isSkillActive = true;
+        };
+        this->entitySkill(onFinish);
+            });
+        auto sequence = Sequence::create(skill, nullptr);
+        auto repeatSkill = RepeatForever::create(sequence);
+        this->runAction(repeatSkill);
     }
 
     if (nextBehavior == Behavior::Run && this->currentBehavior == Behavior::None)
@@ -216,6 +276,7 @@ void BossZombie::attacking()
     Vec2 aimDirection = heroPos - this->getPosition();
     aimDirection.normalize();
     this->punch = this->punchPool.getOnce();
+    this->sound = AudioEngine::play2d("audios/punch.mp3", false);
     this->punch->getPhysicsBody()->setRotationEnable(false);
     this->punch->setDamage(this->getDamage());
     this->punch->setLifeTime(0.5f);
@@ -231,8 +292,26 @@ void BossZombie::attacking()
     punchList.push_back(punch);
 }
 
-void BossZombie::shooting()
+void BossZombie::bossSkill()
 {
+    Vec2 heroPos = Singleton<HeroManager>::getIntsance()->getHero()->getPosition();
+    Vec2 aimDirection = heroPos - this->getPosition();
+    aimDirection.normalize();
+    this->ground = this->groundPool.getOnce();
+    this->sound = AudioEngine::play2d("audios/ground.mp3", false);
+    this->ground->getPhysicsBody()->setRotationEnable(false);
+    this->ground->setDamage(this->getDamage()*2);
+    this->ground->setLifeTime(0.5f);
+    this->ground->setPosition(this->getPosition() + 0 * aimDirection);
+    this->ground->setDirection(aimDirection);
+
+    float radian = aimDirection.getAngle(Vec2(0, 1));
+    float angle = radian * 180 / M_PI;
+    this->ground->setRotation(angle);
+    auto speed = this->getMovementSpeed();
+    ground->setSpeed(speed);
+    Singleton<GameManager>::getIntsance()->getScene()->addChild(ground);
+    groundList.push_back(ground);
 }
 
 void BossZombie::update(float dt)
@@ -261,6 +340,28 @@ void BossZombie::update(float dt)
     for (it = removeArray.begin(); it != removeArray.end(); ++it) {
         punchList.remove(*it);
     }
+
+    std::list<BossZombieGround*>::iterator _it;
+    std::list<BossZombieGround*> _removeArray;
+    for (_it = groundList.begin(); _it != groundList.end(); ++_it)
+    {
+        ground = *_it;
+        float life = ground->lifeTimeCouting(dt);
+
+        auto skeletonPos = this->getPosition();
+        ground->setPosition(Vec2(skeletonPos.x, skeletonPos.y + this->getContentSize().height / 4));
+
+        if (life <= 0)
+        {
+            Singleton<GameManager>::getIntsance()->getScene()->removeChild(ground);
+            _removeArray.push_back(ground);
+            addToPool(ground);
+        }
+    }
+    for (_it = _removeArray.begin(); _it != _removeArray.end(); ++_it) {
+        groundList.remove(*_it);
+    }
+
     this->updateHPBar(dt);
 }
 
@@ -283,7 +384,14 @@ float BossZombie::getManaPoint()
 
 void BossZombie::addManaPoint(float value)
 {
-    this->manaPoint += value;
+    if (this->manaPoint >= this->getMana())
+    {
+        this->manaPoint = this->getMana();
+    }
+    else
+    {
+        this->manaPoint += value;
+    }
 }
 
 void BossZombie::updateHPBar(float dt)

@@ -1,6 +1,7 @@
 #include "Bow.h"
 #include "GameManager.h"
 #include "HeroManager.h"
+#include "AudioEngine.h"
 USING_NS_CC;
 
 Bow::Bow():Weapon()
@@ -29,6 +30,7 @@ void Bow::PrimarySkill(cocos2d::Sprite* weaponnode)
 	aimDirection.normalize();
 	this->setVisible(true);
 	shot = shotPool.getOnce();
+	this->sound = AudioEngine::play2d("audios/arrow.mp3", false);
 	shot->setDamage(heroManager->getHero()->getDamage());
 	shot->setLifeTime(5);
 	Vec2 shotPos = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->convertToWorldSpace(Vec2(weaponnode->getContentSize() / 2) + Vec2(0,10)));
@@ -50,7 +52,6 @@ void Bow::setIsAttack(bool isAttack)
 			});
 		auto sequence = Sequence::create(attack, DelayTime::create(1.0 / heroManager->getHero()->getAttackSpeed()), nullptr);
 		auto repeatAttack = RepeatForever::create(sequence);
-		repeatAttack->setFlags(1);
 		this->runAction(repeatAttack);
 	}
 	else

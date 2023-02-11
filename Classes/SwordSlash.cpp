@@ -4,6 +4,10 @@ SwordSlash::SwordSlash():WeaponSkill()
 {
 	this->setTag(PLAYER_ATTACK_TAG);
 	this->setSpriteFrame(SWORD_SLASH, 0);
+	int frameBegin = 0;
+	int frameEnd = 2;
+	float frameDelay = 0.15f;
+	this->setAnimation(REPEAT::FOREVER, SWORD_SLASH, frameBegin, frameEnd, frameDelay);
 }
 
 SwordSlash::~SwordSlash()
@@ -13,11 +17,6 @@ SwordSlash::~SwordSlash()
 void SwordSlash::setLifeTime(float life)
 {
 	this->lifeTime = life;
-
-	int frameBegin = 0;
-	int frameEnd = 2;
-	float frameDelay = 0.15f;
-	this->setAnimation(REPEAT::FOREVER, SWORD_SLASH, frameBegin, frameEnd, frameDelay);
 }
 
 float SwordSlash::getLifeTime()

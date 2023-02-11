@@ -1,6 +1,5 @@
 #include "Hero.h"
 #include "HeroIdleState.h"
-#include "GameManager.h"
 USING_NS_CC;
 
 Hero::Hero():Entity()
@@ -63,6 +62,11 @@ void Hero::setExp(int exp)
     }
 }
 
+int Hero::getExpList(int level)
+{
+    return this->expList[level-1];
+}
+
 int Hero::getLevel()
 {
     return this->level;
@@ -82,6 +86,16 @@ int Hero::getUpgradePoint()
 void Hero::setUpgradePoint(int upgradepoint)
 {
     this->upgradepoint = upgradepoint;
+}
+
+int Hero::getScorePoint()
+{
+    return this->scorepoint;
+}
+
+void Hero::setScorePoint(int scorepoint)
+{
+    this->scorepoint = scorepoint;
 }
 
 void Hero::setMaxHealth(float value)
@@ -255,6 +269,10 @@ void Hero::takeDamage(float damage)
     {
         this->shield -= damage;
     }
+    else if (damage == this->shield)
+    {
+        this->shield = 0;
+    }
     else if (this->shield == 0)
     {
         this->health -= damage;
@@ -263,7 +281,19 @@ void Hero::takeDamage(float damage)
     {
         this->health = 0;
     }
-    log("Hero HP [%f]", this->health);
+    if (this->health == 0)
+    {
+        if (this->isDie == false)
+        {
+            this->isDie = true;
+            this->onHeroDie();
+        }
+    }
+}
+
+void Hero::onHeroDie()
+{
+
 }
 
 void Hero::changeState(HeroBaseState* newState)

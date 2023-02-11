@@ -1,6 +1,7 @@
 #include "Sword.h"
 #include "GameManager.h"
 #include "HeroManager.h"
+#include "AudioEngine.h"
 USING_NS_CC;
 
 Sword::Sword():Weapon()
@@ -28,6 +29,7 @@ void Sword::PrimarySkill(cocos2d::Sprite* weaponnode)
 	aimDirection.normalize();
 
 	slash = slashPool.getOnce();
+	this->sound = AudioEngine::play2d("audios/sword.mp3", false);
 	if (aimAngle < 0)
 	{
 		slash->setFlippedX(true);
@@ -37,7 +39,7 @@ void Sword::PrimarySkill(cocos2d::Sprite* weaponnode)
 		slash->setFlippedX(false);
 	}
 	slash->setDamage(heroManager->getHero()->getDamage());
-	slash->setLifeTime(0.6f);
+	slash->setLifeTime(1.0f);
 	Vec2 slashPos = Singleton<GameManager>::getIntsance()->getScene()->convertToNodeSpace(weaponnode->convertToWorldSpace(Vec2(weaponnode->getContentSize() / 2)));
 	slash->setPosition(slashPos);
 	slash->setRotation(aimAngle);
@@ -56,7 +58,6 @@ void Sword::setIsAttack(bool isAttack)
 		});
 		auto sequence = Sequence::create(attack, DelayTime::create(1.0 / heroManager->getHero()->getAttackSpeed()), nullptr);
 		auto repeatAttack = RepeatForever::create(sequence);
-		repeatAttack->setFlags(1);
 		this->runAction(repeatAttack);
 	}
 	else

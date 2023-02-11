@@ -31,7 +31,7 @@ bool MenuScene::init()
 
     this->soundOn = true;
 
-    AudioEngine::preload("sounds/background.mp3", [&](bool isSuccess) {
+    AudioEngine::preload("audios/background.mp3", [&](bool isSuccess) {
         log("Preload background.pm3 %s", isSuccess ? "Success" : "Failed");
         if (isSuccess) {
             this->backgroundMusic = AudioEngine::play2d("sounds/background.mp3", true);

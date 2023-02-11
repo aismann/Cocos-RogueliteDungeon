@@ -4,16 +4,18 @@
 #include "ObjectPool.h"
 #include "BossZombiePunch.h"
 #include "BossZombieGround.h"
+#include "AudioEngine.h"
 class BossZombie:public Enemy
 {
 public:
 	BossZombie();
 	~BossZombie();
+	void setEnemyAlived();
 	void takeDamage(float damage);
 	void entityIdle();
 	void entityRun();
 	void entityAttack(std::function<void()> onFinish);
-	void entityShoot(std::function<void()> onFinish);
+	void entitySkill(std::function<void()> onFinish);
 	void entityBehavior(float dt);
 	void entityDie();
 	void setIsEntityTakeDamage(bool value);
@@ -21,13 +23,13 @@ public:
 	void setIsEntityRun(bool value);
 	bool getIsEntityRun();
 	void attacking();
-	void shooting();
+	void bossSkill();
 	void update(float dt);
 	float getManaPoint();
 	void addManaPoint(float value);
 private:
 	float manaPoint = 0;
-
+	int sound;
 	ObjectPool<BossZombiePunch> punchPool;
 	std::list<BossZombiePunch*> punchList;
 	void addToPool(BossZombiePunch* punch);

@@ -1,14 +1,14 @@
-#ifndef _SKELETON_H__
-#define _SKELETON_H__
+#ifndef _ORC_H__
+#define _ORC_H__
 #include "Enemy.h"
 #include "ObjectPool.h"
-#include "SkeletonSlash.h"
+#include "OrcMagic.h"
 #include "AudioEngine.h"
-class Skeleton:public Enemy
+class Orc:public Enemy
 {
 public:
-	Skeleton();
-	~Skeleton();
+	Orc();
+	~Orc();
 	void setEnemyAlived();
 	void takeDamage(float damage);
 	void entityIdle();
@@ -24,11 +24,12 @@ public:
 	void attacking();
 	void update(float dt);
 private:
-	ObjectPool<SkeletonSlash> slashPool;
-	std::list<SkeletonSlash*> slashList;
-	void addToPool(SkeletonSlash* slash);
-	SkeletonSlash* slash;
 	int sound;
+	ObjectPool<OrcMagic> magicPool;
+	std::list<OrcMagic*> magicList;
+	void addToPool(OrcMagic* magic);
+	OrcMagic* magic;
+
 };
 #endif // !_SKELETON_H__
 

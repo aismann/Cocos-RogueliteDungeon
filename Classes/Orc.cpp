@@ -1,15 +1,14 @@
-#include "Skeleton.h"
+#include "Orc.h"
 #include "HeroManager.h"
 #include "GameManager.h"
-#include "SkeletonSlash.h"
 USING_NS_CC;
 
-Skeleton::Skeleton():Enemy()
+Orc::Orc():Enemy()
 {
-    StatModifier* baseHP = new StatModifier(10, StatModifierType::Flat, this);
-    StatModifier* baseATK = new StatModifier(2, StatModifierType::Flat, 0, this);
-    StatModifier* baseATSP = new StatModifier(0.55, StatModifierType::Flat, 0, this);
-    StatModifier* baseMSP = new StatModifier(85, StatModifierType::Flat, 0, this);
+    StatModifier* baseHP = new StatModifier(7, StatModifierType::Flat, this);
+    StatModifier* baseATK = new StatModifier(1, StatModifierType::Flat, 0, this);
+    StatModifier* baseATSP = new StatModifier(0.75, StatModifierType::Flat, 0, this);
+    StatModifier* baseMSP = new StatModifier(90, StatModifierType::Flat, 0, this);
 
     this->maxHealth.addModifier(baseHP);
     this->health = this->maxHealth.getValue();
@@ -26,21 +25,21 @@ Skeleton::Skeleton():Enemy()
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->setSpriteFrame(SKELETON_IDLE, frameBegin, true);
-    this->setAnimation(REPEAT::FOREVER, SKELETON_IDLE, frameBegin, frameEnd, frameDelay);
+    this->setSpriteFrame(ORC_IDLE, frameBegin, true);
+    this->setAnimation(REPEAT::FOREVER, ORC_IDLE, frameBegin, frameEnd, frameDelay);
 }
 
-Skeleton::~Skeleton()
+Orc::~Orc()
 {
 }
 
-void Skeleton::setEnemyAlived()
+void Orc::setEnemyAlived()
 {
     this->health = this->maxHealth.getValue();
     this->isDie = false;
 }
 
-void Skeleton::takeDamage(float damage)
+void Orc::takeDamage(float damage)
 {
     GameManager* gameManager = Singleton<GameManager>::getIntsance();
     HeroManager* heroManager = Singleton<HeroManager>::getIntsance();
@@ -48,46 +47,45 @@ void Skeleton::takeDamage(float damage)
     if (this->health <= 0)
     {
         this->health = 0;
-        gameManager->addDangerPoint(2);
-        heroManager->getHero()->setExp(heroManager->getHero()->getExp()+9);
-        heroManager->getHero()->setScorePoint(heroManager->getHero()->getScorePoint() + 1);
+        gameManager->addDangerPoint(5);
+        heroManager->getHero()->setExp(heroManager->getHero()->getExp()+12);
+        heroManager->getHero()->setScorePoint(heroManager->getHero()->getScorePoint() + 2);
         if (this->isDie == false)
         {
             this->isDie = true;
         }
-
     }
     log("Enemy HP [%f]", this->health);
 }
 
-void Skeleton::entityIdle()
+void Orc::entityIdle()
 {
     this->stopAllActions();
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->setAnimation(REPEAT::FOREVER, SKELETON_IDLE, frameBegin, frameEnd, frameDelay);
+    this->setAnimation(REPEAT::FOREVER, ORC_IDLE, frameBegin, frameEnd, frameDelay);
 
 }
 
-void Skeleton::entityRun()
+void Orc::entityRun()
 {
     this->stopAllActions();
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->setAnimation(REPEAT::FOREVER, SKELETON_RUN, frameBegin, frameEnd, frameDelay);
+    this->setAnimation(REPEAT::FOREVER, ORC_RUN, frameBegin, frameEnd, frameDelay);
 
 }
 
-void Skeleton::entityAttack(std::function<void()> onFinish)
+void Orc::entityAttack(std::function<void()> onFinish)
 {
     this->stopAllActions();
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->spriteFrameName = SKELETON_ATTACK;
-    this->animation = createAnimation(SKELETON_ATTACK, frameBegin, frameEnd, frameDelay);
+    this->spriteFrameName = ORC_ATTACK;
+    this->animation = createAnimation(ORC_ATTACK, frameBegin, frameEnd, frameDelay);
     this->animate = Animate::create(this->animation);
     this->runAction(RepeatForever::create(animate));
     this->attacking();
@@ -96,16 +94,16 @@ void Skeleton::entityAttack(std::function<void()> onFinish)
         }), nullptr));
 }
 
-void Skeleton::entitySkill(std::function<void()> onFinish)
+void Orc::entitySkill(std::function<void()> onFinish)
 {
     this->stopAllActions();
     int frameBegin = 0;
     int frameEnd = 3;
     float frameDelay = 0.15f;
-    this->setAnimation(REPEAT::FOREVER, SKELETON_IDLE, frameBegin, frameEnd, frameDelay);
+    this->setAnimation(REPEAT::FOREVER, ORC_IDLE, frameBegin, frameEnd, frameDelay);
 }
 
-void Skeleton::entityBehavior(float dt)
+void Orc::entityBehavior(float dt)
 {
     Vec2 heroPos = Singleton<HeroManager>::getIntsance()->getHero()->getPosition();
     Vec2 aimDirection = heroPos - this->getPosition();
@@ -127,11 +125,11 @@ void Skeleton::entityBehavior(float dt)
     }
 
     this->distance = this->getPosition().distance(heroPos);
-    if (distance > 20 && this->currentBehavior == Behavior::None)
+    if (distance > 50 && this->currentBehavior == Behavior::None)
     {
         this->nextBehavior = Behavior::Run;
     }
-    else if (distance <=20 && this->currentBehavior == Behavior::None)
+    else if (distance > 20 && distance <= 50 && this->currentBehavior == Behavior::None)
     {
         this->nextBehavior = Behavior::Attack;
     }
@@ -182,83 +180,79 @@ void Skeleton::entityBehavior(float dt)
     }
 }
 
-void Skeleton::entityDie()
+void Orc::entityDie()
 {
 }
 
-void Skeleton::setIsEntityTakeDamage(bool value)
+void Orc::setIsEntityTakeDamage(bool value)
 {
     this->isTakeDamage = value;
 }
 
-bool Skeleton::getIsEntityTakeDamage()
+bool Orc::getIsEntityTakeDamage()
 {
     return this->isTakeDamage;
 }
 
-void Skeleton::setIsEntityRun(bool value)
+void Orc::setIsEntityRun(bool value)
 {
     this->isRun = value;
 }
 
-bool Skeleton::getIsEntityRun()
+bool Orc::getIsEntityRun()
 {
     return this->isRun;
 }
 
-void Skeleton::attacking()
+void Orc::attacking()
 {
     Vec2 heroPos = Singleton<HeroManager>::getIntsance()->getHero()->getPosition();
     Vec2 aimDirection = heroPos - this->getPosition();
     aimDirection.normalize();
-    this->slash = this->slashPool.getOnce();
-    this->sound = AudioEngine::play2d("audios/punch.mp3", false);
-    this->slash->setScale(0.75f);
-    this->slash->getPhysicsBody()->setRotationEnable(false);
-    this->slash->setDamage(this->getDamage());
-    this->slash->setLifeTime(0.5f);
-    this->slash->setPosition(this->getPosition() + 0 * aimDirection);
-    this->slash->setDirection(aimDirection);
-
+    this->magic = this->magicPool.getOnce();
+    this->sound = AudioEngine::play2d("audios/magic.mp3", false);
+    this->magic->getPhysicsBody()->setRotationEnable(false);
+    this->magic->setDamage(this->getDamage());
+    this->magic->setLifeTime(1.f);
+    this->magic->setPosition(this->getPosition() + 15 * aimDirection);
+    auto speed = this->getMovementSpeed() * 1.5f;
+    magic->setSpeed(speed);
+    this->magic->setDirection(aimDirection);
     float radian = aimDirection.getAngle(Vec2(0, 1));
     float angle = radian * 180 / M_PI;
-    this->slash->setRotation(angle);
-    auto speed = this->getMovementSpeed();
-    slash->setSpeed(speed);
-    Singleton<GameManager>::getIntsance()->getScene()->addChild(slash);
-    slashList.push_back(slash);
+    this->magic->setRotation(angle);
+
+    Singleton<GameManager>::getIntsance()->getScene()->addChild(magic);
+    magicList.push_back(magic);
 }
 
-void Skeleton::update(float dt)
+void Orc::update(float dt)
 {
     if (isDie == false)
     {
         this->entityBehavior(dt);
     }
-    std::list<SkeletonSlash*>::iterator it;
-    std::list<SkeletonSlash*> removeArray;
-    for (it = slashList.begin(); it != slashList.end(); ++it)
+    std::list<OrcMagic*>::iterator it;
+    std::list<OrcMagic*> removeArray;
+    for (it = magicList.begin(); it != magicList.end(); ++it)
     {
-        slash = *it;
-        float life = slash->lifeTimeCouting(dt);
-
-        auto skeletonPos = this->getPosition();
-        slash->setPosition(Vec2(skeletonPos.x, skeletonPos.y + this->getContentSize().height / 4));
+        magic = *it;
+        float life = magic->lifeTimeCouting(dt);
 
         if (life <= 0)
         {
-            Singleton<GameManager>::getIntsance()->getScene()->removeChild(slash);
-            removeArray.push_back(slash);
-            addToPool(slash);
+            Singleton<GameManager>::getIntsance()->getScene()->removeChild(magic);
+            removeArray.push_back(magic);
+            addToPool(magic);
         }
     }
     for (it = removeArray.begin(); it != removeArray.end(); ++it) {
-        slashList.remove(*it);
+        magicList.remove(*it);
     }
 }
 
-void Skeleton::addToPool(SkeletonSlash* slash)
+void Orc::addToPool(OrcMagic* magic)
 {
-    slash->getPhysicsBody()->setRotationEnable(true);
-    this->slashPool.returnObject(slash);
+    magic->getPhysicsBody()->setRotationEnable(true);
+    this->magicPool.returnObject(magic);
 }

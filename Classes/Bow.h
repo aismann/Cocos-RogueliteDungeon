@@ -15,6 +15,7 @@ public:
 	void setIsAttack(bool isAttack);
 	void update(float dt);
 private:
+	int sound;
 	ObjectPool<BowShot> shotPool;
 	std::list<BowShot*> shotList;
 	void addToPool(BowShot* shot);

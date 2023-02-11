@@ -65,6 +65,19 @@ const std::string SKELETON_ATTACK = "skeleton_idle";
 const std::string SKELETON_SLASH_PLIST = "base_weapon/SkeletonSlash.plist";
 const std::string SKELETON_SLASH_BODY = "base_weapon/SkeletonSlashBody.plist";
 const std::string SKELETON_SLASH = "skeleton_slash";
+
+/*----------------ORC----------------*/
+
+const std::string ORC_PLIST = "mobs/OrcShaman.plist";
+const std::string ORC_BODY_PLIST = "mobs/OrcShamanBody.plist";
+const std::string ORC_IDLE = "orc_shaman_idle";
+const std::string ORC_RUN = "orc_shaman_run";
+const std::string ORC_ATTACK = "orc_shaman_idle";
+
+const std::string ORC_MAGIC_PLIST = "base_weapon/OrcMagic.plist";
+const std::string ORC_MAGIC_BODY = "base_weapon/OrcMagicBody.plist";
+const std::string ORC_MAGIC = "orc_magic";
+
 /*----------------ZOMBIEBOSS----------------*/
 const std::string ZOMBIEBOSS_PLIST = "mobs/BossZombie.plist";
 const std::string ZOMBIEBOSS_BODY_PLIST = "mobs/BossZombieBody.plist";

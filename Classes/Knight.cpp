@@ -1,5 +1,7 @@
 #include "Knight.h"
 #include "Sword.h"
+#include "ClosingScene.h"
+USING_NS_CC;
 void Knight::initHero()
 {
 	this->weaponNode = Sprite::create("baseSprite.png");
@@ -47,4 +49,19 @@ Knight::Knight():Hero()
 
 Knight::~Knight()
 {
+}
+
+void Knight::onHeroDie()
+{
+	GameManager* gameManager = Singleton<GameManager>::getIntsance();
+	this->stopAllActions();
+	Sprite* effectNode = Sprite::create();
+	effectNode->setSpriteFrame(KNIGHT_M_IDLE + "(0)");
+	effectNode->setAnchorPoint(Vec2(0.5, 0));
+	gameManager->getScene()->addChild(effectNode);
+	effectNode->setPosition(this->getPosition());
+	auto sequence = Sequence::create(DelayTime::create(1.5), CallFunc::create([&]() {auto clossingscene = ClosingScene::create(); Director::getInstance()->replaceScene(clossingscene); }), nullptr);
+	effectNode->runAction(sequence);
+	this->setVisible(false);
+	this->pause();
 }

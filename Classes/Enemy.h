@@ -8,7 +8,7 @@ enum Behavior
 	Idle,
 	Run,
 	Attack,
-	Shoot
+	Skill
 };
 class Enemy:public Entity
 {
@@ -33,11 +33,14 @@ protected:
 	bool isIdleActive = false;
 	bool isRunActive = false;
 	bool isAttackActive = false;
-	bool isShootingActive = false;
+	bool isSkillActive = false;
 
 public:
 	Enemy();
 	~Enemy();
+
+	virtual void setEnemyAlived();
+	virtual bool getIsDie();
 
 	virtual void setMaxHealth(float value);
 	virtual float getHealth();
@@ -60,7 +63,7 @@ public:
 	virtual void entityIdle();
 	virtual void entityRun();
 	virtual void entityAttack(std::function<void()> onFinish);
-	virtual void entityShoot(std::function<void()> onFinish);
+	virtual void entitySkill(std::function<void()> onFinish);
 	virtual void entityBehavior(float dt);
 	virtual void entityDie();
 	virtual void setIsEntityTakeDamage(bool value);
@@ -69,8 +72,8 @@ public:
 	virtual bool getIsEntityRun();
 	virtual void attacking();
 	virtual void setIsEntityAttack(bool value);
-	virtual void shooting();
-	virtual void setIsEntityShooting(bool value);
+	virtual void bossSkill();
+	virtual void setIsEntitySkill(bool value);
 	virtual void update(float dt);
 private:
 

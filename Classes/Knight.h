@@ -8,6 +8,7 @@ protected:
 public:
 	Knight();
 	~Knight();
+	void onHeroDie();
 };
 #endif // !__KNIGHT_H__
 

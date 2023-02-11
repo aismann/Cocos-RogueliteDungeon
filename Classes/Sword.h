@@ -15,6 +15,7 @@ public:
 	void setIsAttack(bool isAttack);
 	void update(float dt);
 private:
+	int sound;
 	ObjectPool<SwordSlash> slashPool;
 	std::list<SwordSlash*> slashList;
 	void addToPool(SwordSlash* slash);

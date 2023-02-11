@@ -60,6 +60,14 @@ void LoadingScene::initLoading(Vec2 position)
     PhysicsShapeCache::getInstance()->addShapesWithFile(ZOMBIEBOSS_GROUND_BODY);
     resourceList.push_back(ZOMBIEBOSS_GROUND);
 
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ORC_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(ORC_BODY_PLIST);
+    resourceList.push_back(ORC_PLIST);
+
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile(ORC_MAGIC_PLIST);
+    PhysicsShapeCache::getInstance()->addShapesWithFile(ORC_MAGIC_BODY);
+    resourceList.push_back(ORC_MAGIC);
+
     auto loadingbar_bg = Sprite::create("ui/LoadingBarBackground.png");
     loadingbar_bg->setPosition(Vec2(position.x * 0.5, position.y * 0.4));
     this->addChild(loadingbar_bg);

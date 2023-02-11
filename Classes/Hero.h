@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "HeroBaseState.h"
 #include "Weapon.h"
+#include "GameManager.h"
 
 enum class HeroJob
 {
@@ -29,10 +30,14 @@ public:
 
     virtual int getExp();
     virtual void setExp(int exp);
+    virtual int getExpList(int level);
     virtual int getLevel();
     virtual void setLevel(int level);
     virtual int getUpgradePoint();
     virtual void setUpgradePoint(int upgradepoint);
+
+    virtual int getScorePoint();
+    virtual void setScorePoint(int scorepoint);
 
     virtual void setMaxHealth(float value);
     virtual float getHealth();
@@ -66,6 +71,8 @@ public:
 
     void takeDamage(float damage);
 
+    virtual void onHeroDie();
+
     bool isWallContact();
     void setWallContact(bool contact);
 
@@ -75,7 +82,7 @@ protected:
     void initHero();
 
     HeroJob heroJob;
-
+    bool isDie = false;
     int exp = 0;
     int level = 1;
     int maxLevel = 100;

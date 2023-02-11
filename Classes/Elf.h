@@ -8,6 +8,7 @@ protected:
 public:
 	Elf();
 	~Elf();
+	void onHeroDie();
 };
 #endif // !__ELF_H__
 

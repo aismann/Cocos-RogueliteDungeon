@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "MenuScene.h"
 #include "PhysicsShapeCache.h"
 #include "SwordSlash.h"
 #include "BowShot.h"
@@ -6,6 +7,8 @@
 #include "SkeletonSlash.h"
 #include "BossZombie.h"
 #include "BossZombiePunch.h"
+#include "Orc.h"
+#include "OrcMagic.h"
 USING_NS_CC;
 
 void GameScene::initTileMap(cocos2d::Vec2 position)
@@ -105,12 +108,138 @@ void GameScene::updatePlayerInfo(float dt)
 
 void GameScene::initExpUI()
 {
+    Vec2 visibleSize = Singleton<GameManager>::getIntsance()->getVisibleSize();
+    this->expUI = Node::create();
+    this->expUI->setAnchorPoint(Vec2(0, 0.5));
 
+    Label* lvlLabel = Label::createWithTTF("Lvl : ", "fonts/dogicapixel.ttf", 16);
+    lvlLabel->setAnchorPoint(Vec2(0,0.5));
+    this->expUI->addChild(lvlLabel);
+
+    Label* lvlValue = Label::createWithTTF("100", "fonts/dogicapixel.ttf", 16);
+    lvlValue->setAnchorPoint(Vec2(0, 0.5));
+    lvlValue->setName("lvlValue");
+    this->expUI->addChild(lvlValue);
+
+    const int marginLeft = 80;
+    const float labelWidth = lvlLabel->getContentSize().width;
+    const float valueWidth = lvlValue->getContentSize().width;
+    lvlLabel->setPositionX(labelWidth - marginLeft - valueWidth);
+    expUI->setPosition((valueWidth + marginLeft), 70);
+    this->addChild(expUI);
+    expUI->setCameraMask((unsigned short)this->cameraUI->getCameraFlag());
 }
 
 void GameScene::updateExpUI(float dt)
 {
+    Node* lvlValue = this->expUI->getChildByName("lvlValue");
+    ((Label*)lvlValue)->setString(std::to_string(Singleton<HeroManager>::getIntsance()->getHero()->getLevel()));
+    Node* expValue = this->expUI->getChildByName("expValue");
+}
 
+void GameScene::initScoreUI()
+{
+    Vec2 visibleSize = Singleton<GameManager>::getIntsance()->getVisibleSize();
+    this->scoreUI = Node::create();
+    this->scoreUI->setAnchorPoint(Vec2(0, 0.5));
+
+    Label* scoreLabel = Label::createWithTTF("Score : ", "fonts/dogicapixel.ttf", 16);
+    scoreLabel->setAnchorPoint(Vec2(0, 0.5));
+    this->scoreUI->addChild(scoreLabel);
+
+    Label* scoreValue = Label::createWithTTF("100", "fonts/dogicapixel.ttf", 16);
+    scoreValue->setAnchorPoint(Vec2(0, 0.5));
+    scoreValue->setName("scoreValue");
+    this->scoreUI->addChild(scoreValue);
+
+    const int marginLeft = 10;
+    const float labelWidth = scoreLabel->getContentSize().width;
+    const float valueWidth = scoreValue->getContentSize().width;
+    scoreLabel->setPositionX(-labelWidth - marginLeft - labelWidth);
+    scoreUI->setPosition(visibleSize.x - (labelWidth + valueWidth + marginLeft), visibleSize.y - 20);
+    this->addChild(scoreUI);
+    scoreUI->setCameraMask((unsigned short)this->cameraUI->getCameraFlag());
+}
+
+void GameScene::updateScoreUI(float dt)
+{
+    Node* scoreValue = this->expUI->getChildByName("scoreValue");
+    ((Label*)scoreValue)->setString(std::to_string(Singleton<HeroManager>::getIntsance()->getHero()->getScorePoint()));
+}
+
+void GameScene::initDangerBar()
+{
+    this->dangerBarUI = Node::create();
+    dangerBarUI->setAnchorPoint(Vec2(0, 0.5));
+
+    Sprite* dangerBarBG = Sprite::create("ui/hpBarBG.png");
+    dangerBarBG->setName("dangerBarBG");
+    dangerBarBG->setContentSize(Size(200, 20));
+    dangerBarBG->setAnchorPoint(Vec2(0, 0.5));
+    dangerBarBG->setRotation(-90);
+    Sprite* dangerBar = Sprite::create("ui/dangerBar.png");
+    dangerBar->setName("dangerBar");
+    dangerBar->setContentSize(Size(200, 20));
+    dangerBar->setAnchorPoint(Vec2(0, 0.5));
+    dangerBar->setRotation(-90);
+    dangerBarUI->addChild(dangerBarBG);
+    dangerBarUI->addChild(dangerBar);
+
+    dangerBarUI->setPosition(Vec2(gameManager->getVisibleSize().width * 0.97, gameManager->getVisibleSize().height * 0.05));
+
+    this->addChild(dangerBarUI);
+
+    this->dangerBarUI->setCameraMask((unsigned short)this->cameraUI->getCameraFlag());
+}
+
+void GameScene::updateDangerBar(float dt)
+{
+    GameManager* gameManager = Singleton<GameManager>::getIntsance();
+
+    auto* dangerBarBG = this->dangerBarUI->getChildByName("dangerBarBG");
+    auto* dangerBar = this->dangerBarUI->getChildByName("dangerBar");
+
+    Size dangerBarSize = dangerBar->getContentSize();
+
+    float speed = 1.5f;
+    float newDanger = gameManager->getDangerPoint() / this->maxDanger
+        * dangerBarBG->getContentSize().width;
+    dangerBarSize.width = MathUtil::lerp(dangerBarSize.width, newDanger, dt * speed);
+    dangerBar->setContentSize(dangerBarSize);
+}
+
+void GameScene::initPauseMenu()
+{
+    GameManager* gameManager = Singleton<GameManager>::getIntsance();
+    Vec2 visibleSize = gameManager->getVisibleSize();
+    pauseMenuLayer = LayerColor::create(Color4B::GRAY);
+    pauseMenuLayer->setOpacity(100);
+    pauseMenuLayer->setContentSize(Size(160, 160));
+    pauseMenuLayer->setPosition(visibleSize / 2 - pauseMenuLayer->getContentSize() / 2);
+    pauseMenuLayer->setCameraMask((unsigned short)this->cameraUI->getCameraFlag());
+    pauseMenuLayer->setVisible(false);
+    this->addChild(pauseMenuLayer);
+
+    Vector<MenuItem*> menuItems = {
+    MenuItemLabel::create(Label::createWithTTF("Resume", "fonts/dogicapixel.ttf", 20)  , [=](Ref* sender) {
+        gameManager->resume();
+        pauseMenuLayer->setVisible(false);
+    }),
+    MenuItemLabel::create(Label::createWithTTF("Restart", "fonts/dogicapixel.ttf", 20)  , [=](Ref* sender) {
+        auto gameScene = GameScene::create();
+        Director::getInstance()->replaceScene(gameScene);
+    }),
+    MenuItemLabel::create(Label::createWithTTF("Menu", "fonts/dogicapixel.ttf", 20)  , [=](Ref* sender) {
+        auto menuScene = MenuScene::create();
+        Director::getInstance()->replaceScene(menuScene);
+    }),
+    };
+
+    auto menu = Menu::createWithArray(menuItems);
+    this->pauseMenuLayer->addChild(menu);
+    menu->alignItemsVerticallyWithPadding(15);
+    menu->setPosition(pauseMenuLayer->getContentSize() / 2);
+    menu->setCameraMask((unsigned short)this->cameraUI->getCameraFlag());
 }
 
 void GameScene::initCameraUI()
@@ -615,6 +744,19 @@ void GameScene::followHero()
     camera->setPosition(currentPos);
 }
 
+void GameScene::isPauseEntity(bool value)
+{
+    GameManager* gameManager = Singleton<GameManager>::getIntsance();
+    if (value)
+    {
+        gameManager->resume();
+    }
+    else
+    {
+        gameManager->pause();
+    }
+}
+
 
 Scene* GameScene::createScene()
 {
@@ -665,10 +807,20 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& _contact)
         if ((tagA == ENEMY_ATTACK_TAG && tagB == HERO_TAG)
             || (tagB == ENEMY_ATTACK_TAG && tagA == HERO_TAG))
         {
-            if (NodeAName == "EnemyAttack")
+            log("=======###attack###==========");
+            if (NodeAName == "MagicAttack" || NodeBName == "MagicAttack")
             {
                 WeaponSkill* attack = (WeaponSkill*)(tagA == ENEMY_ATTACK_TAG ? nodeA : nodeB);
                 attack->getPhysicsBody()->setRotationEnable(false);
+                attack->setLifeTime(0.0f);
+                Hero* hero = (Hero*)(tagA == HERO_TAG ? nodeA : nodeB);
+                hero->takeDamage(attack->getDamage());
+            }
+            else
+            {
+                log("=======attack==========");
+                WeaponSkill* attack = (WeaponSkill*)(tagA == ENEMY_ATTACK_TAG ? nodeA : nodeB);
+                //attack->getPhysicsBody()->setRotationEnable(false);
                 Hero* hero = (Hero*)(tagA == HERO_TAG ? nodeA : nodeB);
                 hero->takeDamage(attack->getDamage());
             }
@@ -695,13 +847,19 @@ void GameScene::onContactSeparate(cocos2d::PhysicsContact& _contact)
 
 void GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
+    GameManager* gameManager = Singleton<GameManager>::getIntsance();
     switch (keycode)
     {
     case EventKeyboard::KeyCode::KEY_TAB:
         this->upgradeHeroLayer->setVisible(!this->upgradeHeroLayer->isVisible());
+        this->isPauseEntity(!this->upgradeHeroLayer->isVisible());
         break;
     case EventKeyboard::KeyCode::KEY_ESCAPE:
-
+        if (this->upgradeHeroLayer->isVisible() == false)
+        {
+            this->pauseMenuLayer->setVisible(!this->pauseMenuLayer->isVisible());
+            this->isPauseEntity(!this->pauseMenuLayer->isVisible());
+        }
         break;
     default:
         break;
@@ -710,6 +868,7 @@ void GameScene::onKeyPressed(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::E
 
 void GameScene::onKeyReleased(cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event* event)
 {
+    GameManager* gameManager = Singleton<GameManager>::getIntsance();
     switch (keycode)
     {
     case EventKeyboard::KeyCode::KEY_TAB:
@@ -757,20 +916,28 @@ bool GameScene::init()
     mouseListener->onMouseMove = CC_CALLBACK_1(GameScene::onMouseMove, this);
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mouseListener, this);
 
+    heroManager = Singleton<HeroManager>::getIntsance();
+    gameManager = Singleton<GameManager>::getIntsance();
+
+    gameManager->addScene(this);
+    gameManager->addVisibleSize(visibleSize);
+
     this->initCameraUI();
     this->initPlayerInfo();
+    this->initExpUI();
+    this->initDangerBar();
     this->initShowUpgradeHero();
+    this->initPauseMenu();
     this->initTileMap((Vec2)visibleSize);
-
-    Singleton<GameManager>::getIntsance()->addScene(this);
-    Singleton<GameManager>::getIntsance()->addVisibleSize(visibleSize);
 
     this->heroManager->setScene(this);
     this->heroManager->spawnHero(this->heroManager->getHeroJob(), Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
-    auto enemy = new BossZombie();
+    /*auto enemy = new BossZombie();
     enemy->setPosition(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100));
-    this->addChild(enemy);
+    this->addChild(enemy);*/
+
+    this->gameManager->startGame();
 
     this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     //this->getPhysicsWorld()->setGravity(Vec2(0,-98));
@@ -784,4 +951,7 @@ void GameScene::update(float dt)
     heroManager->update(dt);
     this->updatePlayerInfo(dt);
     this->updateShowUpgradeHero();
+    this->updateExpUI(dt);
+    this->updateDangerBar(dt);
+    Singleton<GameManager>::getIntsance()->update(dt);
 }
