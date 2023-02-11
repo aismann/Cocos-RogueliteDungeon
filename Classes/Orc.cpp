@@ -129,13 +129,9 @@ void Orc::entityBehavior(float dt)
     {
         this->nextBehavior = Behavior::Run;
     }
-    else if (distance > 20 && distance <= 50 && this->currentBehavior == Behavior::None)
+    else if (distance >= 20 && distance <= 50 && this->currentBehavior == Behavior::None)
     {
         this->nextBehavior = Behavior::Attack;
-    }
-    else if (distance <= 20 &&this->currentBehavior == Behavior::None)
-    {
-        this->nextBehavior = Behavior::Idle;
     }
 
     if (nextBehavior == Behavior::Attack && this->currentBehavior == Behavior::None)
@@ -221,7 +217,7 @@ void Orc::attacking()
     float radian = aimDirection.getAngle(Vec2(0, 1));
     float angle = radian * 180 / M_PI;
     this->magic->setRotation(angle);
-
+    log("=== direction : %f %f ===", this->magic->getDirection().x, this->magic->getDirection().y);
     Singleton<GameManager>::getIntsance()->getScene()->addChild(magic);
     magicList.push_back(magic);
 }

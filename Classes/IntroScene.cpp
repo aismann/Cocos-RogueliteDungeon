@@ -29,6 +29,12 @@ bool IntroScene::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+    auto background = Sprite::create("intro.png");
+    background->setPosition(visibleSize / 2);
+    background->setAnchorPoint(Vec2(0.5, 0.5));
+    background->setContentSize(visibleSize);
+    this->addChild(background);
+
     auto gameName = Label::createWithTTF("Roguelite Dungeon","fonts/dogicapixel.ttf",60);
     gameName->setTextColor(Color4B(248, 246, 194, 255));
     gameName->setPosition(Vec2(visibleSize.width*0.5,visibleSize.height*0.7));

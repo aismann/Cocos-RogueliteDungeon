@@ -48,6 +48,12 @@ bool ClosingScene::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+    auto background = Sprite::create("closingbg.png");
+    background->setPosition(visibleSize / 2);
+    background->setAnchorPoint(Vec2(0.5, 0.5));
+    background->setContentSize(visibleSize);
+    this->addChild(background);
+
     initInfo();
     initMenu();
     gameManager->endGame();

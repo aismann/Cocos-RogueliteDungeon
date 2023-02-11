@@ -794,6 +794,7 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& _contact)
                 attack->getPhysicsBody()->setRotationEnable(false);
                 Enemy* enemy = (Enemy*)(tagA == ENEMY_TAG ? nodeA : nodeB);
                 enemy->takeDamage(attack->getDamage());
+                m_contactStarted = true;
             }
             else
             {
@@ -803,11 +804,10 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& _contact)
                 Enemy* enemy = (Enemy*)(tagA == ENEMY_TAG ? nodeA : nodeB);
                 enemy->takeDamage(attack->getDamage());
             }
-        } else
+        }
         if ((tagA == ENEMY_ATTACK_TAG && tagB == HERO_TAG)
             || (tagB == ENEMY_ATTACK_TAG && tagA == HERO_TAG))
         {
-            log("=======###attack###==========");
             if (NodeAName == "MagicAttack" || NodeBName == "MagicAttack")
             {
                 WeaponSkill* attack = (WeaponSkill*)(tagA == ENEMY_ATTACK_TAG ? nodeA : nodeB);
@@ -818,7 +818,7 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& _contact)
             }
             else
             {
-                log("=======attack==========");
+                //log("=======attack==========");
                 WeaponSkill* attack = (WeaponSkill*)(tagA == ENEMY_ATTACK_TAG ? nodeA : nodeB);
                 //attack->getPhysicsBody()->setRotationEnable(false);
                 Hero* hero = (Hero*)(tagA == HERO_TAG ? nodeA : nodeB);
@@ -826,7 +826,6 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& _contact)
             }
         }
     }
-    m_contactStarted = true;
     return true;
 }
 
@@ -939,7 +938,7 @@ bool GameScene::init()
 
     this->gameManager->startGame();
 
-    this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    //this->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     //this->getPhysicsWorld()->setGravity(Vec2(0,-98));
     scheduleUpdate();
     return true;

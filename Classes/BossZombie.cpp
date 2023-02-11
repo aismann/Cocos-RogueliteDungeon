@@ -165,11 +165,11 @@ void BossZombie::entityBehavior(float dt)
     }
 
     this->distance = this->getPosition().distance(heroPos);
-    if (distance > 20 && this->currentBehavior == Behavior::None)
+    if (distance > 30 && this->currentBehavior == Behavior::None)
     {
         this->nextBehavior = Behavior::Run;
     }
-    else if (distance <=20 && this->currentBehavior == Behavior::None)
+    else if (distance <=30 && this->currentBehavior == Behavior::None)
     {
         if (this->manaPoint >= this->getMana())
         {
@@ -180,10 +180,6 @@ void BossZombie::entityBehavior(float dt)
         {
             this->nextBehavior = Behavior::Attack;
         }
-    }
-    else if (distance <= 20 &&this->currentBehavior == Behavior::None)
-    {
-        this->nextBehavior = Behavior::Idle;
     }
 
     if (nextBehavior == Behavior::Attack && this->currentBehavior == Behavior::None)
@@ -281,13 +277,13 @@ void BossZombie::attacking()
     this->punch->setDamage(this->getDamage());
     this->punch->setLifeTime(0.5f);
     this->punch->setPosition(this->getPosition() + 20 * aimDirection);
+    auto speed = this->getMovementSpeed();
+    punch->setSpeed(speed);
     this->punch->setDirection(aimDirection);
-
     float radian = aimDirection.getAngle(Vec2(0, 1));
     float angle = radian * 180 / M_PI;
     this->punch->setRotation(angle);
-    auto speed = this->getMovementSpeed();
-    punch->setSpeed(speed);
+
     Singleton<GameManager>::getIntsance()->getScene()->addChild(punch);
     punchList.push_back(punch);
 }
@@ -303,13 +299,13 @@ void BossZombie::bossSkill()
     this->ground->setDamage(this->getDamage()*2);
     this->ground->setLifeTime(0.5f);
     this->ground->setPosition(this->getPosition() + 0 * aimDirection);
+    auto speed = this->getMovementSpeed();
+    ground->setSpeed(speed);
     this->ground->setDirection(aimDirection);
 
     float radian = aimDirection.getAngle(Vec2(0, 1));
     float angle = radian * 180 / M_PI;
     this->ground->setRotation(angle);
-    auto speed = this->getMovementSpeed();
-    ground->setSpeed(speed);
     Singleton<GameManager>::getIntsance()->getScene()->addChild(ground);
     groundList.push_back(ground);
 }

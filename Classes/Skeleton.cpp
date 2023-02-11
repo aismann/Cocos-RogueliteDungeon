@@ -127,17 +127,13 @@ void Skeleton::entityBehavior(float dt)
     }
 
     this->distance = this->getPosition().distance(heroPos);
-    if (distance > 20 && this->currentBehavior == Behavior::None)
+    if (distance > 30 && this->currentBehavior == Behavior::None)
     {
         this->nextBehavior = Behavior::Run;
     }
-    else if (distance <=20 && this->currentBehavior == Behavior::None)
+    else if (distance >= 20  && distance <=30 && this->currentBehavior == Behavior::None)
     {
         this->nextBehavior = Behavior::Attack;
-    }
-    else if (distance <= 20 &&this->currentBehavior == Behavior::None)
-    {
-        this->nextBehavior = Behavior::Idle;
     }
 
     if (nextBehavior == Behavior::Attack && this->currentBehavior == Behavior::None)
@@ -218,13 +214,14 @@ void Skeleton::attacking()
     this->slash->setDamage(this->getDamage());
     this->slash->setLifeTime(0.5f);
     this->slash->setPosition(this->getPosition() + 0 * aimDirection);
+    auto speed = this->getMovementSpeed();
+    slash->setSpeed(speed);
     this->slash->setDirection(aimDirection);
 
     float radian = aimDirection.getAngle(Vec2(0, 1));
     float angle = radian * 180 / M_PI;
     this->slash->setRotation(angle);
-    auto speed = this->getMovementSpeed();
-    slash->setSpeed(speed);
+    log("=== direction : %f %f ===", this->slash->getDirection().x, this->slash->getDirection().y);
     Singleton<GameManager>::getIntsance()->getScene()->addChild(slash);
     slashList.push_back(slash);
 }

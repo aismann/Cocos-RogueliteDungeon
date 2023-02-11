@@ -22,6 +22,12 @@ bool MenuScene::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+    auto background = Sprite::create("mainmenubg.png");
+    background->setPosition(visibleSize/2);
+    background->setAnchorPoint(Vec2(0.5,0.5));
+    background->setContentSize(visibleSize);
+    this->addChild(background);
+
     auto gameName = Label::createWithTTF("Roguelite Dungeon", "fonts/dogicapixel.ttf", 50);
     gameName->setTextColor(Color4B(248, 246, 194, 255));
     gameName->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.7));
@@ -34,7 +40,7 @@ bool MenuScene::init()
     AudioEngine::preload("audios/background.mp3", [&](bool isSuccess) {
         log("Preload background.pm3 %s", isSuccess ? "Success" : "Failed");
         if (isSuccess) {
-            this->backgroundMusic = AudioEngine::play2d("sounds/background.mp3", true);
+            this->backgroundMusic = AudioEngine::play2d("audios/background.mp3", true);
         }
     });
     if (!AudioEngine::isEnabled())
@@ -69,7 +75,7 @@ bool MenuScene::init()
             this->soundLabel->setString(std::string("Sound: ") + std::string(this->soundOn ? "ON" : "OFF"));
             if (AudioEngine::isEnabled())
             {
-                this->backgroundMusic = AudioEngine::play2d("sounds/background.mp3", true);
+                this->backgroundMusic = AudioEngine::play2d("audios/background.mp3", true);
             }
             else
             {

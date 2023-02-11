@@ -3,7 +3,7 @@
 USING_NS_CC;
 Scene* GameManager::scene;
 Size GameManager::visibleSize;
-float GameManager::dangerPoint = 100.f;
+float GameManager::dangerPoint = 0.f;
 
 ObjectPool<Skeleton> GameManager::skeletonPool;
 std::list<Skeleton*> GameManager::skeletonList;
